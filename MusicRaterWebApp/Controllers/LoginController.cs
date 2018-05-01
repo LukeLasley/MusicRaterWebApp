@@ -9,6 +9,7 @@ namespace MusicRaterWebApp.Controllers
     public class LoginController : Controller
     {
         // GET: Login
+        [Route("Login/")]
         public ActionResult Login()
         {
             return View();

@@ -13,10 +13,7 @@ namespace MusicRaterWebApp
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                "loginOnly",
-                "login",
-                new { controller = "Login", action = "Login" });
+            routes.MapMvcAttributeRoutes();
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
