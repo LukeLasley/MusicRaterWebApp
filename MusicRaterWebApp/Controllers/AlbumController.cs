@@ -9,6 +9,17 @@ namespace MusicRaterWebApp.Controllers
 {
     public class AlbumController : Controller
     {
+        private MusicRaterContext _context;
+
+        public AlbumController()
+        {
+            _context = new MusicRaterContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
         // GET: Album
         public ActionResult Index()
         {
@@ -16,8 +27,13 @@ namespace MusicRaterWebApp.Controllers
         }
         public ActionResult GetAlbum(int id)
         {
-            Album album = new Album() { albumName = "SAMPLE" , genre = "pop", bandName = "BANDNAME", year = 1990};
-            return View(album);
+            Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
+            if (album == null)
+                return HttpNotFound();
+            else
+            {
+                return View(album);
+            }
         }
     }
 }

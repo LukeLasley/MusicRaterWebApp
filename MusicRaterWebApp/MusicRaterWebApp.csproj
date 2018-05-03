@@ -153,6 +153,7 @@
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -167,6 +168,14 @@
     <Compile Include="Migrations\201805031824592_addingUsers.cs" />
     <Compile Include="Migrations\201805031824592_addingUsers.Designer.cs">
       <DependentUpon>201805031824592_addingUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805032021388_insertingAlbumsIntoDatabase.cs" />
+    <Compile Include="Migrations\201805032021388_insertingAlbumsIntoDatabase.Designer.cs">
+      <DependentUpon>201805032021388_insertingAlbumsIntoDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805032033424_initialUsersInsertedInDatabase.cs" />
+    <Compile Include="Migrations\201805032033424_initialUsersInsertedInDatabase.Designer.cs">
+      <DependentUpon>201805032033424_initialUsersInsertedInDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
@@ -215,6 +224,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Album\GetAlbum.cshtml" />
+    <Content Include="Views\User\Favorites.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -244,6 +254,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805031824592_addingUsers.resx">
       <DependentUpon>201805031824592_addingUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805032021388_insertingAlbumsIntoDatabase.resx">
+      <DependentUpon>201805032021388_insertingAlbumsIntoDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805032033424_initialUsersInsertedInDatabase.resx">
+      <DependentUpon>201805032033424_initialUsersInsertedInDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
