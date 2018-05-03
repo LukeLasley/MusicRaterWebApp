@@ -160,6 +160,10 @@
     <Compile Include="Migrations\201805031507309_InitialModel.Designer.cs">
       <DependentUpon>201805031507309_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805031547196_updatedPassword.cs" />
+    <Compile Include="Migrations\201805031547196_updatedPassword.Designer.cs">
+      <DependentUpon>201805031547196_updatedPassword.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Password.cs" />
@@ -228,6 +232,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201805031507309_InitialModel.resx">
       <DependentUpon>201805031507309_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805031547196_updatedPassword.resx">
+      <DependentUpon>201805031547196_updatedPassword.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

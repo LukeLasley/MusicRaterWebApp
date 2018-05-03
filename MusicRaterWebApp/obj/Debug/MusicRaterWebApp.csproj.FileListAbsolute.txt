@@ -283,3 +283,4 @@ E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.dll
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.pdb
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.InitialModel.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.csproj.GenerateResource.cache
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.updatedPassword.resources
