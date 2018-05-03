@@ -156,26 +156,14 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805031507309_InitialModel.cs" />
+    <Compile Include="Migrations\201805031507309_InitialModel.Designer.cs">
+      <DependentUpon>201805031507309_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Password.cs" />
-    <Compile Include="MusicRaterModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MusicRaterModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MusicRaterModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MusicRaterModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="MusicRaterModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MusicRaterModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Password.cs">
-      <DependentUpon>MusicRaterModel.tt</DependentUpon>
-    </Compile>
+    <Compile Include="MusicRaterContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -185,27 +173,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="MusicRaterModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MusicRaterModel.edmx</DependentUpon>
-      <LastGenOutput>MusicRaterModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="MusicRaterModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MusicRaterModel.edmx</DependentUpon>
-      <LastGenOutput>MusicRaterModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EntityDeploy Include="MusicRaterModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MusicRaterModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="MusicRaterModel.edmx.diagram">
-      <DependentUpon>MusicRaterModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -232,6 +203,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -252,6 +224,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805031507309_InitialModel.resx">
+      <DependentUpon>201805031507309_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
