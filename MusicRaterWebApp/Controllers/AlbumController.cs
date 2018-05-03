@@ -12,8 +12,12 @@ namespace MusicRaterWebApp.Controllers
         // GET: Album
         public ActionResult Index()
         {
-            var album = new Album() { albumName = "SAMPLE" };
             return View();
+        }
+        public ActionResult GetAlbum(int id)
+        {
+            Album album = new Album() { albumName = "SAMPLE" , genre = "pop", bandName = "BANDNAME", year = 1990};
+            return View(album);
         }
     }
 }

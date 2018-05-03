@@ -11,5 +11,6 @@ namespace MusicRaterWebApp
     {
         public DbSet<Album> albums { get; set;}
         public DbSet<Password> passwords { get; set; }
+        public DbSet<User> users { get; set; }
     }
 }

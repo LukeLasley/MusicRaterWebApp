@@ -1,0 +1,22 @@
+﻿@model MusicRaterWebApp.Models.Album
+@{
+    ViewBag.Title = "GetAlbum";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.albumName</h2>
+<hr/>
+<body>
+    <p>
+        @Model.bandName
+        <ul>
+            <li>
+                @Model.year
+            </li>
+            <li>
+                @Model.genre
+            </li>
+        </ul>
+    </p>
+</body>
+
