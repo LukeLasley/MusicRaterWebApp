@@ -287,3 +287,5 @@ C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicR
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingUsers.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.insertingAlbumsIntoDatabase.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.initialUsersInsertedInDatabase.resources
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingGenresTable.resources
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addedGenreAlbumJunctionTable.resources

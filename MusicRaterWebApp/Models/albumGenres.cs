@@ -6,10 +6,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MusicRaterWebApp.Models
 {
-    public class Genre
+    public class AlbumGenres
     {
         [Key]
         public int id { get; set; }
-        public String genre { get; set; }
+        public int albumId { get; set; }
+        public int genreId { get; set; }
     }
 }

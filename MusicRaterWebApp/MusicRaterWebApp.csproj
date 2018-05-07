@@ -177,8 +177,18 @@
     <Compile Include="Migrations\201805032033424_initialUsersInsertedInDatabase.Designer.cs">
       <DependentUpon>201805032033424_initialUsersInsertedInDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805071822032_addingGenresTable.cs" />
+    <Compile Include="Migrations\201805071822032_addingGenresTable.Designer.cs">
+      <DependentUpon>201805071822032_addingGenresTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805071828281_addedGenreAlbumJunctionTable.cs" />
+    <Compile Include="Migrations\201805071828281_addedGenreAlbumJunctionTable.Designer.cs">
+      <DependentUpon>201805071828281_addedGenreAlbumJunctionTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\AlbumGenres.cs" />
+    <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\Password.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="MusicRaterContext.cs" />
@@ -261,6 +271,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805032033424_initialUsersInsertedInDatabase.resx">
       <DependentUpon>201805032033424_initialUsersInsertedInDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071822032_addingGenresTable.resx">
+      <DependentUpon>201805071822032_addingGenresTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805071828281_addedGenreAlbumJunctionTable.resx">
+      <DependentUpon>201805071828281_addedGenreAlbumJunctionTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
