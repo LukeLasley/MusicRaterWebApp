@@ -185,6 +185,10 @@
     <Compile Include="Migrations\201805071828281_addedGenreAlbumJunctionTable.Designer.cs">
       <DependentUpon>201805071828281_addedGenreAlbumJunctionTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805072125071_updatingDatabaseWithGenres.cs" />
+    <Compile Include="Migrations\201805072125071_updatingDatabaseWithGenres.Designer.cs">
+      <DependentUpon>201805072125071_updatingDatabaseWithGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumGenres.cs" />
@@ -193,6 +197,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="MusicRaterContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\NewAlbumViewModel.cs" />
     <Compile Include="ViewModels\UserFavoriteAlbumsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805071828281_addedGenreAlbumJunctionTable.resx">
       <DependentUpon>201805071828281_addedGenreAlbumJunctionTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805072125071_updatingDatabaseWithGenres.resx">
+      <DependentUpon>201805072125071_updatingDatabaseWithGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

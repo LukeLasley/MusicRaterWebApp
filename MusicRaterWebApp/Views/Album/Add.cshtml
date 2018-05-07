@@ -1,4 +1,4 @@
-﻿@model MusicRaterWebApp.Models.Album
+﻿@model MusicRaterWebApp.ViewModels.NewAlbumViewModel
 @{
     /**/
 
@@ -11,20 +11,20 @@
 @using (Html.BeginForm("Create", "Album"))
 {
     <div class="form-group">
-        @Html.LabelFor(m => m.albumName, "Album Name")
-        @Html.TextBoxFor(m => m.albumName, new { @class = "form-control" })
+        @Html.LabelFor(m => m.album.albumName, "Album Name")
+        @Html.TextBoxFor(m => m.album.albumName, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.bandName, "Band Name")
-        @Html.TextBoxFor(m => m.bandName, new { @class = "form-control" })
+        @Html.LabelFor(m => m.album.bandName, "Band Name")
+        @Html.TextBoxFor(m => m.album.bandName, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.genre, "Genre")
-        @Html.TextBoxFor(m => m.genre, new { @class = "form-control" })
+        @Html.LabelFor(m => m.album.year, "Release Year")
+        @Html.TextBoxFor(m => m.album.year, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.year, "Release Year")
-        @Html.TextBoxFor(m => m.year, new { @class = "form-control" })
+        @Html.LabelFor(m => m.album.genre, "Genres")
+        @Html.DropDownListFor(m => m.album.genre, new SelectList(Model.genres, "Id", "Genre"), "", new { @class = "form-control" })
     </div>
-    <button type="submit"class = "btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary">Save</button>
 }

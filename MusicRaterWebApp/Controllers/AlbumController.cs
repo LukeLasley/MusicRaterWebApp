@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using MusicRaterWebApp.Models;
+using MusicRaterWebApp.ViewModels;
 
 namespace MusicRaterWebApp.Controllers
 {
@@ -28,7 +29,12 @@ namespace MusicRaterWebApp.Controllers
 
         public ActionResult Add()
         {
-            return View();
+            var genres = _context.genres.ToList();
+            var albumViewModel = new NewAlbumViewModel()
+            {
+                genres = genres
+            };
+            return View(albumViewModel);
         }
 
         [HttpPost]
