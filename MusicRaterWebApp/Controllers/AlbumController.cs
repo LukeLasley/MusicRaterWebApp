@@ -31,6 +31,15 @@ namespace MusicRaterWebApp.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Create(Album albumModel)
+        {
+            _context.albums.Add(albumModel);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "User");
+        }
+
         public ActionResult GetAlbum(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
