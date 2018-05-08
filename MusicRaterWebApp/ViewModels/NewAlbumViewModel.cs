@@ -10,5 +10,6 @@ namespace MusicRaterWebApp.ViewModels
     {
         public IEnumerable<Genre> genres { get; set; }
         public Album album { get; set; }
+        public int genreChosen { get; set; }
     }
 }

@@ -23,8 +23,8 @@
         @Html.TextBoxFor(m => m.album.year, new { @class = "form-control" })
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.album.genre, "Genres")
-        @Html.DropDownListFor(m => m.album.genre, new SelectList(Model.genres, "Id", "Genre"), "", new { @class = "form-control" })
+        @Html.LabelFor(m => m.genreChosen, "Genres")
+        @Html.DropDownListFor(m => m.genreChosen, new SelectList(Model.genres, "Id", "Genre"), "", new { @class = "form-control" })
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 }

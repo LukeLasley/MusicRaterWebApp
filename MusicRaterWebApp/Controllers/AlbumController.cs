@@ -38,12 +38,20 @@ namespace MusicRaterWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Album albumModel)
+        public ActionResult Create(NewAlbumViewModel albumViewModel)
         {
-            _context.albums.Add(albumModel);
+            _context.albums.Add(albumViewModel.album);
             _context.SaveChanges();
+            AlbumGenres albumGenre = new AlbumGenres
+            {
+                albumId = albumViewModel.album.albumId,
+                genreId = albumViewModel.genreChosen
+            };
+            _context.albumGenres.Add(albumGenre);
+            _context.SaveChanges();
+            String redirect = "GetAlbum/" + albumViewModel.album.albumId;
 
-            return RedirectToAction("Index", "User");
+            return RedirectToAction(redirect, "Album");
         }
 
         public ActionResult GetAlbum(int id)
