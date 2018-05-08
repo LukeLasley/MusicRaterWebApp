@@ -189,6 +189,14 @@
     <Compile Include="Migrations\201805072125071_updatingDatabaseWithGenres.Designer.cs">
       <DependentUpon>201805072125071_updatingDatabaseWithGenres.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805081946367_updatingDatabaseAlbumsToGenres.cs" />
+    <Compile Include="Migrations\201805081946367_updatingDatabaseAlbumsToGenres.Designer.cs">
+      <DependentUpon>201805081946367_updatingDatabaseAlbumsToGenres.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805082001094_deletingGenreFromAlbum.cs" />
+    <Compile Include="Migrations\201805082001094_deletingGenreFromAlbum.Designer.cs">
+      <DependentUpon>201805082001094_deletingGenreFromAlbum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumGenres.cs" />
@@ -286,6 +294,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805072125071_updatingDatabaseWithGenres.resx">
       <DependentUpon>201805072125071_updatingDatabaseWithGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805081946367_updatingDatabaseAlbumsToGenres.resx">
+      <DependentUpon>201805081946367_updatingDatabaseAlbumsToGenres.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805082001094_deletingGenreFromAlbum.resx">
+      <DependentUpon>201805082001094_deletingGenreFromAlbum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

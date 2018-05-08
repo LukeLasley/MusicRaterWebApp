@@ -299,3 +299,5 @@ E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingGenresT
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addedGenreAlbumJunctionTable.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.updatingDatabaseWithGenres.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.csproj.GenerateResource.Cache
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.updatingDatabaseAlbumsToGenres.resources
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.deletingGenreFromAlbum.resources

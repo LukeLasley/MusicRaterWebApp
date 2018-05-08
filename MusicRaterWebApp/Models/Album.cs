@@ -13,6 +13,5 @@ namespace MusicRaterWebApp.Models
         public string albumName { get; set; }
         public string bandName { get; set; }
         public int year { get; set; }
-        public string genre { get; set; }
     }
 }
