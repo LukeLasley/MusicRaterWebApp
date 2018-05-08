@@ -57,11 +57,21 @@ namespace MusicRaterWebApp.Controllers
         public ActionResult GetAlbum(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
+            AlbumGenres albumGenre = _context.albumGenres.SingleOrDefault(c => c.albumId == id);
+            Genre genre = _context.genres.SingleOrDefault(c => c.id == albumGenre.genreId);
+            AlbumDescriptionViewModel descriptionViewModel = new AlbumDescriptionViewModel
+            {
+                album = album,
+                genres = new List<Genre>()
+                {
+                    genre
+                },
+            };
             if (album == null)
                 return HttpNotFound();
             else
             {
-                return View(album);
+                return View(descriptionViewModel);
             }
         }
     }

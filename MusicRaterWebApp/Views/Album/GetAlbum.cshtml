@@ -1,20 +1,20 @@
-﻿@model MusicRaterWebApp.Models.Album
+﻿@model MusicRaterWebApp.ViewModels.AlbumDescriptionViewModel
 @{
     ViewBag.Title = "GetAlbum";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.albumName</h2>
+<h2>@Model.album.albumName</h2>
 <hr/>
 <body>
     <p>
-        @Model.bandName
+        @Model.album.bandName
         <ul>
             <li>
-                @Model.year
+                @Model.album.year
             </li>
             <li>
-                @Model.genre
+                @Model.genres[0].genre
             </li>
         </ul>
     </p>
