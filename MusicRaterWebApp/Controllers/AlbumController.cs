@@ -27,10 +27,10 @@ namespace MusicRaterWebApp.Controllers
             return View();
         }
 
-        public ActionResult Add()
+        public ActionResult AlbumForm()
         {
             var genres = _context.genres.ToList();
-            var albumViewModel = new NewAlbumViewModel()
+            var albumViewModel = new AlbumFormViewModel()
             {
                 genres = genres
             };
@@ -38,16 +38,25 @@ namespace MusicRaterWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(NewAlbumViewModel albumViewModel)
+        public ActionResult Save(AlbumFormViewModel albumViewModel)
         {
-            _context.albums.Add(albumViewModel.album);
-            _context.SaveChanges();
-            AlbumGenres albumGenre = new AlbumGenres
+            if(albumViewModel.album.albumId == 0)
             {
-                albumId = albumViewModel.album.albumId,
-                genreId = albumViewModel.genreChosen
-            };
-            _context.albumGenres.Add(albumGenre);
+                _context.albums.Add(albumViewModel.album);
+                _context.SaveChanges();
+                AlbumGenres albumGenre = new AlbumGenres
+                {
+                    albumId = albumViewModel.album.albumId,
+                    genreId = albumViewModel.genreChosen
+                };
+                _context.albumGenres.Add(albumGenre);
+            }
+            else
+            {
+                //Update database
+                var databaseAlbum = _context.albums.Single(c => c.albumId == albumViewModel.album.albumId);
+            }
+
             _context.SaveChanges();
             String redirect = "GetAlbum/" + albumViewModel.album.albumId;
 
@@ -73,6 +82,22 @@ namespace MusicRaterWebApp.Controllers
             {
                 return View(descriptionViewModel);
             }
+        }
+        public ActionResult Edit(int id)
+        {
+            Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
+
+            if(album == null)
+            {
+                return HttpNotFound();
+            }
+            AlbumGenres albumGenre = _context.albumGenres.SingleOrDefault(c => c.albumId == id);
+            var viewModel = new AlbumFormViewModel {
+                album = album,
+                genres = _context.genres.ToList(),
+                genreChosen = albumGenre.genreId
+            };
+            return View("AlbumForm", viewModel);
         }
     }
 }

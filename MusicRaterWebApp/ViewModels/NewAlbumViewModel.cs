@@ -6,7 +6,7 @@ using MusicRaterWebApp.Models;
 
 namespace MusicRaterWebApp.ViewModels
 {
-    public class NewAlbumViewModel
+    public class AlbumFormViewModel
     {
         public IEnumerable<Genre> genres { get; set; }
         public Album album { get; set; }

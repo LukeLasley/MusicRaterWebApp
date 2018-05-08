@@ -1,4 +1,4 @@
-﻿@model MusicRaterWebApp.ViewModels.NewAlbumViewModel
+﻿@model MusicRaterWebApp.ViewModels.AlbumFormViewModel
 @{
     /**/
 
@@ -8,7 +8,7 @@
 
 <h2>Add a New Album</h2>
 
-@using (Html.BeginForm("Create", "Album"))
+@using (Html.BeginForm("Save", "Album"))
 {
     <div class="form-group">
         @Html.LabelFor(m => m.album.albumName, "Album Name")

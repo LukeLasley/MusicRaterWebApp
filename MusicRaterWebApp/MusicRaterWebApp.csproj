@@ -249,7 +249,7 @@
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="Views\Album\GetAlbum.cshtml" />
     <Content Include="Views\User\Favorites.cshtml" />
-    <Content Include="Views\Album\Add.cshtml" />
+    <Content Include="Views\Album\AlbumForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
