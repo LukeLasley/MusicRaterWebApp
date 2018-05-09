@@ -40,8 +40,18 @@ namespace MusicRaterWebApp.Controllers
         [HttpPost]
         public ActionResult Save(AlbumFormViewModel albumViewModel)
         {
+            if (!ModelState.IsValid)
+            { 
+                AlbumFormViewModel albumFormViewModel = new AlbumFormViewModel()
+                {
+                    album = albumViewModel.album,
+                    genres = _context.genres.ToList()
+                };
+                return View("AlbumForm", albumFormViewModel);
+            }
+
             //If the album doesnt exist then add to database
-            if(albumViewModel.album.albumId == 0)
+            if (albumViewModel.album.albumId == 0)
             {
                 _context.albums.Add(albumViewModel.album);
                 _context.SaveChanges();

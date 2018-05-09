@@ -197,6 +197,10 @@
     <Compile Include="Migrations\201805082001094_deletingGenreFromAlbum.Designer.cs">
       <DependentUpon>201805082001094_deletingGenreFromAlbum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805091914087_albumNowHasRequired.cs" />
+    <Compile Include="Migrations\201805091914087_albumNowHasRequired.Designer.cs">
+      <DependentUpon>201805091914087_albumNowHasRequired.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumGenres.cs" />
@@ -300,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805082001094_deletingGenreFromAlbum.resx">
       <DependentUpon>201805082001094_deletingGenreFromAlbum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805091914087_albumNowHasRequired.resx">
+      <DependentUpon>201805091914087_albumNowHasRequired.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -13,10 +13,12 @@
     <div class="form-group">
         @Html.LabelFor(m => m.album.albumName, "Album Name")
         @Html.TextBoxFor(m => m.album.albumName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m =>m.album.albumName)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.album.bandName, "Band Name")
         @Html.TextBoxFor(m => m.album.bandName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.album.bandName)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.album.year, "Release Year")
