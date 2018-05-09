@@ -40,6 +40,7 @@ namespace MusicRaterWebApp.Controllers
         [HttpPost]
         public ActionResult Save(AlbumFormViewModel albumViewModel)
         {
+            //If the album doesnt exist then add to database
             if(albumViewModel.album.albumId == 0)
             {
                 _context.albums.Add(albumViewModel.album);
@@ -54,7 +55,21 @@ namespace MusicRaterWebApp.Controllers
             else
             {
                 //Update database
-                var databaseAlbum = _context.albums.Single(c => c.albumId == albumViewModel.album.albumId);
+                Album databaseAlbum = _context.albums.Single(c => c.albumId == albumViewModel.album.albumId);
+                Album viewAlbum = albumViewModel.album;
+                databaseAlbum.albumName = viewAlbum.albumName;
+                databaseAlbum.bandName = viewAlbum.bandName;
+                databaseAlbum.year = viewAlbum.year;
+
+
+                var albumGenres = _context.albumGenres.Where(e => databaseAlbum.albumId.Equals(e.albumId));
+                _context.albumGenres.RemoveRange(albumGenres);
+                AlbumGenres albumGenre = new AlbumGenres
+                {
+                    albumId = albumViewModel.album.albumId,
+                    genreId = albumViewModel.genreChosen
+                };
+                _context.albumGenres.Add(albumGenre);
             }
 
             _context.SaveChanges();
