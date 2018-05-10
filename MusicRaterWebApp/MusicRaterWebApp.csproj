@@ -201,6 +201,10 @@
     <Compile Include="Migrations\201805091914087_albumNowHasRequired.Designer.cs">
       <DependentUpon>201805091914087_albumNowHasRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805101529057_makeYearNullable.cs" />
+    <Compile Include="Migrations\201805101529057_makeYearNullable.Designer.cs">
+      <DependentUpon>201805101529057_makeYearNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\AlbumGenres.cs" />
@@ -307,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805091914087_albumNowHasRequired.resx">
       <DependentUpon>201805091914087_albumNowHasRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805101529057_makeYearNullable.resx">
+      <DependentUpon>201805101529057_makeYearNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

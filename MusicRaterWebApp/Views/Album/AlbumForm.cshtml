@@ -1,12 +1,26 @@
 ﻿@model MusicRaterWebApp.ViewModels.AlbumFormViewModel
 @{
     /**/
-
-    ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Add a New Album</h2>
+@if (@Model.album !=null)
+{
+    if(Model.album.albumId != 0)
+    {
+        <h2>Edit an Album</h2>
+        ViewBag.Title = "Edit";
+    }
+    else
+    {
+        <h2>Add a New Album</h2>
+        ViewBag.Title = "Add";
+    }
+}
+else
+{
+    <h2>Add a New Album</h2>
+    ViewBag.Title = "Add";
+}
 
 @using (Html.BeginForm("Save", "Album"))
 {
@@ -28,9 +42,14 @@
         @Html.LabelFor(m => m.genreChosen, "Genres")
         @Html.DropDownListFor(m => m.genreChosen, new SelectList(Model.genres, "Id", "Genre"), "", new { @class = "form-control" })
     </div>
-    <div style="display:none">
-        @Html.LabelFor(m => m.album.albumId, "ID")
-        @Html.TextBoxFor(m => m.album.albumId, new { @class = "form-control" })
+    <div class="form-group">
+        @Html.HiddenFor(m => m.album.albumId)
+        @Html.AntiForgeryToken()
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")    
 }

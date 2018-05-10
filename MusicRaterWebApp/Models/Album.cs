@@ -10,10 +10,10 @@ namespace MusicRaterWebApp.Models
     {
         [Key]
         public int albumId { get; set;}
-        [Required]
+        [Required(ErrorMessage = "Album name is required")]
         public string albumName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Band name is required")]
         public string bandName { get; set; }
-        public int year { get; set; }
+        public int? year { get; set; }
     }
 }

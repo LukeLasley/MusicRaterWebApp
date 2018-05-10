@@ -302,3 +302,4 @@ E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.csproj.GenerateResource.
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.updatingDatabaseAlbumsToGenres.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.deletingGenreFromAlbum.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.albumNowHasRequired.resources
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.makeYearNullable.resources
