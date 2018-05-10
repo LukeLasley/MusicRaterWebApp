@@ -215,6 +215,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AlbumDescriptionViewModel.cs" />
     <Compile Include="ViewModels\NewAlbumViewModel.cs" />
+    <Compile Include="ViewModels\SearchResultsViewModel.cs" />
     <Compile Include="ViewModels\UserFavoriteAlbumsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +259,8 @@
     <Content Include="Views\Album\GetAlbum.cshtml" />
     <Content Include="Views\User\Favorites.cshtml" />
     <Content Include="Views\Album\AlbumForm.cshtml" />
+    <Content Include="Views\Album\SearchForm.cshtml" />
+    <Content Include="Views\Album\SearchResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

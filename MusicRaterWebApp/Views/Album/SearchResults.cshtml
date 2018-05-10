@@ -1,0 +1,35 @@
+﻿@model MusicRaterWebApp.ViewModels.SearchResultsViewModel
+@{
+    ViewBag.Title = "Search Results";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search Results: </h2>
+<body>
+    <table id="albums" class="table table-bordered table-hover">
+        <tbody>
+            <tr>
+                <th>Album</th>
+                <th>Artist</th>
+                <th>Year</th>
+            </tr>
+            @foreach (var album in Model.toShow)
+            {
+            <tr>
+                <td>
+                    @Html.ActionLink(@album.albumName, "GetAlbum/" + @album.albumId, "Album")
+                </td>
+                <td>
+                    @Html.Label(@album.bandName)
+                </td>
+                <td>
+                    @Html.Label(@album.year.ToString())
+                </td>
+            </tr>
+
+             }
+        </tbody>
+
+    </table>
+
+</body>

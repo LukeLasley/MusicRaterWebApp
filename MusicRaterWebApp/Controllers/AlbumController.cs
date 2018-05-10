@@ -24,7 +24,7 @@ namespace MusicRaterWebApp.Controllers
         // GET: Album
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("SearchForm", "Album");
         }
 
         public ActionResult AlbumForm()
@@ -124,5 +124,26 @@ namespace MusicRaterWebApp.Controllers
             };
             return View("AlbumForm", viewModel);
         }
+
+        public ActionResult SearchForm()
+        {
+            var genres = _context.genres.ToList();
+            var albumViewModel = new AlbumFormViewModel()
+            {
+                genres = genres
+            };
+            return View(albumViewModel);
+        }
+
+        public ActionResult SearchResults(AlbumFormViewModel albumViewModel)
+        {
+            var albums = _context.albums.Where(c => c.albumName.Equals(albumViewModel.album.albumName) || c.bandName.Equals(albumViewModel.album.bandName) || c.year == albumViewModel.album.year).ToList() ;
+            SearchResultsViewModel resultsViewModel = new SearchResultsViewModel
+            {
+                toShow = albums
+            };
+            return View(resultsViewModel);
+        }
+
     }
 }
