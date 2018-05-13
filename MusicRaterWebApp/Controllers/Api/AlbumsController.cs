@@ -5,6 +5,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using MusicRaterWebApp.Models;
+using MusicRaterWebApp.Dtos;
+using AutoMapper;
 
 namespace MusicRaterWebApp.Controllers.Api
 {
@@ -17,14 +19,14 @@ namespace MusicRaterWebApp.Controllers.Api
             _context = new MusicRaterContext();
         }
         //GET /api/albums
-        public IEnumerable<Album> GetAlbums()
+        public IEnumerable<AlbumDto> GetAlbums()
         {
-            var albums = _context.albums.ToList();
+            var albums = _context.albums.ToList().Select(Mapper.Map<Album,AlbumDto>);
             return albums;
         }
 
         //GET /api/albums/1
-        public Album GetAlbum(int id)
+        public AlbumDto GetAlbum(int id)
         {
             var album = _context.albums.SingleOrDefault(c => c.albumId == id);
             if( album == null)
@@ -33,25 +35,27 @@ namespace MusicRaterWebApp.Controllers.Api
             }
             else
             {
-                return album;
+                return Mapper.Map<Album,AlbumDto>(album);
             }
         }
         //POST /api/albums
         [HttpPost]
-        public Album CreateAlbum(Album album)
+        public AlbumDto CreateAlbum(AlbumDto albumDto)
         {
             if (!ModelState.IsValid)
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
+            var album = Mapper.Map<AlbumDto, Album>(albumDto);
             _context.albums.Add(album);
             _context.SaveChanges();
-            return album;
+            albumDto.albumId = album.albumId;
+            return albumDto;
         }
 
         //Put /api/albums/1
         [HttpPut]
-        public void UpdateAlbum(int id, Album album)
+        public void UpdateAlbum(int id, AlbumDto albumDto)
         {
             if (!ModelState.IsValid)
             {
@@ -62,10 +66,7 @@ namespace MusicRaterWebApp.Controllers.Api
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            databaseAlbum.albumName = album.albumName;
-            databaseAlbum.bandName = album.bandName;
-            databaseAlbum.year = album.year;
-
+            Mapper.Map(albumDto, databaseAlbum);
             _context.SaveChanges();
         }
 
