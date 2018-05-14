@@ -303,3 +303,13 @@ C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicR
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.deletingGenreFromAlbum.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.albumNowHasRequired.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.makeYearNullable.resources
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\AutoMapper.dll
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\System.Net.Http.Formatting.dll
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\System.Web.Http.dll
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\System.Web.Http.WebHost.dll
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\AutoMapper.xml
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\System.Net.Http.Formatting.xml
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\System.Web.Http.xml
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\System.Web.Http.WebHost.xml
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.deletingalbumgenresjunctiontable.resources
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.updatingAlbumAndGenreToCreateJunctionTable.resources

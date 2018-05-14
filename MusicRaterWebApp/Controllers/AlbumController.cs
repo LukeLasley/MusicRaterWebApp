@@ -53,14 +53,11 @@ namespace MusicRaterWebApp.Controllers
             //If the album doesnt exist then add to database
             if (albumViewModel.album.albumId == 0)
             {
+                var album = albumViewModel.album;
+                Genre genre = _context.genres.SingleOrDefault(c => c.id == albumViewModel.genreChosen);
+                album.genres.Add(genre);
                 _context.albums.Add(albumViewModel.album);
                 _context.SaveChanges();
-                AlbumGenres albumGenre = new AlbumGenres
-                {
-                    albumId = albumViewModel.album.albumId,
-                    genreId = albumViewModel.genreChosen
-                };
-                _context.albumGenres.Add(albumGenre);
             }
             else
             {
@@ -70,16 +67,8 @@ namespace MusicRaterWebApp.Controllers
                 databaseAlbum.albumName = viewAlbum.albumName;
                 databaseAlbum.bandName = viewAlbum.bandName;
                 databaseAlbum.year = viewAlbum.year;
-
-
-                var albumGenres = _context.albumGenres.Where(e => databaseAlbum.albumId.Equals(e.albumId));
-                _context.albumGenres.RemoveRange(albumGenres);
-                AlbumGenres albumGenre = new AlbumGenres
-                {
-                    albumId = albumViewModel.album.albumId,
-                    genreId = albumViewModel.genreChosen
-                };
-                _context.albumGenres.Add(albumGenre);
+                Genre genre = _context.genres.SingleOrDefault(c => c.id == albumViewModel.genreChosen);
+                databaseAlbum.genres.Add(genre);
             }
 
             _context.SaveChanges();
@@ -91,15 +80,14 @@ namespace MusicRaterWebApp.Controllers
         public ActionResult GetAlbum(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
-            AlbumGenres albumGenre = _context.albumGenres.SingleOrDefault(c => c.albumId == id);
-            Genre genre = _context.genres.SingleOrDefault(c => c.id == albumGenre.genreId);
+            Genre genre = new Genre
+            {
+                genre = "pop"
+            };
             AlbumDescriptionViewModel descriptionViewModel = new AlbumDescriptionViewModel
             {
                 album = album,
-                genres = new List<Genre>()
-                {
-                    genre
-                },
+                genres = album.genres.ToList()
             };
             if (album == null)
                 return HttpNotFound();
@@ -116,11 +104,11 @@ namespace MusicRaterWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            AlbumGenres albumGenre = _context.albumGenres.SingleOrDefault(c => c.albumId == id);
+            //AlbumGenres albumGenre = _context.albumGenres.SingleOrDefault(c => c.albumId == id);
             var viewModel = new AlbumFormViewModel {
                 album = album,
                 genres = _context.genres.ToList(),
-                genreChosen = albumGenre.genreId
+                //genreChosen = albumGenre.genreId
             };
             return View("AlbumForm", viewModel);
         }

@@ -8,6 +8,10 @@ namespace MusicRaterWebApp.Models
 {
     public class Album
     {
+        public Album()
+        {
+            this.genres = new HashSet<Genre>();
+        }
         [Key]
         public int albumId { get; set;}
         [Required(ErrorMessage = "Album name is required")]
@@ -15,5 +19,6 @@ namespace MusicRaterWebApp.Models
         [Required(ErrorMessage = "Band name is required")]
         public string bandName { get; set; }
         public int? year { get; set; }
+        public virtual ICollection<Genre> genres { get; set; }
     }
 }

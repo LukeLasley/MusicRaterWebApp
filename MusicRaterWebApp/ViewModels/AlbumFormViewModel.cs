@@ -8,7 +8,7 @@ namespace MusicRaterWebApp.ViewModels
 {
     public class AlbumFormViewModel
     {
-        public IEnumerable<Genre> genres { get; set; }
+        public ICollection<Genre> genres { get; set; }
         public Album album { get; set; }
         public int genreChosen { get; set; }
     }

@@ -13,6 +13,5 @@ namespace MusicRaterWebApp
         public DbSet<Password> passwords { get; set; }
         public DbSet<User> users { get; set; }
         public DbSet<Genre> genres { get; set; }
-        public DbSet<AlbumGenres> albumGenres { get; set; }
     }
 }

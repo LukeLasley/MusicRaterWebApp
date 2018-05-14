@@ -40,10 +40,11 @@ else
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.genreChosen, "Genres")
-        @Html.DropDownListFor(m => m.genreChosen, new SelectList(Model.genres, "Id", "Genre"), "", new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.genreChosen, new SelectList(Model.genres, "ID", "Genre"), "", new { @class = "form-control" })
     </div>
     <div class="form-group">
         @Html.HiddenFor(m => m.album.albumId)
+        @Html.HiddenFor(m => m.album.genres)
         @Html.AntiForgeryToken()
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
