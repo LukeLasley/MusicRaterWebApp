@@ -44,7 +44,6 @@ else
     </div>
     <div class="form-group">
         @Html.HiddenFor(m => m.album.albumId)
-        @Html.HiddenFor(m => m.album.genres)
         @Html.AntiForgeryToken()
     </div>
     <button type="submit" class="btn btn-primary">Save</button>

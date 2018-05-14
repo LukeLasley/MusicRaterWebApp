@@ -37,6 +37,7 @@ namespace MusicRaterWebApp.Controllers
             return View(albumViewModel);
         }
 
+        //Below code returning model state is invalid
         [HttpPost]
         public ActionResult Save(AlbumFormViewModel albumViewModel)
         {
@@ -76,14 +77,10 @@ namespace MusicRaterWebApp.Controllers
 
             return RedirectToAction(redirect, "Album");
         }
-
+        
         public ActionResult GetAlbum(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
-            Genre genre = new Genre
-            {
-                genre = "pop"
-            };
             AlbumDescriptionViewModel descriptionViewModel = new AlbumDescriptionViewModel
             {
                 album = album,
@@ -96,6 +93,8 @@ namespace MusicRaterWebApp.Controllers
                 return View(descriptionViewModel);
             }
         }
+
+        //need to add genre chosen
         public ActionResult Edit(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
@@ -104,11 +103,11 @@ namespace MusicRaterWebApp.Controllers
             {
                 return HttpNotFound();
             }
-            //AlbumGenres albumGenre = _context.albumGenres.SingleOrDefault(c => c.albumId == id);
+            var g = _context.genres.ToList();
             var viewModel = new AlbumFormViewModel {
                 album = album,
                 genres = _context.genres.ToList(),
-                //genreChosen = albumGenre.genreId
+                genreChosen = album.genres.ElementAt(0).id
             };
             return View("AlbumForm", viewModel);
         }
