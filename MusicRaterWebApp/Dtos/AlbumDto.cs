@@ -15,5 +15,6 @@ namespace MusicRaterWebApp.Dtos
         [Required]
         public string bandName { get; set; }
         public int year { get; set; }
+        public List<GenreDto> genres {get; set;}
     }
 }
