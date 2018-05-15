@@ -9,6 +9,5 @@ namespace MusicRaterWebApp.Dtos
     {
         public int id { get; set; }
         public String genre { get; set; }
-        public List<AlbumDto> albums { get; set; }
     }
 }

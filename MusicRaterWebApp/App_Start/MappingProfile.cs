@@ -14,6 +14,8 @@ namespace MusicRaterWebApp.App_Start
         {
             Mapper.CreateMap<Album, AlbumDto>();
             Mapper.CreateMap<AlbumDto, Album>();
+            Mapper.CreateMap<Genre, GenreDto>();
+            Mapper.CreateMap<GenreDto, Genre>();
         }
     }
 }
