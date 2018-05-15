@@ -122,7 +122,7 @@ namespace MusicRaterWebApp.Controllers
             };
             return View(resultsViewModel);
         }
-
+        //Gets all albums
         public ActionResult GetAll()
         {
             var albums = _context.albums.ToList();
