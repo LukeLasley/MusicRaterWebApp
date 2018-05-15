@@ -14,7 +14,10 @@
                 @Model.album.year
             </li>
             <li>
-                @Model.genres[0].genre
+                @if(Model.genres.Count > 0)
+                {
+                    @Model.genres[0].genre
+                }
             </li>
     </p>
     <p><a class="btn btn-default" href="/Album/Edit/@Model.album.albumId">Edit</a></p>

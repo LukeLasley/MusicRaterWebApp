@@ -313,3 +313,4 @@ C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\System.Web.H
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\System.Web.Http.WebHost.xml
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.deletingalbumgenresjunctiontable.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.updatingAlbumAndGenreToCreateJunctionTable.resources
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.connectingAlbumsToGenres.resources

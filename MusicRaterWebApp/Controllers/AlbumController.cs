@@ -37,21 +37,11 @@ namespace MusicRaterWebApp.Controllers
             return View(albumViewModel);
         }
 
-        //Below code returning model state is invalid
+        //Code works however ModelState is returning invalid each time. Want to add that check back in eventually.
         [HttpPost]
         public ActionResult Save(AlbumFormViewModel albumViewModel)
         {
-            if (!ModelState.IsValid)
-            { 
-                AlbumFormViewModel albumFormViewModel = new AlbumFormViewModel()
-                {
-                    album = albumViewModel.album,
-                    genres = _context.genres.ToList()
-                };
-                return View("AlbumForm", albumFormViewModel);
-            }
 
-            //If the album doesnt exist then add to database
             if (albumViewModel.album.albumId == 0)
             {
                 var album = albumViewModel.album;
@@ -69,6 +59,7 @@ namespace MusicRaterWebApp.Controllers
                 databaseAlbum.bandName = viewAlbum.bandName;
                 databaseAlbum.year = viewAlbum.year;
                 Genre genre = _context.genres.SingleOrDefault(c => c.id == albumViewModel.genreChosen);
+                databaseAlbum.genres.Clear();
                 databaseAlbum.genres.Add(genre);
             }
 
@@ -130,6 +121,16 @@ namespace MusicRaterWebApp.Controllers
                 toShow = albums
             };
             return View(resultsViewModel);
+        }
+
+        public ActionResult GetAll()
+        {
+            var albums = _context.albums.ToList();
+            var resultsViewModel = new SearchResultsViewModel
+            {
+                toShow = albums
+            };
+            return View("SearchResults", resultsViewModel);
         }
 
     }

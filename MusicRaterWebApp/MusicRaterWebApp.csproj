@@ -229,6 +229,10 @@
     <Compile Include="Migrations\201805141443527_updatingAlbumAndGenreToCreateJunctionTable.Designer.cs">
       <DependentUpon>201805141443527_updatingAlbumAndGenreToCreateJunctionTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805151325488_connectingAlbumsToGenres.cs" />
+    <Compile Include="Migrations\201805151325488_connectingAlbumsToGenres.Designer.cs">
+      <DependentUpon>201805151325488_connectingAlbumsToGenres.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -346,6 +350,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805141443527_updatingAlbumAndGenreToCreateJunctionTable.resx">
       <DependentUpon>201805141443527_updatingAlbumAndGenreToCreateJunctionTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805151325488_connectingAlbumsToGenres.resx">
+      <DependentUpon>201805151325488_connectingAlbumsToGenres.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
