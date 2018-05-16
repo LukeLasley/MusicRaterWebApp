@@ -19,6 +19,7 @@ namespace MusicRaterWebApp.Controllers.Api
             _context = new MusicRaterContext();
         }
         //GET /api/albums
+        //NEED TO UPDATE TO SEND ACTION RESULT
         public IEnumerable<AlbumDto> GetAlbums()
         {
             var albums = _context.albums.ToList().Select(Mapper.Map<Album,AlbumDto>);
@@ -26,61 +27,64 @@ namespace MusicRaterWebApp.Controllers.Api
         }
 
         //GET /api/albums/1
-        public AlbumDto GetAlbum(int id)
+        public IHttpActionResult GetAlbum(int id)
         {
             var album = _context.albums.SingleOrDefault(c => c.albumId == id);
             if( album == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
             else
             {
-                return Mapper.Map<Album,AlbumDto>(album);
+                return Ok (Mapper.Map<Album,AlbumDto>(album));
             }
         }
         //POST /api/albums
         [HttpPost]
-        public AlbumDto CreateAlbum(AlbumDto albumDto)
+        public IHttpActionResult CreateAlbum(AlbumDto albumDto)
         {
             if (!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             var album = Mapper.Map<AlbumDto, Album>(albumDto);
             _context.albums.Add(album);
             _context.SaveChanges();
             albumDto.albumId = album.albumId;
-            return albumDto;
+            return Created(new Uri(Request.RequestUri + "/" + album.albumId), albumDto);
         }
 
         //Put /api/albums/1
         [HttpPut]
-        public void UpdateAlbum(int id, AlbumDto albumDto)
+        public IHttpActionResult UpdateAlbum(int id, AlbumDto albumDto)
         {
             if (!ModelState.IsValid)
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             var databaseAlbum = _context.albums.SingleOrDefault(c => c.albumId == id);
             if(databaseAlbum == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
             Mapper.Map(albumDto, databaseAlbum);
             _context.SaveChanges();
+            return Ok();
         }
 
         //DELETE /api/albums/1
         [HttpDelete]
-        public void DeleteAlbum(int id)
+        public IHttpActionResult DeleteAlbum(int id)
         {
             var databaseAlbum = _context.albums.SingleOrDefault(c => c.albumId == id);
             if (databaseAlbum == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
             _context.albums.Remove(databaseAlbum);
             _context.SaveChanges();
+
+            return Ok();
         }
 
     }

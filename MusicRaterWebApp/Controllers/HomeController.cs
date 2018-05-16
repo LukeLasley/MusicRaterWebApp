@@ -10,7 +10,17 @@ namespace MusicRaterWebApp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            //Placeholder for work with identity
+            bool userLoggedIn = false;
+            if (userLoggedIn)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "User");
+            }
+            
         }
 
         public ActionResult About()
@@ -18,15 +28,6 @@ namespace MusicRaterWebApp.Controllers
             ViewBag.Message = "What is MusicRater";
 
             return View();
-        }
-
-        public ActionResult Login()
-        {
-            {
-                ViewBag.Message = "Login";
-
-                return View();
-            }
         }
     }
 }

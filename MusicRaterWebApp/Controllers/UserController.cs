@@ -28,6 +28,28 @@ namespace MusicRaterWebApp.Controllers
             return View();
         }
 
+        public ActionResult Signup()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult New(User user)
+        {
+            var curUserWithUsername = _context.users.Where(c => c.userFirstName == user.userFirstName).ToList();
+            if(curUserWithUsername.Count > 0)
+            {
+                return RedirectToAction("Signup", "User");
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+
         public ActionResult Favorites(int id)
         {
             User user = _context.users.SingleOrDefault(c => c.id == id);

@@ -1,0 +1,28 @@
+﻿@model MusicRaterWebApp.Models.User
+@{
+    ViewBag.Title = "Signup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Signup</h2>
+
+@using (Html.BeginForm("New", "User"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.userName, "Username")
+        @Html.TextBoxFor(m => m.userName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.userFirstName, "First Name")
+        @Html.TextBoxFor(m => m.userFirstName, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.email, "Email")
+        @Html.TextBoxFor(m => m.email, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.AntiForgeryToken()
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
