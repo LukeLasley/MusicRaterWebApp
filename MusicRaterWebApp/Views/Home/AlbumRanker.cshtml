@@ -1,0 +1,19 @@
+﻿@model MusicRaterWebApp.ViewModels.AlbumRankerViewModel
+@{
+    ViewBag.Title = "AlbumRanker";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AlbumRanker</h2>
+<body>
+    <div id="album1">
+        @Model.album1.albumName
+        <p><a class="btn btn-default">Choose Me!</a></p>
+    </div>
+
+    <div id="album2">
+        @Model.album2.albumName
+        <p><a class="btn btn-default">Choose Me!</a></p>
+    </div>
+</body>
+
