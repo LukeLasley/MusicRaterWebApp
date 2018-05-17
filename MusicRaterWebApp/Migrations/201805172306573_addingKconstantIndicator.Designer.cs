@@ -7,13 +7,13 @@ namespace MusicRaterWebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class connectingAlbumsToGenres : IMigrationMetadata
+    public sealed partial class addingKconstantIndicator : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(connectingAlbumsToGenres));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(addingKconstantIndicator));
         
         string IMigrationMetadata.Id
         {
-            get { return "201805151325488_connectingAlbumsToGenres"; }
+            get { return "201805172306573_addingKconstantIndicator"; }
         }
         
         string IMigrationMetadata.Source

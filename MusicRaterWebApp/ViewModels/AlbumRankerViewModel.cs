@@ -12,6 +12,9 @@ namespace MusicRaterWebApp.ViewModels
         public Album album2 { get; set; }
         public User user { get; set; }
         public int chosen { get; set; }
-
+        public double album1Expected { get; set; }
+        public double album2Expected { get; set; }
+        public UserAlbumRank albumRank1 { get; set; }
+        public UserAlbumRank albumRank2 { get; set; }
     }
 }

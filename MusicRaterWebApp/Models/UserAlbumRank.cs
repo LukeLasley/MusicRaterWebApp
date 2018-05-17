@@ -13,5 +13,6 @@ namespace MusicRaterWebApp.Models
         public int rank { get; set; }
         public User user { get; set; }
         public Album album { get; set; }
+        public int timesSeen { get; set; }
     }
 }

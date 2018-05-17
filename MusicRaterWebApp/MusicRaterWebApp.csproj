@@ -229,10 +229,6 @@
     <Compile Include="Migrations\201805141443527_updatingAlbumAndGenreToCreateJunctionTable.Designer.cs">
       <DependentUpon>201805141443527_updatingAlbumAndGenreToCreateJunctionTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201805151325488_connectingAlbumsToGenres.cs" />
-    <Compile Include="Migrations\201805151325488_connectingAlbumsToGenres.Designer.cs">
-      <DependentUpon>201805151325488_connectingAlbumsToGenres.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201805162017514_addingInitialRankingTables.cs" />
     <Compile Include="Migrations\201805162017514_addingInitialRankingTables.Designer.cs">
       <DependentUpon>201805162017514_addingInitialRankingTables.cs</DependentUpon>
@@ -362,9 +358,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805141443527_updatingAlbumAndGenreToCreateJunctionTable.resx">
       <DependentUpon>201805141443527_updatingAlbumAndGenreToCreateJunctionTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201805151325488_connectingAlbumsToGenres.resx">
-      <DependentUpon>201805151325488_connectingAlbumsToGenres.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805162017514_addingInitialRankingTables.resx">
       <DependentUpon>201805162017514_addingInitialRankingTables.cs</DependentUpon>
