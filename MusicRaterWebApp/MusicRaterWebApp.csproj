@@ -166,10 +166,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\Api\AlbumsController.cs" />
+    <Compile Include="Controllers\Api\UserAlbumRanksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\AlbumDto.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
+    <Compile Include="Dtos\UserAlbumRankDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

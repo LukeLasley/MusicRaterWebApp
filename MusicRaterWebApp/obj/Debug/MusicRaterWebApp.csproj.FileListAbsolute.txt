@@ -313,7 +313,6 @@ C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\System.Web.H
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\System.Web.Http.WebHost.xml
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.deletingalbumgenresjunctiontable.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.updatingAlbumAndGenreToCreateJunctionTable.resources
-C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.connectingAlbumsToGenres.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingInitialRankingTables.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingEmailToUser.resources
 E:\projects\MusicRaterWebApp\bin\AutoMapper.dll
@@ -332,3 +331,4 @@ E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.deletingalbum
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.updatingAlbumAndGenreToCreateJunctionTable.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingInitialRankingTables.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingEmailToUser.resources
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingKconstantIndicator.resources

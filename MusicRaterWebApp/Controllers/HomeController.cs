@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MusicRaterWebApp.Models;
 using MusicRaterWebApp.ViewModels;
 
 namespace MusicRaterWebApp.Controllers
@@ -25,7 +26,7 @@ namespace MusicRaterWebApp.Controllers
         public ActionResult Index()
         {
             //Placeholder for work with identity
-            bool userLoggedIn = false;
+            bool userLoggedIn = true;
             if (userLoggedIn)
             {
                 return View();
@@ -46,21 +47,46 @@ namespace MusicRaterWebApp.Controllers
 
         public ActionResult AlbumRanker()
         {
-            var album1 = _context.albums.SingleOrDefault(x => x.albumId == 1);
-            var album2 = _context.albums.SingleOrDefault(x => x.albumId == 2);
+            var albumsChosen = _context.albums.OrderBy(x => Guid.NewGuid()).Take(2).ToList();
             var user = _context.users.SingleOrDefault(x => x.id == 1);
-            var albumRanks = _context.userAlbumRanks.Where(x => x.user == user && (x.album == album1 || x.album == album2)).ToList();
-            if(albumRanks.Count < 2)
+            int album1Id = albumsChosen[0].albumId;
+            int album2Id = albumsChosen[1].albumId;
+            var albumRanks = _context.userAlbumRanks.Where(x => x.user.id == user.id && (x.album.albumId == album1Id || x.album.albumId == album2Id)).ToList();
+            if (albumRanks.Count < 2)
             {
-                //find out which one doesn't exist and make it exist
+                if(albumRanks.Count == 0)
+                {
+                    foreach(var album in albumsChosen)
+                    {
+                        var toInput = createNewRank(album,user);
+                        albumRanks.Add(toInput);
+                        _context.userAlbumRanks.Add(toInput);
+                    };
+                }
+                else
+                {
+                    if (albumRanks[0].album.Equals(albumsChosen[0]))
+                    {
+                        var toInput = createNewRank(albumsChosen[1], user);
+                        albumRanks.Add(toInput);
+                        _context.userAlbumRanks.Add(toInput);
+                    }
+                    else
+                    {
+                        var toInput = createNewRank(albumsChosen[0], user);
+                        albumRanks.Insert(0,toInput);
+                        _context.userAlbumRanks.Add(toInput);
+                    }
+                }
+                _context.SaveChanges();
             };
-            var translatedAlbum1Rank = translateRating(albumRanks[0].rank);
-            var translatedAlbum2Rank = translateRating(albumRanks[1].rank);
+            var translatedAlbum1Rank = Math.Pow(10, ((double)albumRanks[0].rank / 500));
+            var translatedAlbum2Rank = Math.Pow(10, ((double)albumRanks[1].rank / 500));
             var expecteds = getExpectedScores(translatedAlbum1Rank, translatedAlbum2Rank);
             var albumRankerViewModel = new AlbumRankerViewModel()
             {
-                album1 = album1,
-                album2 = album2,
+                album1 = albumsChosen[0],
+                album2 = albumsChosen[1],
                 album1Expected = expecteds.Item1,
                 album2Expected = expecteds.Item2,
                 user = user,
@@ -70,17 +96,23 @@ namespace MusicRaterWebApp.Controllers
             return View(albumRankerViewModel);
         }
 
-        //switch 500 to variable
-        public double translateRating(int rating)
-        {
-            double translateRating = Math.Pow(10, ((double)rating/500));
-            return translateRating;
-        }
         public Tuple<double,double> getExpectedScores(double album1ConvertedRating, double album2ConvertedRating)
         {
             var denominator = album1ConvertedRating + album2ConvertedRating;
             Tuple<double, double> returnTuple = Tuple.Create((album1ConvertedRating/denominator),((album2ConvertedRating / denominator)));
             return returnTuple;
+        }
+
+        public UserAlbumRank createNewRank(Album album, User user)
+        {
+            var rank = new UserAlbumRank()
+            {
+                rank = 500,
+                user = user,
+                album = album,
+                timesSeen = 0
+            };
+            return rank;
         }
     }
 }
