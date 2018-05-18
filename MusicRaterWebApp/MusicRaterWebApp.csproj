@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201805162021297_addingEmailToUser.Designer.cs">
       <DependentUpon>201805162021297_addingEmailToUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805172306573_addingKconstantIndicator.cs" />
+    <Compile Include="Migrations\201805172306573_addingKconstantIndicator.Designer.cs">
+      <DependentUpon>201805172306573_addingKconstantIndicator.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -364,6 +368,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805162021297_addingEmailToUser.resx">
       <DependentUpon>201805162021297_addingEmailToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805172306573_addingKconstantIndicator.resx">
+      <DependentUpon>201805172306573_addingKconstantIndicator.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
