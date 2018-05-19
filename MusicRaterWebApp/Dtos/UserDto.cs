@@ -5,11 +5,11 @@ using System.Web;
 
 namespace MusicRaterWebApp.Dtos
 {
-    public class UserAlbumRankDto
+    public class UserDto
     {
         public int id { get; set; }
-        public int rank { get; set; }
-        public int albumId { get; set; }
-        public int timesSeen { get; set; }
+        public string userName { get; set; }
+        public string userFirstName { get; set; }
+        public string email { get; set; }
     }
 }
