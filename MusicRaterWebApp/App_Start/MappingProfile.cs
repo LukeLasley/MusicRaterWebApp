@@ -16,7 +16,7 @@ namespace MusicRaterWebApp.App_Start
             Mapper.CreateMap<AlbumDto, Album>();
             Mapper.CreateMap<Genre, GenreDto>();
             Mapper.CreateMap<GenreDto, Genre>();
-            Mapper.CreateMap<UserAlbumRank, UserAlbumRankDto>().ForMember(d => d.albumId, opt => opt.MapFrom(s => s.album.albumId));
+            Mapper.CreateMap<UserAlbumRank, UserAlbumRankDto>();
             Mapper.CreateMap<UserAlbumRankDto, UserAlbumRank>();
         }
     }

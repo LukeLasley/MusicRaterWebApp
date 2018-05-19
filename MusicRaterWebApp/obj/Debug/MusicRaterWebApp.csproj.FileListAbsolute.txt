@@ -333,3 +333,4 @@ E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingInitial
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingEmailToUser.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingKconstantIndicator.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingKconstantIndicator.resources
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.changingAlbumRank.resources

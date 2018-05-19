@@ -11,8 +11,8 @@ namespace MusicRaterWebApp.Models
         [Key]
         public int id { get; set; }
         public int rank { get; set; }
-        public User user { get; set; }
-        public Album album { get; set; }
+        public int albumId { get; set; }
+        public int userId { get; set; }
         public int timesSeen { get; set; }
     }
 }

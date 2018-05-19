@@ -51,7 +51,7 @@ namespace MusicRaterWebApp.Controllers
             var user = _context.users.SingleOrDefault(x => x.id == 1);
             int album1Id = albumsChosen[0].albumId;
             int album2Id = albumsChosen[1].albumId;
-            var albumRanks = _context.userAlbumRanks.Where(x => x.user.id == user.id && (x.album.albumId == album1Id || x.album.albumId == album2Id)).ToList();
+            var albumRanks = _context.userAlbumRanks.Where(x => x.userId == user.id && (x.albumId == album1Id || x.albumId == album2Id)).ToList();
             if (albumRanks.Count < 2)
             {
                 if(albumRanks.Count == 0)
@@ -65,7 +65,7 @@ namespace MusicRaterWebApp.Controllers
                 }
                 else
                 {
-                    if (albumRanks[0].album.Equals(albumsChosen[0]))
+                    if (albumRanks[0].Equals(albumsChosen[0]))
                     {
                         var toInput = createNewRank(albumsChosen[1], user);
                         albumRanks.Add(toInput);
@@ -108,8 +108,8 @@ namespace MusicRaterWebApp.Controllers
             var rank = new UserAlbumRank()
             {
                 rank = 500,
-                user = user,
-                album = album,
+                userId = user.id,
+                albumId = album.albumId,
                 timesSeen = 0
             };
             return rank;
