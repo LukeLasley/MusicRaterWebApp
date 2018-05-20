@@ -40,7 +40,7 @@ namespace MusicRaterWebApp.Controllers.Api
 
         public IEnumerable<UserAlbumRankDto> GetUserRanksOfUser(int userId)
         {
-            var userRanks = _context.userAlbumRanks.Select(Mapper.Map<UserAlbumRank, UserAlbumRankDto>).Where(c => c.userId == userId).ToList();
+            var userRanks = _context.userAlbumRanks.Where(c => c.userId == userId).ToList().Select(Mapper.Map<UserAlbumRank, UserAlbumRankDto>);
             return userRanks;
         }
 
@@ -50,7 +50,7 @@ namespace MusicRaterWebApp.Controllers.Api
             var databaseAlbumRank = _context.userAlbumRanks.SingleOrDefault(c => c.id == id);
             if (databaseAlbumRank == null)
             {
-                return null;
+                return NotFound();
             }
             databaseAlbumRank.timesSeen++;
 
