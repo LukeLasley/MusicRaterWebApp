@@ -24,20 +24,40 @@ namespace MusicRaterWebApp.Controllers.Api
             return userRanks;
         }
 
-        //Put /api/useralbumranks/10
+        //GET /api/userranks/1
+        public IHttpActionResult GetUserRank(int id)
+        {
+            var userAlbumRank = _context.userAlbumRanks.SingleOrDefault(c => c.id == id);
+            if (userAlbumRank == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                return Ok(Mapper.Map<UserAlbumRank, UserAlbumRankDto>(userAlbumRank));
+            }
+        }
+
+        public IEnumerable<UserAlbumRankDto> GetUserRanksOfUser(int userId)
+        {
+            var userRanks = _context.userAlbumRanks.Select(Mapper.Map<UserAlbumRank, UserAlbumRankDto>).Where(c => c.userId == userId).ToList();
+            return userRanks;
+        }
+
         [HttpPut]
-        public IHttpActionResult UpdateAlbumRank(int id, double expected)
+        private IHttpActionResult UpdateAlbumRank(int id, double expected, int result)
         {
             var databaseAlbumRank = _context.userAlbumRanks.SingleOrDefault(c => c.id == id);
             if (databaseAlbumRank == null)
             {
-                return NotFound();
+                return null;
             }
             databaseAlbumRank.timesSeen++;
 
             int k = getKConstant(databaseAlbumRank.timesSeen, databaseAlbumRank.rank);
-            databaseAlbumRank.rank = getNewRank(expected, 1, k, databaseAlbumRank.rank);
+            databaseAlbumRank.rank = getNewRank(expected, result, k, databaseAlbumRank.rank);
             _context.SaveChanges();
+
             return Ok();
         }
 
