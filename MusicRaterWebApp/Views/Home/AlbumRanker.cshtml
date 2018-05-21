@@ -6,14 +6,34 @@
 
 <h2>AlbumRanker</h2>
 <body>
-    <div id="album1">
-        @Model.album1.albumName
-        <p><a class="btn btn-default">Choose Me!</a></p>
-    </div>
+    <div id="albums">
+        <div id="album1">
+            @Model.album1.albumName
+            <p><button data-album-id="@Model.album1.albumId" data-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button></p>
+        </div>
 
-    <div id="album2">
-        @Model.album2.albumName
-        <p><a class="btn btn-default">Choose Me!</a></p>
+        <div id="album2">
+            @Model.album2.albumName
+            <p><button data-album-id="@Model.album2.albumId" data-expected="@Model.album2Expected" class="btn btn-default js-win">Choose Me!</button></p>
+        </div>
     </div>
 </body>
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#albums .js-win").on("click", function () {
+                var button = $(this);
+                $.ajax({
+                    url: "/api/useralbumranks/" + "?id=" + button.attr("data-album-id") + "&expected=" + button.attr("data-expected") + "&result=1", 
+                    method: "PUT",
+                    success: function () {
+                        console.log("success");
+                    }
+                });
+            });
+        });
+
+    </script>    
+}

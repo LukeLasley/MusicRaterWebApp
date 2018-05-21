@@ -12,10 +12,12 @@ namespace MusicRaterWebApp.Controllers
     {
 
         private MusicRaterContext _context;
+        private EloMathHelperMethods eloMethods;
 
         public HomeController()
         {
             _context = new MusicRaterContext();
+            eloMethods = new EloMathHelperMethods();
         }
 
         protected override void Dispose(bool disposing)
@@ -80,9 +82,9 @@ namespace MusicRaterWebApp.Controllers
                 }
                 _context.SaveChanges();
             };
-            var translatedAlbum1Rank = Math.Pow(10, ((double)albumRanks[0].rank / 500));
-            var translatedAlbum2Rank = Math.Pow(10, ((double)albumRanks[1].rank / 500));
-            var expecteds = getExpectedScores(translatedAlbum1Rank, translatedAlbum2Rank);
+            var translatedAlbum1Rank = eloMethods.convertRank(albumRanks[0].rank);
+            var translatedAlbum2Rank = eloMethods.convertRank(albumRanks[1].rank);
+            var expecteds = eloMethods.getExpectedScores(translatedAlbum1Rank, translatedAlbum2Rank);
             var albumRankerViewModel = new AlbumRankerViewModel()
             {
                 album1 = albumsChosen[0],
@@ -96,14 +98,7 @@ namespace MusicRaterWebApp.Controllers
             return View(albumRankerViewModel);
         }
 
-        public Tuple<double,double> getExpectedScores(double album1ConvertedRating, double album2ConvertedRating)
-        {
-            var denominator = album1ConvertedRating + album2ConvertedRating;
-            Tuple<double, double> returnTuple = Tuple.Create((album1ConvertedRating/denominator),((album2ConvertedRating / denominator)));
-            return returnTuple;
-        }
-
-        public UserAlbumRank createNewRank(Album album, User user)
+        private UserAlbumRank createNewRank(Album album, User user)
         {
             var rank = new UserAlbumRank()
             {

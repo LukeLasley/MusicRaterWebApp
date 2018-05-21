@@ -12,10 +12,13 @@ namespace MusicRaterWebApp.Controllers.Api
     public class UserAlbumRanksController : ApiController
     {
         private MusicRaterContext _context;
+        private EloMathHelperMethods eloMethods;
 
         public UserAlbumRanksController()
         {
             _context = new MusicRaterContext();
+            eloMethods = new EloMathHelperMethods();
+
         }
         //GET /api/userranks
         public IEnumerable<UserAlbumRankDto> GetUserRanks()
@@ -44,8 +47,9 @@ namespace MusicRaterWebApp.Controllers.Api
             return userRanks;
         }
 
+        //Put /api/useralbumranks/1
         [HttpPut]
-        private IHttpActionResult UpdateAlbumRank(int id, double expected, int result)
+        public IHttpActionResult UpdateAlbumRank(int id, double expected, int result)
         {
             var databaseAlbumRank = _context.userAlbumRanks.SingleOrDefault(c => c.id == id);
             if (databaseAlbumRank == null)
@@ -54,33 +58,11 @@ namespace MusicRaterWebApp.Controllers.Api
             }
             databaseAlbumRank.timesSeen++;
 
-            int k = getKConstant(databaseAlbumRank.timesSeen, databaseAlbumRank.rank);
-            databaseAlbumRank.rank = getNewRank(expected, result, k, databaseAlbumRank.rank);
+            int k = eloMethods.getKConstant(databaseAlbumRank.timesSeen, databaseAlbumRank.rank);
+            databaseAlbumRank.rank = eloMethods.getNewRank(expected, result, k, databaseAlbumRank.rank);
             _context.SaveChanges();
 
             return Ok();
-        }
-
-        private int getKConstant(int timesSeen, int rank)
-        {
-            if(timesSeen < 10 || rank < 400)
-            {
-                return 32;
-            }
-            if(rank > 500 && rank < 700)
-            {
-                return 24;
-            }
-            else
-            {
-                return 16;
-            }
-        }
-        private int getNewRank(double expected, int result, int K, int rank)
-        {
-            double gainOrLoss = (result - expected) * K;
-            double newRankAsDouble = rank + gainOrLoss;
-            return (int)newRankAsDouble;
         }
     }
 }
