@@ -9,12 +9,12 @@
     <div id="albums">
         <div id="album1">
             @Model.album1.albumName
-            <p><button data-album-id="@Model.album1.albumId" data-expected="@Model.album1Expected" data-album-alt-id="@Model.album2.albumId" data-alt-expected="@Model.album2Expected"class="btn btn-default js-win">Choose Me!</button></p>
+            <p><button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" data-album-alt-id="@Model.albumRank2.id" data-alt-expected="@Model.album2Expected"class="btn btn-default js-win">Choose Me!</button></p>
         </div>
 
         <div id="album2">
             @Model.album2.albumName
-            <p><button data-album-id="@Model.album2.albumId" data-expected="@Model.album2Expected" data-album-alt-id="@Model.album1.albumId" data-alt-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button></p>
+            <p><button data-album-id="@Model.albumRank2.id" data-expected="@Model.album2Expected" data-album-alt-id="@Model.albumRank1.id" data-alt-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button></p>
         </div>
     </div>
 </body>
