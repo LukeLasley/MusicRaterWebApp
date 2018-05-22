@@ -64,5 +64,35 @@ namespace MusicRaterWebApp.Controllers.Api
 
             return Ok();
         }
+
+        [HttpPut]
+        public IHttpActionResult UpdateRanks(int winnerId, int loserId, double winnerExpected, double loserExpected) {
+            var databaseAlbumRanks = _context.userAlbumRanks.Where(c => c.id == winnerId || c.id == loserId).ToList();
+            if (databaseAlbumRanks.Count < 2)
+            {
+                return NotFound();
+            }
+            foreach(var albumRank in databaseAlbumRanks)
+            {
+                int result;
+                double expected;
+                if(albumRank.albumId == winnerId)
+                {
+                    result = 1;
+                    expected = winnerExpected;
+                }
+                else
+                {
+                    result = 0;
+                    expected = loserExpected;
+                }
+                albumRank.timesSeen++;
+                int k = eloMethods.getKConstant(albumRank.timesSeen, albumRank.rank);
+                albumRank.rank = eloMethods.getNewRank(expected, result, k, albumRank.rank);
+            }
+            _context.SaveChanges();
+            return Ok();
+
+        }
     }
 }
