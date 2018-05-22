@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using AutoMapper;
 using MusicRaterWebApp.Models;
+using MusicRaterWebApp.ViewModels;
 using MusicRaterWebApp.Dtos;
 
 namespace MusicRaterWebApp.App_Start
@@ -18,6 +19,8 @@ namespace MusicRaterWebApp.App_Start
             Mapper.CreateMap<GenreDto, Genre>();
             Mapper.CreateMap<UserAlbumRank, UserAlbumRankDto>();
             Mapper.CreateMap<UserAlbumRankDto, UserAlbumRank>();
+            Mapper.CreateMap<AlbumRankerViewModel, AlbumRankerDataDto>();
+            Mapper.CreateMap<AlbumRankerDataDto, AlbumRankerViewModel>();
         }
     }
 }

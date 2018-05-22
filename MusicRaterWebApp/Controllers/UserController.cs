@@ -57,7 +57,8 @@ namespace MusicRaterWebApp.Controllers
                 return HttpNotFound();
             else
             {
-                var favoriteAlbums = _context.albums.ToList();
+                var favoriteAlbumIds = _context.userAlbumRanks.OrderByDescending(x => x.rank).Where(x => x.userId == user.id).Select(x => x.albumId).Take(10).ToList();
+                var favoriteAlbums = _context.albums.Where(x => favoriteAlbumIds.Contains(x.albumId)).ToList();
                 var viewModel = new UserFavoriteAlbumsViewModel
                 {
                     curUser = user,

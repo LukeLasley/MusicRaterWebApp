@@ -170,13 +170,15 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\AlbumDto.cs" />
+    <Compile Include="Dtos\AlbumRankerDataDto.cs" />
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\UserAlbumRankDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
-    <Compile Include="EloMathHelperMethods.cs" />
+    <Compile Include="HelperMethods\EloHelperMethods.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HelperMethods\UserAlbumRankHelperMethods.cs" />
     <Compile Include="Migrations\201805031507309_InitialModel.cs" />
     <Compile Include="Migrations\201805031507309_InitialModel.Designer.cs">
       <DependentUpon>201805031507309_InitialModel.cs</DependentUpon>

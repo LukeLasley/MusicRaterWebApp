@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MusicRaterWebApp.HelperMethods;
 using MusicRaterWebApp.Models;
 using MusicRaterWebApp.ViewModels;
 
@@ -12,12 +13,13 @@ namespace MusicRaterWebApp.Controllers
     {
 
         private MusicRaterContext _context;
-        private EloMathHelperMethods eloMethods;
+        private UserAlbumRankHelperMethods helperMethods;
 
         public HomeController()
         {
             _context = new MusicRaterContext();
-            eloMethods = new EloMathHelperMethods();
+            helperMethods = new UserAlbumRankHelperMethods();
+            
         }
 
         protected override void Dispose(bool disposing)
@@ -47,54 +49,10 @@ namespace MusicRaterWebApp.Controllers
             return View();
         }
 
+        //home/albumranker
         public ActionResult AlbumRanker()
         {
-            var albumsChosen = _context.albums.OrderBy(x => Guid.NewGuid()).Take(2).ToList();
-            var user = _context.users.SingleOrDefault(x => x.id == 1);
-            int album1Id = albumsChosen[0].albumId;
-            int album2Id = albumsChosen[1].albumId;
-            var albumRanks = _context.userAlbumRanks.Where(x => x.userId == user.id && (x.albumId == album1Id || x.albumId == album2Id)).ToList();
-            if (albumRanks.Count < 2)
-            {
-                if(albumRanks.Count == 0)
-                {
-                    foreach(var album in albumsChosen)
-                    {
-                        var toInput = createNewRank(album,user);
-                        albumRanks.Add(toInput);
-                        _context.userAlbumRanks.Add(toInput);
-                    };
-                }
-                else
-                {
-                    if (albumRanks[0].Equals(albumsChosen[0]))
-                    {
-                        var toInput = createNewRank(albumsChosen[1], user);
-                        albumRanks.Add(toInput);
-                        _context.userAlbumRanks.Add(toInput);
-                    }
-                    else
-                    {
-                        var toInput = createNewRank(albumsChosen[0], user);
-                        albumRanks.Insert(0,toInput);
-                        _context.userAlbumRanks.Add(toInput);
-                    }
-                }
-                _context.SaveChanges();
-            };
-            var translatedAlbum1Rank = eloMethods.convertRank(albumRanks[0].rank);
-            var translatedAlbum2Rank = eloMethods.convertRank(albumRanks[1].rank);
-            var expecteds = eloMethods.getExpectedScores(translatedAlbum1Rank, translatedAlbum2Rank);
-            var albumRankerViewModel = new AlbumRankerViewModel()
-            {
-                album1 = albumsChosen[0],
-                album2 = albumsChosen[1],
-                album1Expected = expecteds.Item1,
-                album2Expected = expecteds.Item2,
-                user = user,
-                albumRank1 = albumRanks[0],
-                albumRank2 = albumRanks[1]
-            };
+            var albumRankerViewModel = helperMethods.PickTwoAlbumRankerViewModels(1);
             return View(albumRankerViewModel);
         }
 

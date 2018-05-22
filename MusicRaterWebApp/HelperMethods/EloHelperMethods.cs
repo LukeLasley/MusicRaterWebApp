@@ -1,15 +1,16 @@
-﻿using System;
+﻿using MusicRaterWebApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
 namespace MusicRaterWebApp
 {
-    public class EloMathHelperMethods
+    public class EloHelperMethods
     {
-        public EloMathHelperMethods()
+        public EloHelperMethods()
         {
-
+            
         }
 
         public int getKConstant(int timesSeen, int rank)
@@ -32,8 +33,13 @@ namespace MusicRaterWebApp
         {
             double gainOrLoss = (result - expected) * K;
             double newRankAsDouble = rank + gainOrLoss;
+            if((int)newRankAsDouble < 0)
+            {
+                return 0;
+            }
             return (int)newRankAsDouble;
         }
+
         public Tuple<double, double> getExpectedScores(double album1ConvertedRating, double album2ConvertedRating)
         {
             var denominator = album1ConvertedRating + album2ConvertedRating;

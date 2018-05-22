@@ -30,7 +30,8 @@
                     url: "/api/useralbumranks/" + "?winnerId=" + button.attr("data-album-id") + "&loserId=" + button.attr("data-album-alt-id") + "&winnerExpected=" + button.attr("data-expected") + "&loserExpected=" + button.attr("data-alt-expected"), 
                     method: "PUT",
                     success: function () {
-                        console.log("success");
+                        //Let's just do a redirect until the get two new api is done.
+                        window.location.href = 'albumranker';
                     }
                 });
             });

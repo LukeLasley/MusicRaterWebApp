@@ -21,6 +21,7 @@ namespace MusicRaterWebApp.Controllers
         {
             _context.Dispose();
         }
+
         // GET: Album
         public ActionResult Index()
         {
@@ -132,6 +133,5 @@ namespace MusicRaterWebApp.Controllers
             };
             return View("SearchResults", resultsViewModel);
         }
-
     }
 }

@@ -6,18 +6,23 @@ using System.Web.Http;
 using AutoMapper;
 using MusicRaterWebApp.Dtos;
 using MusicRaterWebApp.Models;
+using MusicRaterWebApp.HelperMethods;
+using MusicRaterWebApp.ViewModels;
 
 namespace MusicRaterWebApp.Controllers.Api
 {
     public class UserAlbumRanksController : ApiController
     {
         private MusicRaterContext _context;
-        private EloMathHelperMethods eloMethods;
+        private EloHelperMethods eloMethods;
+        private UserAlbumRankHelperMethods helperMethods;
 
         public UserAlbumRanksController()
         {
             _context = new MusicRaterContext();
-            eloMethods = new EloMathHelperMethods();
+            eloMethods = new EloHelperMethods();
+            helperMethods = new UserAlbumRankHelperMethods();
+
 
         }
         //GET /api/userranks
@@ -76,23 +81,30 @@ namespace MusicRaterWebApp.Controllers.Api
             {
                 int result;
                 double expected;
-                if(albumRank.albumId == winnerId)
-                {
-                    result = 1;
-                    expected = winnerExpected;
-                }
-                else
+                if(albumRank.id == loserId)
                 {
                     result = 0;
                     expected = loserExpected;
                 }
+                else
+                {
+                    result = 1;
+                    expected = winnerExpected;
+                }
                 albumRank.timesSeen++;
                 int k = eloMethods.getKConstant(albumRank.timesSeen, albumRank.rank);
-                albumRank.rank = eloMethods.getNewRank(expected, result, k, albumRank.rank);
+                var newRank = eloMethods.getNewRank(expected, result, k, albumRank.rank);
+                albumRank.rank = newRank;
+                _context.SaveChanges();
             }
-            _context.SaveChanges();
             return Ok();
-
         }
+        [Route("api/useralbumranks/getTwoNew/")]
+        public IHttpActionResult getTwoNewRanks()
+        {
+            var twoRanks = helperMethods.PickTwoAlbumRankerViewModels(1);
+            return Ok(Mapper.Map<AlbumRankerViewModel, AlbumRankerDataDto>(twoRanks));
+        }
+
     }
 }
