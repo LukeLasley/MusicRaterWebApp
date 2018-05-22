@@ -67,7 +67,7 @@ namespace MusicRaterWebApp.Controllers.Api
 
         [HttpPut]
         public IHttpActionResult UpdateRanks(int winnerId, int loserId, double winnerExpected, double loserExpected) {
-            var databaseAlbumRanks = _context.userAlbumRanks.Where(c => c.id == winnerId || c.id == loserId).ToList();
+            var databaseAlbumRanks = _context.userAlbumRanks.Where(c => c.albumId == winnerId || c.albumId == loserId).ToList();
             if (databaseAlbumRanks.Count < 2)
             {
                 return NotFound();
