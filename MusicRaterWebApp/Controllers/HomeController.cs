@@ -26,18 +26,18 @@ namespace MusicRaterWebApp.Controllers
         {
             _context.Dispose();
         }
-
+        //TODO: Implement Identity
         public ActionResult Index()
         {
             //Placeholder for work with identity
-            bool userLoggedIn = true;
+            bool userLoggedIn = false;
             if (userLoggedIn)
             {
                 return View();
             }
             else
             {
-                return RedirectToAction("Login", "User");
+                return View();
             }
             
         }

@@ -7,9 +7,10 @@
 <h2>@Model.curUser.userName</h2>
 <h3>My Favorites<br /></h3>
 
-<ul>
+<ol>
     @foreach( var album in Model.favoriteAlbum)
     {
+        
         <li>@Html.ActionLink(@album.albumName, "GetAlbum/" + @album.albumId, "Album")</li>
     }
-</ul>
+</ol>
