@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web;
 using MusicRaterWebApp.Models;
 
+//da
 namespace MusicRaterWebApp.Dtos
 {
     public class AlbumDto
