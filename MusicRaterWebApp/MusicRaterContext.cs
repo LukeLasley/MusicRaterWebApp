@@ -4,10 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using MusicRaterWebApp.Models;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MusicRaterWebApp
 {
-    public class MusicRaterContext : DbContext
+    public class MusicRaterContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Album> albums { get; set;}
         public DbSet<Password> passwords { get; set; }
