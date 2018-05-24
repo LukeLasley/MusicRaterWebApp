@@ -372,3 +372,4 @@ C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\Microsoft.Ow
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.firstIdentityTest.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.droppingUsers.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.droppingPasswords.resources
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.changingUserIdInAlbumRank.resources

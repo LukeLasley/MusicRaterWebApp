@@ -8,6 +8,7 @@ using MusicRaterWebApp.Dtos;
 using MusicRaterWebApp.Models;
 using MusicRaterWebApp.HelperMethods;
 using MusicRaterWebApp.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace MusicRaterWebApp.Controllers.Api
 {
@@ -46,9 +47,9 @@ namespace MusicRaterWebApp.Controllers.Api
             }
         }
 
-        public IEnumerable<UserAlbumRankDto> GetUserRanksOfUser(int userId)
+        public IEnumerable<UserAlbumRankDto> GetUserRanksOfUser(string userId)
         {
-            var userRanks = _context.userAlbumRanks.Where(c => c.userId == userId).ToList().Select(Mapper.Map<UserAlbumRank, UserAlbumRankDto>);
+            var userRanks = _context.userAlbumRanks.Where(c => c.userId.Equals(userId)).ToList().Select(Mapper.Map<UserAlbumRank, UserAlbumRankDto>);
             return userRanks;
         }
 
@@ -102,7 +103,8 @@ namespace MusicRaterWebApp.Controllers.Api
         [Route("api/useralbumranks/getTwoNew/")]
         public IHttpActionResult getTwoNewRanks()
         {
-            var twoRanks = helperMethods.PickTwoAlbumRankerViewModels(1);
+            var userId = User.Identity.GetUserId();
+            var twoRanks = helperMethods.PickTwoAlbumRankerViewModels(userId);
             return Ok(Mapper.Map<AlbumRankerViewModel, AlbumRankerDataDto>(twoRanks));
         }
 

@@ -19,19 +19,19 @@ namespace MusicRaterWebApp.HelperMethods
             eloMethods = new EloHelperMethods();
         }
 
-        public AlbumRankerViewModel PickTwoAlbumRankerViewModels(int userId)
+        public AlbumRankerViewModel PickTwoAlbumRankerViewModels(string userId)
         {
             var albumsChosen = _context.albums.OrderBy(x => Guid.NewGuid()).Take(2).ToList();
             int album1Id = albumsChosen[0].albumId;
             int album2Id = albumsChosen[1].albumId;
-            var albumRanks = _context.userAlbumRanks.Where(x => x.userId == 1 && (x.albumId == album1Id || x.albumId == album2Id)).ToList();
+            var albumRanks = _context.userAlbumRanks.Where(x => x.userId.Equals(userId) && (x.albumId == album1Id || x.albumId == album2Id)).ToList();
             if (albumRanks.Count < 2)
             {
                 if (albumRanks.Count == 0)
                 {
                     foreach (var album in albumsChosen)
                     {
-                        var toInput = createNewRank(album);
+                        var toInput = createNewRank(album, userId);
                         albumRanks.Add(toInput);
                         _context.userAlbumRanks.Add(toInput);
                     };
@@ -40,13 +40,13 @@ namespace MusicRaterWebApp.HelperMethods
                 {
                     if (albumRanks[0].albumId == albumsChosen[0].albumId)
                     {
-                        var toInput = createNewRank(albumsChosen[1]);
+                        var toInput = createNewRank(albumsChosen[1], userId);
                         albumRanks.Add(toInput);
                         _context.userAlbumRanks.Add(toInput);
                     }
                     else
                     {
-                        var toInput = createNewRank(albumsChosen[0]);
+                        var toInput = createNewRank(albumsChosen[0], userId);
                         albumRanks.Insert(0, toInput);
                         _context.userAlbumRanks.Add(toInput);
                     }
@@ -82,12 +82,12 @@ namespace MusicRaterWebApp.HelperMethods
             return albumRankerViewModel;
         }
 
-        private UserAlbumRank createNewRank(Album album)
+        private UserAlbumRank createNewRank(Album album, string userId)
         {
             var rank = new UserAlbumRank()
             {
                 rank = 500,
-                userId = 1,
+                userId = userId,
                 albumId = album.albumId,
                 timesSeen = 0
             };

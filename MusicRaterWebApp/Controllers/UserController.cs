@@ -30,13 +30,13 @@ namespace MusicRaterWebApp.Controllers
 
 
         //TODO: Need to update UserAlbumRanks to include Album model.
-        public ActionResult Favorites(int id)
+        public ActionResult Favorites(String id)
         {
             if (id == null)
                 return HttpNotFound();
             else
             {
-                var favoriteAlbumIds = _context.userAlbumRanks.Where(x => x.userId == 1).OrderByDescending(x => x.rank).Select(x => x.albumId).Take(10).ToList();
+                var favoriteAlbumIds = _context.userAlbumRanks.Where(x => x.userId.Equals(id)).OrderByDescending(x => x.rank).Select(x => x.albumId).Take(10).ToList();
                 var favoriteAlbumsUnsorted = _context.albums.Where(x => favoriteAlbumIds.Contains(x.albumId)).ToList();
                 var favoriteAlbumsArray = new Album[10];
                 foreach(var album in favoriteAlbumsUnsorted)

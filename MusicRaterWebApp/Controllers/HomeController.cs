@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using MusicRaterWebApp.HelperMethods;
 using MusicRaterWebApp.Models;
 using MusicRaterWebApp.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace MusicRaterWebApp.Controllers
 {
@@ -26,19 +27,9 @@ namespace MusicRaterWebApp.Controllers
         {
             _context.Dispose();
         }
-        //TODO: Implement Identity
         public ActionResult Index()
         {
-            //Placeholder for work with identity
-            bool userLoggedIn = false;
-            if (userLoggedIn)
-            {
-                return View();
-            }
-            else
-            {
-                return View();
-            }
+            return View();
             
         }
 
@@ -52,20 +43,9 @@ namespace MusicRaterWebApp.Controllers
         //home/albumranker
         public ActionResult AlbumRanker()
         {
-            var albumRankerViewModel = helperMethods.PickTwoAlbumRankerViewModels(1);
+            var curUser = User.Identity.GetUserId();
+            var albumRankerViewModel = helperMethods.PickTwoAlbumRankerViewModels(curUser);
             return View(albumRankerViewModel);
-        }
-
-        private UserAlbumRank createNewRank(Album album)
-        {
-            var rank = new UserAlbumRank()
-            {
-                rank = 500,
-                userId = 1,
-                albumId = album.albumId,
-                timesSeen = 0
-            };
-            return rank;
         }
     }
 }
