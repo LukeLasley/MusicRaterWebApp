@@ -95,11 +95,16 @@ namespace MusicRaterWebApp.Controllers
             {
                 return HttpNotFound();
             }
+            int genreChosenId = 0;
+            if(album.genres.Count > 0)
+            {
+                genreChosenId = album.genres.ElementAt(0).id;
+            }
             var g = _context.genres.ToList();
             var viewModel = new AlbumFormViewModel {
                 album = album,
                 genres = _context.genres.ToList(),
-                genreChosen = album.genres.ElementAt(0).id
+                genreChosen = genreChosenId
             };
             return View("AlbumForm", viewModel);
         }

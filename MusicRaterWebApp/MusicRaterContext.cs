@@ -14,8 +14,6 @@ namespace MusicRaterWebApp
     public class MusicRaterContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Album> albums { get; set;}
-        public DbSet<Password> passwords { get; set; }
-        public DbSet<User> users { get; set; }
         public DbSet<Genre> genres { get; set; }
         public DbSet<UserAlbumRank> userAlbumRanks { get; set; }
     }

@@ -370,3 +370,5 @@ C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\Microsoft.Ow
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\Microsoft.Owin.Security.Cookies.xml
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.firstIdentityTest.resources
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.droppingUsers.resources
+C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.droppingPasswords.resources

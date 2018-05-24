@@ -56,12 +56,12 @@ namespace MusicRaterWebApp.Controllers
             return View(albumRankerViewModel);
         }
 
-        private UserAlbumRank createNewRank(Album album, User user)
+        private UserAlbumRank createNewRank(Album album)
         {
             var rank = new UserAlbumRank()
             {
                 rank = 500,
-                userId = user.id,
+                userId = 1,
                 albumId = album.albumId,
                 timesSeen = 0
             };
