@@ -373,3 +373,7 @@ C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicR
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.droppingUsers.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.droppingPasswords.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.changingUserIdInAlbumRank.resources
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.firstIdentityTest.resources
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.droppingUsers.resources
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.droppingPasswords.resources
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.changingUserIdInAlbumRank.resources

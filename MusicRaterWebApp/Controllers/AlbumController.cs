@@ -26,7 +26,13 @@ namespace MusicRaterWebApp.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return RedirectToAction("SearchForm", "Album");
+            var recentAlbums = _context.albums.OrderByDescending(x => x.albumId).Take(10).ToList();
+            SearchResultsViewModel resultsViewModel = new SearchResultsViewModel
+            {
+                toShow = recentAlbums
+            };
+            return View(resultsViewModel);
+
         }
 
         [Authorize]
