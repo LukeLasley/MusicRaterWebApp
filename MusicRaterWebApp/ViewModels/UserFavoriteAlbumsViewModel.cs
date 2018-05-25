@@ -8,7 +8,6 @@ namespace MusicRaterWebApp.ViewModels
 {
     public class UserFavoriteAlbumsViewModel
     {
-        public int curUser { get; set; }
         public List<Album> favoriteAlbum { get; set; }
     }
 }

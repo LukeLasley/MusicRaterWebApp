@@ -1,4 +1,5 @@
-﻿using MusicRaterWebApp.Models;
+﻿using Microsoft.AspNet.Identity;
+using MusicRaterWebApp.Models;
 using MusicRaterWebApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -32,29 +33,24 @@ namespace MusicRaterWebApp.Controllers
 
         //TODO: Need to update UserAlbumRanks to include Album model.
         [Authorize]
-        public ActionResult Favorites(String id)
+        public ActionResult Favorites()
         {
-            if (id == null)
-                return HttpNotFound();
-            else
-            {
-                var favoriteAlbumIds = _context.userAlbumRanks.Where(x => x.userId.Equals(id)).OrderByDescending(x => x.rank).Select(x => x.albumId).Take(10).ToList();
-                var favoriteAlbumsUnsorted = _context.albums.Where(x => favoriteAlbumIds.Contains(x.albumId)).ToList();
-                var favoriteAlbumsArray = new Album[10];
-                foreach(var album in favoriteAlbumsUnsorted)
-                {
-                    int indexOfAlbum = favoriteAlbumIds.IndexOf(album.albumId);
-                    favoriteAlbumsArray[indexOfAlbum] = album;
-                }
-                var favoriteAlbums = favoriteAlbumsArray.ToList();
-                var viewModel = new UserFavoriteAlbumsViewModel
-                {
-                    curUser = 1,
-                    favoriteAlbum = favoriteAlbums
-
-                };
-                return View(viewModel);
+            var curUser = User.Identity.GetUserId();
+            var favoriteAlbumIds = _context.userAlbumRanks.Where(x => x.userId.Equals(curUser)).OrderByDescending(x => x.rank).Select(x => x.albumId).Take(10).ToList();
+            var favoriteAlbumsUnsorted = _context.albums.Where(x => favoriteAlbumIds.Contains(x.albumId)).ToList();
+            var favoriteAlbumsArray = new Album[10];
+            foreach(var album in favoriteAlbumsUnsorted){
+                int indexOfAlbum = favoriteAlbumIds.IndexOf(album.albumId);
+                favoriteAlbumsArray[indexOfAlbum] = album;
             }
+            var favoriteAlbums = favoriteAlbumsArray.ToList();
+            favoriteAlbums.RemoveAll(x => x == null);
+            var viewModel = new UserFavoriteAlbumsViewModel
+            {
+                favoriteAlbum = favoriteAlbums
+
+            };
+            return View(viewModel);
         }
     }
 }
