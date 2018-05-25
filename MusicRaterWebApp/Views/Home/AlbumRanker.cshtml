@@ -4,19 +4,35 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AlbumRanker</h2>
+<h2>Rank</h2>
+<h4>
+    Here are two albums that you should know. Chose the one you prefer.
+</h4>
 <body>
     <div id="albums">
         <div id="album1">
             @Model.album1.albumName
-            <p><button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" data-album-alt-id="@Model.albumRank2.id" data-alt-expected="@Model.album2Expected"class="btn btn-default js-win">Choose Me!</button></p>
+            <p>
+                @Model.album1.bandName
+            </p>
+            @Model.album1.year
+            <p>
+                <img src="images/holding.jpg">
+            </p>
+            <p><button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" data-album-alt-id="@Model.albumRank2.id" data-alt-expected="@Model.album2Expected" class="btn btn-default js-win">Choose Me!</button></p>
         </div>
-
         <div id="album2">
             @Model.album2.albumName
+            <p>
+                @Model.album2.bandName
+            </p>
+            @Model.album2.year
+            <p>
+                <img src="images/holding.jpg">
+            </p>
             <p><button data-album-id="@Model.albumRank2.id" data-expected="@Model.album2Expected" data-album-alt-id="@Model.albumRank1.id" data-alt-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button></p>
         </div>
-    </div>
+        </div>
 </body>
 
 @section scripts
@@ -25,12 +41,13 @@
         $(document).ready(function () {
             $("#albums .js-win").on("click", function () {
                 var button = $(this);
+                console.log("hit");
                 $.ajax({
-                    
                     url: "/api/useralbumranks/" + "?winnerId=" + button.attr("data-album-id") + "&loserId=" + button.attr("data-album-alt-id") + "&winnerExpected=" + button.attr("data-expected") + "&loserExpected=" + button.attr("data-alt-expected"), 
                     method: "PUT",
                     success: function () {
                         //Let's just do a redirect until the get two new api is done.
+                        console.log("hi");
                         window.location.href = 'albumranker';
                     }
                 });

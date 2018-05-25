@@ -28,3 +28,25 @@ textarea {
 .input-validation-error{
     border: 2px solid red;
 }
+
+.footer{
+    position: absolute;
+    bottom: 0;
+}
+hr {
+    width: 900%;
+}
+
+#album1 {
+    width: 300px;
+    float: left;
+    height: 300px;
+    border: 1px solid black;
+}
+
+#album2 {
+    width: 300px;
+    float: right;
+    height: 300px;
+    border: 1px solid black;
+}
