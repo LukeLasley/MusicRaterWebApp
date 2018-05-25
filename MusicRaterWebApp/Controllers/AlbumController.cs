@@ -23,11 +23,13 @@ namespace MusicRaterWebApp.Controllers
         }
 
         // GET: Album
+        [Authorize]
         public ActionResult Index()
         {
             return RedirectToAction("SearchForm", "Album");
         }
 
+        [Authorize]
         public ActionResult AlbumForm()
         {
             var genres = _context.genres.ToList();
@@ -69,7 +71,7 @@ namespace MusicRaterWebApp.Controllers
 
             return RedirectToAction(redirect, "Album");
         }
-        
+        [Authorize]
         public ActionResult GetAlbum(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
@@ -87,6 +89,7 @@ namespace MusicRaterWebApp.Controllers
         }
 
         //need to add genre chosen
+        [Authorize]
         public ActionResult Edit(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
@@ -108,7 +111,7 @@ namespace MusicRaterWebApp.Controllers
             };
             return View("AlbumForm", viewModel);
         }
-
+        [Authorize]
         public ActionResult SearchForm()
         {
             var genres = _context.genres.ToList();
@@ -118,7 +121,7 @@ namespace MusicRaterWebApp.Controllers
             };
             return View(albumViewModel);
         }
-
+        [Authorize]
         public ActionResult SearchResults(AlbumFormViewModel albumViewModel)
         {
             var albums = _context.albums.Where(c => c.albumName.Equals(albumViewModel.album.albumName) || c.bandName.Equals(albumViewModel.album.bandName) || c.year == albumViewModel.album.year).ToList() ;
@@ -129,6 +132,7 @@ namespace MusicRaterWebApp.Controllers
             return View(resultsViewModel);
         }
         //Gets all albums
+        [Authorize]
         public ActionResult GetAll()
         {
             var albums = _context.albums.ToList();

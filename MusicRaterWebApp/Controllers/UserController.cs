@@ -23,6 +23,7 @@ namespace MusicRaterWebApp.Controllers
         }
 
         // GET: User
+        [Authorize]
         public ActionResult Index()
         {
             return View();
@@ -30,6 +31,7 @@ namespace MusicRaterWebApp.Controllers
 
 
         //TODO: Need to update UserAlbumRanks to include Album model.
+        [Authorize]
         public ActionResult Favorites(String id)
         {
             if (id == null)

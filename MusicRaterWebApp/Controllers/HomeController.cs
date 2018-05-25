@@ -27,6 +27,7 @@ namespace MusicRaterWebApp.Controllers
         {
             _context.Dispose();
         }
+
         public ActionResult Index()
         {
             return View();
@@ -40,7 +41,13 @@ namespace MusicRaterWebApp.Controllers
             return View();
         }
 
+        public ActionResult Login()
+        {
+            return RedirectToAction("Login", "Account");
+        }
+
         //home/albumranker
+        [Authorize]
         public ActionResult AlbumRanker()
         {
             var curUser = User.Identity.GetUserId();

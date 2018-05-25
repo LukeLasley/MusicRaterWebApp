@@ -1,4 +1,5 @@
-﻿<div class="navbar navbar-inverse navbar-fixed-top">
+﻿@using Microsoft.AspNet.Identity
+<div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -9,12 +10,17 @@
             @Html.ActionLink("MusicRater", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("My Favorites", "Favorites", "User")</li>
-                <li>@Html.ActionLink("Rank", "AlbumRanker", "Home")</li>
-                <li>@Html.ActionLink("Search", "SearchForm", "Album")</li>
-                <li>@Html.ActionLink("Add Album", "AlbumForm", "Album")</li>
-            </ul>
+
+            @if (Request.IsAuthenticated)
+            {
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("My Favorites", "Favorites", "User")</li>
+                    <li>@Html.ActionLink("Rank", "AlbumRanker", "Home")</li>
+                    <li>@Html.ActionLink("Search", "SearchForm", "Album")</li>
+                    <li>@Html.ActionLink("Add Album", "AlbumForm", "Album")</li>
+                </ul>
+            }
+
             @Html.Partial("_LoginPartial")
         </div>
     </div>
