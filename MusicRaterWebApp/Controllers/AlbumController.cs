@@ -81,10 +81,17 @@ namespace MusicRaterWebApp.Controllers
         public ActionResult GetAlbum(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
+            String spotifyLink = "";
+            if (album.spotifyURi != null)
+            {
+                spotifyLink = "https://open.spotify.com/embed?uri=" + album.spotifyURi;
+            }
             AlbumDescriptionViewModel descriptionViewModel = new AlbumDescriptionViewModel
             {
                 album = album,
-                genres = album.genres.ToList()
+                genres = album.genres.ToList(),
+                spotifyURI = spotifyLink
+                
             };
             if (album == null)
                 return HttpNotFound();

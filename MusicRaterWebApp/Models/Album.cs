@@ -19,6 +19,7 @@ namespace MusicRaterWebApp.Models
         [Required(ErrorMessage = "Band name is required")]
         public string bandName { get; set; }
         public int? year { get; set; }
+        public string spotifyURi { get; set; }
         public virtual ICollection<Genre> genres { get; set; }
     }
 }

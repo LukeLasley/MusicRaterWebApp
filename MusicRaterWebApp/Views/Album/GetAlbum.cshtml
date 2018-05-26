@@ -7,19 +7,28 @@
 <h2>@Model.album.albumName</h2>
 <hr/>
 <body>
-    <p>
-        @Model.album.bandName
-        <ul>
-            <li>
-                @Model.album.year
-            </li>
-            <li>
-                @if(Model.genres.Count > 0)
+    <div id="album-info">
+        <p>
+            @Model.album.bandName
+            <ul>
+                <li>
+                    @Model.album.year
+                </li>
+                <li>
+                    @if (Model.genres.Count > 0)
                 {
                     @Model.genres[0].genre
-                }
-            </li>
-    </p>
-    <p><a class="btn btn-default" href="/Album/Edit/@Model.album.albumId">Edit</a></p>
+            }
+                </li>
+        </p>
+        <p><a class="btn btn-default" href="/Album/Edit/@Model.album.albumId">Edit</a></p>
+    </div>
+    <div id="spotifyPlayer">
+        @if(Model.spotifyURI != "")
+        {
+        <iframe src=@Model.spotifyURI width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        }
+    </div>
+    
 </body>
 

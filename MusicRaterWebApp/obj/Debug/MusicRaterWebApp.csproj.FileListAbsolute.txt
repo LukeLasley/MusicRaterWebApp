@@ -377,3 +377,4 @@ E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.firstIdentity
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.droppingUsers.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.droppingPasswords.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.changingUserIdInAlbumRank.resources
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingSpotifyPlayer.resources

@@ -50,3 +50,9 @@ hr {
     height: 300px;
     border: 1px solid black;
 }
+#spotifyPlayer {
+    float: right;
+}
+#album-info {
+    float: left;
+}
