@@ -6,10 +6,30 @@
 
 <h3>My Favorites<br /></h3>
 
-<ol>
-    @foreach( var album in Model.favoriteAlbum)
-    {
-        
-        <li>@Html.ActionLink(@album.albumName, "GetAlbum/" + @album.albumId, "Album")</li>
-    }
-</ol>
+<body>
+    <div>
+        <table id="albums" class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <td>
+                        Rank
+                    </td>
+                    <td>
+                        Album
+                    </td>
+                </tr>
+                @foreach (var album in Model.favoriteAlbum)
+                {
+                <tr>
+                    <td>
+                        @(Model.favoriteAlbum.IndexOf(album) +1)
+                    </td>
+                    <td>
+                        @Html.ActionLink(@album.albumName, "GetAlbum/" + @album.albumId, "Album")
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
