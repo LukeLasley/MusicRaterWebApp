@@ -14,5 +14,6 @@ namespace MusicRaterWebApp.Models
         public int albumId { get; set; }
         public string userId { get; set; }
         public int timesSeen { get; set; }
+        public bool knowAlbum { get; set; }
     }
 }

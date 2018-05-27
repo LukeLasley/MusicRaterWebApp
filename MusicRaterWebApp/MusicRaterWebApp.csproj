@@ -300,6 +300,10 @@
     <Compile Include="Migrations\201805260004441_addingSpotifyPlayer.Designer.cs">
       <DependentUpon>201805260004441_addingSpotifyPlayer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805272236564_addingKnowAlbum.cs" />
+    <Compile Include="Migrations\201805272236564_addingKnowAlbum.Designer.cs">
+      <DependentUpon>201805272236564_addingKnowAlbum.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -473,6 +477,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805260004441_addingSpotifyPlayer.resx">
       <DependentUpon>201805260004441_addingSpotifyPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805272236564_addingKnowAlbum.resx">
+      <DependentUpon>201805272236564_addingKnowAlbum.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

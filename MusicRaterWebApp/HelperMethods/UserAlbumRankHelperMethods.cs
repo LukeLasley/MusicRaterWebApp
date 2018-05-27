@@ -89,7 +89,8 @@ namespace MusicRaterWebApp.HelperMethods
                 rank = 500,
                 userId = userId,
                 albumId = album.albumId,
-                timesSeen = 0
+                timesSeen = 0,
+                knowAlbum = true
             };
             return rank;
         }

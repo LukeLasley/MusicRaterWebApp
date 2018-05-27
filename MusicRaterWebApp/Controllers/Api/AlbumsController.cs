@@ -87,5 +87,18 @@ namespace MusicRaterWebApp.Controllers.Api
             return Ok();
         }
 
+        [HttpPut]
+        public IHttpActionResult UpdateSpotifyUri(int id, string uri)
+        {
+            var databaseAlbum = _context.albums.SingleOrDefault(x => x.albumId == id);
+            if (databaseAlbum == null)
+            {
+                return NotFound();
+            }
+            databaseAlbum.spotifyURi = uri;
+            _context.SaveChanges();
+            return Ok();
+        }
+
     }
 }

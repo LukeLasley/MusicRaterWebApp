@@ -11,6 +11,12 @@
     @if (Model.spotifyURI != "")
     {
         <iframe src=@Model.spotifyURI width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        <br />
+        <button data-album-id="@Model.album.albumId" class="btn btn-default js-addSpotify">Edit Spotify</button>
+    }
+    else
+    {
+        <button data-album-id="@Model.album.albumId" class="btn btn-default js-addSpotify">Add Spotify</button>
     }
 </div>
 <br />
@@ -25,39 +31,61 @@
                     <td style="width: 500px;">
                         @Model.album.albumName
                     </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Artist
-                        </td>
-                        <td style="width: 500px;">
-                            @Model.album.bandName
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Year
-                        </td>
-                        <td style="width: 500px;">
-                            @Model.album.year
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Genres
-                        </td>
-                        <td style="width: 500px;">
-                            @if (Model.genres.Count > 0)
-    {
-                        @Model.genres[0].genre
-}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                </tr>
+                <tr>
+                    <td>
+                        Artist
+                    </td>
+                    <td style="width: 500px;">
+                        @Model.album.bandName
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Year
+                    </td>
+                    <td style="width: 500px;">
+                        @Model.album.year
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Genres
+                    </td>
+                    <td style="width: 500px;">
+                        @if (Model.genres.Count > 0)
+                        {
+                            @Model.genres[0].genre
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
         <p><a class="btn btn-default" href="/Album/Edit/@Model.album.albumId">Edit</a></p>
     </div>
 
 
 </body>
 
+@section scripts
+{
+<script>
+        $(document).ready(function () {
+            $("#spotifyPlayer .js-addSpotify").on("click", function () {
+                var spotifyUri = prompt("Please enter Spotify URI");
+
+                if (spotifyUri != null) {
+                    $.ajax({
+                        url: "/api/albums" + "?id=" + $(this).attr("data-album-id") + "&uri=" + spotifyUri,
+                        method: "PUT",
+                        success: function () {
+                            //replace with wasn't working right so we will reload since this will not happen often
+                            window.location.reload();
+                        }
+                    });
+                }
+            });
+        });
+
+</script>
+}
