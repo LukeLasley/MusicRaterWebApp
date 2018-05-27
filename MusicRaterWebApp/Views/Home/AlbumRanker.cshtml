@@ -11,26 +11,22 @@
 <body>
     <div id="albums">
         <div id="album1">
-            @Model.album1.albumName
-            <p>
-                @Model.album1.bandName
+            <img src="~/Images/grimes-visions.jpg" />
+            <br />
+            @Model.album1.albumName - @Model.album1.bandName
+
+            <p><button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" data-album-alt-id="@Model.albumRank2.id" data-alt-expected="@Model.album2Expected" class="btn btn-default js-win">Choose Me!</button>
+               <button class="btn btn-default js-win">Dont Know This Album</button>
             </p>
-            @Model.album1.year
-            <p>
-                <img src="images/holding.jpg">
-            </p>
-            <p><button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" data-album-alt-id="@Model.albumRank2.id" data-alt-expected="@Model.album2Expected" class="btn btn-default js-win">Choose Me!</button></p>
+            
         </div>
         <div id="album2">
-            @Model.album2.albumName
-            <p>
-                @Model.album2.bandName
+            <img src="~/Images/grimes-visions.jpg" />
+            <br />
+            @Model.album2.albumName - @Model.album2.bandName
+            <p><button data-album-id="@Model.albumRank2.id" data-expected="@Model.album2Expected" data-album-alt-id="@Model.albumRank1.id" data-alt-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button>
+               <button class="btn btn-default js-win">Dont Know This Album</button>
             </p>
-            @Model.album2.year
-            <p>
-                <img src="images/holding.jpg">
-            </p>
-            <p><button data-album-id="@Model.albumRank2.id" data-expected="@Model.album2Expected" data-album-alt-id="@Model.albumRank1.id" data-alt-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button></p>
         </div>
         </div>
 </body>
