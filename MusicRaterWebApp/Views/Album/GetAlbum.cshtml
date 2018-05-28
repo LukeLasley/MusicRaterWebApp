@@ -18,6 +18,14 @@
     {
         <button data-album-id="@Model.album.albumId" class="btn btn-default js-addSpotify">Add Spotify</button>
     }
+    @if (Model.know)
+    {
+        <button class="btn btn-default">Don't Know This Album</button>
+    }
+    else
+    {
+        <button class="btn btn-default">I Know This Album</button>
+    }
 </div>
 <br />
 <body>

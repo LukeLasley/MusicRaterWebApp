@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using MusicRaterWebApp.Models;
 using MusicRaterWebApp.ViewModels;
 
@@ -82,15 +83,24 @@ namespace MusicRaterWebApp.Controllers
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
             String spotifyLink = "";
+            var curUser = User.Identity.GetUserId();
+            var know = _context.userAlbumRanks.Where(x => x.albumId == id && x.userId == curUser).Select(x=> x.knowAlbum).ToList();
             if (album.spotifyURi != null)
             {
                 spotifyLink = "https://open.spotify.com/embed?uri=" + album.spotifyURi;
+            }
+            bool showButton = true;
+            if (know.Count != 1)
+            {
+                showButton = know[0];
             }
             AlbumDescriptionViewModel descriptionViewModel = new AlbumDescriptionViewModel
             {
                 album = album,
                 genres = album.genres.ToList(),
-                spotifyURI = spotifyLink
+                spotifyURI = spotifyLink,
+                userId = curUser,
+                know = showButton
                 
             };
             if (album == null)
