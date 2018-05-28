@@ -36,7 +36,7 @@ namespace MusicRaterWebApp.Controllers
         public ActionResult Favorites()
         {
             var curUser = User.Identity.GetUserId();
-            var favoriteAlbumIds = _context.userAlbumRanks.Where(x => x.userId.Equals(curUser)).OrderByDescending(x => x.rank).Select(x => x.albumId).Take(10).ToList();
+            var favoriteAlbumIds = _context.userAlbumRanks.Where(x => x.userId.Equals(curUser) && x.knowAlbum == true).OrderByDescending(x => x.rank).Select(x => x.albumId).Take(10).ToList();
             var favoriteAlbumsUnsorted = _context.albums.Where(x => favoriteAlbumIds.Contains(x.albumId)).ToList();
             var favoriteAlbumsArray = new Album[10];
             foreach(var album in favoriteAlbumsUnsorted){

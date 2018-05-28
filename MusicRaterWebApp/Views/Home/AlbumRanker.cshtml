@@ -15,20 +15,22 @@
             <br />
             @Model.album1.albumName - @Model.album1.bandName
 
-            <p><button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" data-album-alt-id="@Model.albumRank2.id" data-alt-expected="@Model.album2Expected" class="btn btn-default js-win">Choose Me!</button>
-               <button class="btn btn-default js-win">Dont Know This Album</button>
+            <p>
+                <button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" data-album-alt-id="@Model.albumRank2.id" data-alt-expected="@Model.album2Expected" class="btn btn-default js-win">Choose Me!</button>
+                <button data-album-id="@Model.album1.albumId" data-user-id="@Model.userId" class="btn btn-default js-dontknow">Dont Know This Album</button>
             </p>
-            
+
         </div>
         <div id="album2">
             <img src="~/Images/grimes-visions.jpg" />
             <br />
             @Model.album2.albumName - @Model.album2.bandName
-            <p><button data-album-id="@Model.albumRank2.id" data-expected="@Model.album2Expected" data-album-alt-id="@Model.albumRank1.id" data-alt-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button>
-               <button class="btn btn-default js-win">Dont Know This Album</button>
+            <p>
+                <button data-album-id="@Model.albumRank2.id" data-expected="@Model.album2Expected" data-album-alt-id="@Model.albumRank1.id" data-alt-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button>
+                <button data-album-id="@Model.album2.albumId" data-user-id="@Model.userId" class="btn btn-default js-dontknow">Dont Know This Album</button>
             </p>
         </div>
-        </div>
+    </div>
 </body>
 
 @section scripts
@@ -37,9 +39,8 @@
         $(document).ready(function () {
             $("#albums .js-win").on("click", function () {
                 var button = $(this);
-                console.log("hit");
                 $.ajax({
-                    url: "/api/useralbumranks/" + "?winnerId=" + button.attr("data-album-id") + "&loserId=" + button.attr("data-album-alt-id") + "&winnerExpected=" + button.attr("data-expected") + "&loserExpected=" + button.attr("data-alt-expected"), 
+                    url: "/api/useralbumranks/" + "?winnerId=" + button.attr("data-album-id") + "&loserId=" + button.attr("data-album-alt-id") + "&winnerExpected=" + button.attr("data-expected") + "&loserExpected=" + button.attr("data-alt-expected"),
                     method: "PUT",
                     success: function () {
                         //Let's just do a redirect until the get two new api is done.
@@ -48,7 +49,19 @@
                     }
                 });
             });
+
+            $("#albums .js-dontknow").on("click", function () {
+                var button = $(this);
+                console.log("hit")
+                $.ajax({
+                    url: "/api/useralbumranks/haventheard/?userId=" + button.attr("data-user-id") + "&albumId=" + button.attr("data-album-id"),
+                    method: "PUT",
+                    success: function () {
+                        window.location.href = 'albumranker';
+                    }
+                });
+            });
         });
 
-    </script>    
+    </script>
 }

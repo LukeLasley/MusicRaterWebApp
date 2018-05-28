@@ -108,5 +108,20 @@ namespace MusicRaterWebApp.Controllers.Api
             return Ok(Mapper.Map<AlbumRankerViewModel, AlbumRankerDataDto>(twoRanks));
         }
 
+        
+        [HttpPut]
+        [Route("api/useralbumranks/haventheard/")]
+        public IHttpActionResult userNotHeard(string userId, int albumId)
+        {
+            var databaseAlbumRank = _context.userAlbumRanks.Where(x => x.userId == userId && x.albumId == albumId).ToList();
+            if(databaseAlbumRank.Count != 1)
+            {
+                return BadRequest();
+            }
+            databaseAlbumRank[0].knowAlbum = false;
+            _context.SaveChanges();
+            return Ok();
+        }
+
     }
 }
