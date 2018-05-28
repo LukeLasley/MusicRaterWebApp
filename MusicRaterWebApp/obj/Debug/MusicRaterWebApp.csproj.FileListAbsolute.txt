@@ -379,3 +379,4 @@ E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.droppingPassw
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.changingUserIdInAlbumRank.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingSpotifyPlayer.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingKnowAlbum.resources
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingAlbumCoversTable.resources

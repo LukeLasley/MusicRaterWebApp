@@ -16,5 +16,6 @@ namespace MusicRaterWebApp
         public DbSet<Album> albums { get; set;}
         public DbSet<Genre> genres { get; set; }
         public DbSet<UserAlbumRank> userAlbumRanks { get; set; }
+        public DbSet<AlbumCovers> albumCovers { get; set; }
     }
 }

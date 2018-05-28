@@ -304,9 +304,14 @@
     <Compile Include="Migrations\201805272236564_addingKnowAlbum.Designer.cs">
       <DependentUpon>201805272236564_addingKnowAlbum.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805281325336_addingAlbumCoversTable.cs" />
+    <Compile Include="Migrations\201805281325336_addingAlbumCoversTable.Designer.cs">
+      <DependentUpon>201805281325336_addingAlbumCoversTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
+    <Compile Include="Models\AlbumCovers.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\ManageViewModel.cs" />
@@ -480,6 +485,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805272236564_addingKnowAlbum.resx">
       <DependentUpon>201805272236564_addingKnowAlbum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805281325336_addingAlbumCoversTable.resx">
+      <DependentUpon>201805281325336_addingAlbumCoversTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
