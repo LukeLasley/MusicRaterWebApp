@@ -102,10 +102,11 @@ namespace MusicRaterWebApp.Controllers
             }
             if(albumRank.Count == 0)
             {
-                HelperMethods.createNewRank(album, curUser);
-                var newUserRank = _context.userAlbumRanks.Where(x => x.albumId == id && x.userId == curUser).ToList();
-                showButton = albumRank[0].knowAlbum;
-                rankId = albumRank[0].id;
+                var newUserRank = HelperMethods.createNewRank(album, curUser);
+                _context.userAlbumRanks.Add(newUserRank);
+                _context.SaveChanges();
+                showButton = true;
+                rankId = newUserRank.id;
             }
             AlbumDescriptionViewModel descriptionViewModel = new AlbumDescriptionViewModel
             {
