@@ -73,10 +73,20 @@ namespace MusicRaterWebApp.Controllers
             {
                 return View(model);
             }
+            var userNameOrEmail = model.UserName;
+            try
+            {
+                var eMailValidator = new System.Net.Mail.MailAddress(model.UserName);
+                userNameOrEmail = UserManager.FindByEmail(model.UserName).UserName;
+            }
+            catch(FormatException ex)
+            {
+                
+            }
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+            var result = await SignInManager.PasswordSignInAsync(userNameOrEmail, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
                 case SignInStatus.Success:
