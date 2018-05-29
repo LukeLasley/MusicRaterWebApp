@@ -17,7 +17,7 @@
 
             <p>
                 <button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" data-album-alt-id="@Model.albumRank2.id" data-alt-expected="@Model.album2Expected" class="btn btn-default js-win">Choose Me!</button>
-                <button data-album-id="@Model.album1.albumId" data-user-id="@Model.userId" class="btn btn-default js-dontknow">Dont Know This Album</button>
+                <button data-album-id="@Model.albumRank1.id" class="btn btn-default js-dontknow">Dont Know This Album</button>
             </p>
 
         </div>
@@ -27,7 +27,7 @@
             @Model.album2.albumName - @Model.album2.bandName
             <p>
                 <button data-album-id="@Model.albumRank2.id" data-expected="@Model.album2Expected" data-album-alt-id="@Model.albumRank1.id" data-alt-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button>
-                <button data-album-id="@Model.album2.albumId" data-user-id="@Model.userId" class="btn btn-default js-dontknow">Dont Know This Album</button>
+                <button data-album-id="@Model.albumRank2.id" class="btn btn-default js-dontknow">Dont Know This Album</button>
             </p>
         </div>
     </div>
@@ -52,9 +52,9 @@
 
             $("#albums .js-dontknow").on("click", function () {
                 var button = $(this);
-                console.log("hit")
+                console.log(button.attr("data-user-id"));
                 $.ajax({
-                    url: "/api/useralbumranks/haventheard/?userId=" + button.attr("data-user-id") + "&albumId=" + button.attr("data-album-id"),
+                    url: "/api/useralbumranks/haveheard/?id=" + button.attr("data-album-id") + "&know=false",
                     method: "PUT",
                     success: function () {
                         window.location.href = 'albumranker';

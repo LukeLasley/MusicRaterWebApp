@@ -11,7 +11,7 @@ namespace MusicRaterWebApp.ViewModels
         public Album album { get; set; }
         public List<Genre> genres { get; set; }
         public string spotifyURI { get; set; }
-        public string userId { get; set; }
+        public int albumRankId { get; set; }
         public bool know { get; set; }
     }
 }

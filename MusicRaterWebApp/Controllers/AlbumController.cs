@@ -6,16 +6,19 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using MusicRaterWebApp.Models;
 using MusicRaterWebApp.ViewModels;
+using MusicRaterWebApp.HelperMethods;
 
 namespace MusicRaterWebApp.Controllers
 {
     public class AlbumController : Controller
     {
         private MusicRaterContext _context;
+        private UserAlbumRankHelperMethods HelperMethods;
 
         public AlbumController()
         {
             _context = new MusicRaterContext();
+            HelperMethods = new UserAlbumRankHelperMethods();
         }
 
         protected override void Dispose(bool disposing)
@@ -84,22 +87,32 @@ namespace MusicRaterWebApp.Controllers
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
             String spotifyLink = "";
             var curUser = User.Identity.GetUserId();
-            var know = _context.userAlbumRanks.Where(x => x.albumId == id && x.userId == curUser).Select(x=> x.knowAlbum).ToList();
+            var albumRank = _context.userAlbumRanks.Where(x => x.albumId == id && x.userId == curUser).ToList();
             if (album.spotifyURi != null)
             {
                 spotifyLink = "https://open.spotify.com/embed?uri=" + album.spotifyURi;
             }
             bool showButton = true;
-            if (know.Count != 1)
+            int rankId = -1;
+            if (albumRank.Count == 1)
             {
-                showButton = know[0];
+
+                showButton = albumRank[0].knowAlbum;
+                rankId = albumRank[0].id;
+            }
+            if(albumRank.Count == 0)
+            {
+                HelperMethods.createNewRank(album, curUser);
+                var newUserRank = _context.userAlbumRanks.Where(x => x.albumId == id && x.userId == curUser).ToList();
+                showButton = albumRank[0].knowAlbum;
+                rankId = albumRank[0].id;
             }
             AlbumDescriptionViewModel descriptionViewModel = new AlbumDescriptionViewModel
             {
                 album = album,
                 genres = album.genres.ToList(),
                 spotifyURI = spotifyLink,
-                userId = curUser,
+                albumRankId = rankId,
                 know = showButton
                 
             };

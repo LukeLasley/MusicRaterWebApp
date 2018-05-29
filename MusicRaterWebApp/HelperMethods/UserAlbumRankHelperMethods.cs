@@ -83,7 +83,7 @@ namespace MusicRaterWebApp.HelperMethods
             return albumRankerViewModel;
         }
 
-        private UserAlbumRank createNewRank(Album album, string userId)
+        public UserAlbumRank createNewRank(Album album, string userId)
         {
             var rank = new UserAlbumRank()
             {

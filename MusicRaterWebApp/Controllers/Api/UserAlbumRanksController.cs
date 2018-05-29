@@ -110,15 +110,15 @@ namespace MusicRaterWebApp.Controllers.Api
 
         
         [HttpPut]
-        [Route("api/useralbumranks/haventheard/")]
-        public IHttpActionResult userNotHeard(string userId, int albumId)
+        [Route("api/useralbumranks/haveheard/")]
+        public IHttpActionResult userNotHeard(int id, bool know)
         {
-            var databaseAlbumRank = _context.userAlbumRanks.Where(x => x.userId == userId && x.albumId == albumId).ToList();
+            var databaseAlbumRank = _context.userAlbumRanks.Where(x => x.id == id).ToList();
             if(databaseAlbumRank.Count != 1)
             {
                 return BadRequest();
             }
-            databaseAlbumRank[0].knowAlbum = false;
+            databaseAlbumRank[0].knowAlbum = know;
             _context.SaveChanges();
             return Ok();
         }

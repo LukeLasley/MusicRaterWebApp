@@ -20,11 +20,11 @@
     }
     @if (Model.know)
     {
-        <button class="btn btn-default">Don't Know This Album</button>
+        <button data-userRank-id="@Model.albumRankId" data-know="@(!Model.know)" class="btn btn-default js-know">Don't Know This Album</button>
     }
     else
     {
-        <button class="btn btn-default">I Know This Album</button>
+        <button data-userRank-id="@Model.albumRankId" data-know="@(!Model.know)" class="btn btn-default js-know">I Know This Album</button>
     }
 </div>
 <br />
@@ -92,6 +92,15 @@
                         }
                     });
                 }
+            });
+            $("#spotifyPlayer .js-know").on("click", function () {
+                $.ajax({
+                    url: "/api/useralbumranks/haveheard/?id=" + $(this).attr("data-userRank-id") + "&know=" + $(this).attr("data-know"),
+                    method: "PUT",
+                    success: function () {
+                        window.location.reload();
+                    }
+                });
             });
         });
 
