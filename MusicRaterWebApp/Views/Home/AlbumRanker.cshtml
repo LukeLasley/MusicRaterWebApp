@@ -11,22 +11,22 @@
 <body>
     <div id="albums">
         <div id="album1">
-            <img src="~/Images/grimes-visions.jpg" />
+            <img src="~/Images/noImage.png" />
             <br />
-            @Model.album1.albumName - @Model.album1.bandName
+            <p id="album1Data">@Model.album1.albumName - @Model.album1.bandName
 
             <p>
-                <button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" data-album-alt-id="@Model.albumRank2.id" data-alt-expected="@Model.album2Expected" class="btn btn-default js-win">Choose Me!</button>
+                <button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button>
                 <button data-album-id="@Model.albumRank1.id" class="btn btn-default js-dontknow">Dont Know This Album</button>
             </p>
 
         </div>
         <div id="album2">
-            <img src="~/Images/grimes-visions.jpg" />
+            <img src="~/Images/noImage.png" />
             <br />
-            @Model.album2.albumName - @Model.album2.bandName
+            <p id="album2Data">@Model.album2.albumName - @Model.album2.bandName</p>
             <p>
-                <button data-album-id="@Model.albumRank2.id" data-expected="@Model.album2Expected" data-album-alt-id="@Model.albumRank1.id" data-alt-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button>
+                <button data-album-id="@Model.albumRank2.id" data-expected="@Model.album2Expected" class="btn btn-default js-win">Choose Me!</button>
                 <button data-album-id="@Model.albumRank2.id" class="btn btn-default js-dontknow">Dont Know This Album</button>
             </p>
         </div>
@@ -39,13 +39,23 @@
         $(document).ready(function () {
             $("#albums .js-win").on("click", function () {
                 var button = $(this);
+                if (button.closest("div").prop("id") === "album1") {
+                    var otherButton = $('#album2 .js-win');
+                } else {
+                    var otherButton = $('#album1 .js-win');
+                };
                 $.ajax({
-                    url: "/api/useralbumranks/" + "?winnerId=" + button.attr("data-album-id") + "&loserId=" + button.attr("data-album-alt-id") + "&winnerExpected=" + button.attr("data-expected") + "&loserExpected=" + button.attr("data-alt-expected"),
+                    url: "/api/useralbumranks/" + "?winnerId=" + button.attr("data-album-id") + "&loserId=" + otherButton.attr("data-album-id") + "&winnerExpected=" + button.attr("data-expected") + "&loserExpected=" + otherButton.attr("data-expected"),
                     method: "PUT",
                     success: function () {
-                        //Let's just do a redirect until the get two new api is done.
-                        console.log("hi");
-                        window.location.href = 'albumranker';
+                        $.ajax({
+                            url: "/api/useralbumranks/getTwoNew/",
+                            method: "GET",
+                            success: function (response) {
+                                updateData(1, response);
+                                updateData(2, response);
+                            }
+                        });
                     }
                 });
             });
@@ -57,11 +67,29 @@
                     url: "/api/useralbumranks/haveheard/?id=" + button.attr("data-album-id") + "&know=false",
                     method: "PUT",
                     success: function () {
-                        window.location.href = 'albumranker';
+                        $.ajax({
+                            url: "/api/useralbumranks/getTwoNew/",
+                            method: "GET",
+                            success: function (response) {
+                                updateData(1, response);
+                                updateData(2, response);
+                            }
+                        });
                     }
                 });
             });
+            //TODO: clean below
+            function updateData(albumNumber, responseObject) {
+                var mainAlbum = 'album' + albumNumber;
+                var rank = 'albumRank' + albumNumber;
+                var toTarget = '#album' + albumNumber + "Data";
+                var toWin = '#album' + albumNumber + " .js-win";
+                var dontKnow = '#album' + albumNumber + " .js-dontknow";
+                $(toTarget).text(responseObject[mainAlbum].albumName + " - " + responseObject[mainAlbum].bandName);
+                $(dontKnow).attr("data-album-id", responseObject[rank]['id']);
+                $(toWin).attr("data-album-id", responseObject[rank]['id']);
+                $(toWin).attr("data-expected", responseObject[mainAlbum + 'Expected']);
+            }
         });
-
     </script>
 }

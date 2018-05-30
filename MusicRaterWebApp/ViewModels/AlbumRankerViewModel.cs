@@ -10,8 +10,6 @@ namespace MusicRaterWebApp.ViewModels
     {
         public Album album1 { get; set; }
         public Album album2 { get; set; }
-        public string userId { get; set; }
-        public int chosen { get; set; }
         public double album1Expected { get; set; }
         public double album2Expected { get; set; }
         public UserAlbumRank albumRank1 { get; set; }
