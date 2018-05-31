@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search</h2>
+
+<body>
+    <h4>Search for a user</h4>
+    <div id="userSearch">
+        <input type="text" style="width:100%;" class="form-control">
+        <button type="button" class="btn btn-primary">Search</button>
+    </div>
+    <br />
+        <h4>Users:</h4>
+        <div id="users">
+            <table id="albums" class="table table-bordered table-hover">
+                <tbody>
+                    <tr>
+                        <td>
+                            Username
+                        </td>
+                        <td>
+                            Email
+                        </td>
+                        <td>
+                            Trust
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+</body>
+

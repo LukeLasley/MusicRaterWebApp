@@ -30,6 +30,10 @@ namespace MusicRaterWebApp.Controllers
             return View();
         }
 
+        public ActionResult Search()
+        {
+            return View();
+        }
 
         //TODO: Need to update UserAlbumRanks to include Album model.
         [Authorize]
