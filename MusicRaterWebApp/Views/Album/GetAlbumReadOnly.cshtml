@@ -11,12 +11,6 @@
     @if (Model.spotifyURI != "")
     {
         <iframe src=@Model.spotifyURI width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        <br />
-        <button data-album-id="@Model.album.albumId" class="btn btn-default js-addSpotify">Edit Spotify</button>
-    }
-    else
-    {
-        <button data-album-id="@Model.album.albumId" class="btn btn-default js-addSpotify">Add Spotify</button>
     }
     @if (Model.know)
     {
@@ -69,7 +63,6 @@
                 </tr>
             </tbody>
         </table>
-        <p><a class="btn btn-default" href="/Album/Edit/@Model.album.albumId">Edit</a></p>
     </div>
 
 
@@ -79,20 +72,6 @@
 {
     <script>
         $(document).ready(function () {
-            $("#spotifyPlayer .js-addSpotify").on("click", function () {
-                var spotifyUri = prompt("Please enter Spotify URI");
-
-                if (spotifyUri != null) {
-                    $.ajax({
-                        url: "/api/albums" + "?id=" + $(this).attr("data-album-id") + "&uri=" + spotifyUri,
-                        method: "PUT",
-                        success: function () {
-                            //replace with wasn't working right so we will reload since this will not happen often
-                            window.location.reload();
-                        }
-                    });
-                }
-            });
             $("#spotifyPlayer .js-know").on("click", function () {
                 $.ajax({
                     url: "/api/useralbumranks/haveheard/?id=" + $(this).attr("data-userRank-id") + "&know=" + $(this).attr("data-know"),
@@ -106,3 +85,4 @@
 
     </script>
 }
+

@@ -10,6 +10,7 @@ using MusicRaterWebApp.HelperMethods;
 
 namespace MusicRaterWebApp.Controllers
 {
+    [Authorize]
     public class AlbumController : Controller
     {
         private MusicRaterContext _context;
@@ -27,7 +28,6 @@ namespace MusicRaterWebApp.Controllers
         }
 
         // GET: Album
-        [Authorize]
         public ActionResult Index()
         {
             var recentAlbums = _context.albums.OrderByDescending(x => x.albumId).Take(10).ToList();
@@ -38,8 +38,7 @@ namespace MusicRaterWebApp.Controllers
             return View(resultsViewModel);
 
         }
-
-        [Authorize]
+        [Authorize(Roles = "Administrator")]
         public ActionResult AlbumForm()
         {
             var genres = _context.genres.ToList();
@@ -51,6 +50,7 @@ namespace MusicRaterWebApp.Controllers
         }
 
         //Code works however ModelState is returning invalid each time. Want to add that check back in eventually.
+        [Authorize(Roles = "Administrator")]
         [HttpPost]
         public ActionResult Save(AlbumFormViewModel albumViewModel)
         {
@@ -81,7 +81,6 @@ namespace MusicRaterWebApp.Controllers
 
             return RedirectToAction(redirect, "Album");
         }
-        [Authorize]
         public ActionResult GetAlbum(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
@@ -121,12 +120,17 @@ namespace MusicRaterWebApp.Controllers
                 return HttpNotFound();
             else
             {
-                return View(descriptionViewModel);
+                if (User.IsInRole("Administrator"))
+                {
+                    return View(descriptionViewModel);
+                }
+                return View("GetAlbumReadOnly", descriptionViewModel);
+
             }
         }
 
         //need to add genre chosen
-        [Authorize]
+        [Authorize(Roles ="Administrator")]
         public ActionResult Edit(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
@@ -148,7 +152,7 @@ namespace MusicRaterWebApp.Controllers
             };
             return View("AlbumForm", viewModel);
         }
-        [Authorize]
+
         public ActionResult SearchForm()
         {
             var genres = _context.genres.ToList();
@@ -158,7 +162,7 @@ namespace MusicRaterWebApp.Controllers
             };
             return View(albumViewModel);
         }
-        [Authorize]
+
         public ActionResult SearchResults(AlbumFormViewModel albumViewModel)
         {
             var albums = _context.albums.Where(c => c.albumName.Equals(albumViewModel.album.albumName) || c.bandName.Equals(albumViewModel.album.bandName) || c.year == albumViewModel.album.year).ToList() ;
@@ -169,7 +173,7 @@ namespace MusicRaterWebApp.Controllers
             return View(resultsViewModel);
         }
         //Gets all albums
-        [Authorize]
+
         public ActionResult GetAll()
         {
             var albums = _context.albums.ToList();
