@@ -29,7 +29,7 @@ namespace MusicRaterWebApp.Controllers
         {
             return View();
         }
-
+        [Authorize(Roles = "Administrator")]
         public ActionResult Search()
         {
             return View();

@@ -9,8 +9,8 @@
 <body>
     <h4>Search for a user</h4>
     <div id="userSearch">
-        <input type="text" style="width:100%;" class="form-control">
-        <button type="button" class="btn btn-primary">Search</button>
+        <input type="text" style="width:100%;" class="form-control js-searchString">
+        <button type="button" class="btn btn-primary js-search">Search</button>
     </div>
     <br />
         <h4>Users:</h4>
@@ -25,11 +25,47 @@
                             Email
                         </td>
                         <td>
-                            Trust
+                            Trust?
                         </td>
                     </tr>
                 </tbody>
             </table>
             </div>
 </body>
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            var table = $('#albums');
+            var button = $('#userSearch .js-search')
+            var searchString = $('#userSearch .js-searchString')
+            button.on('click', function () {
+                $.ajax({
+                    url: "/api/users/" + "?searchString=" + searchString.val(),
+                    method: "GET",
+                    success: function (response) {
+                        loadTable(table, response);
+                        searchString.val('');
+                    }
+                });
+            });
+            $('#albums .js-trust').on('click', function () {
+                console.log('pressed');
+            });
 
+
+            function loadTable(tableId, data) {
+                var rows = '<tr><td>Username</td><td>Email</td><td>Trust?</td>';
+                $.each(data, function (index, item) {
+                    var row = '<tr>';
+                    row += '<td>' + item['userName'] + '</td>';
+                    row += '<td>' + item['email'] + '</td>';
+                    row += '<td><button type="button" class="btn btn-primary js-trust">Trust</button></td>';
+                    rows += row + '<tr>';
+                });
+                $(tableId).html(rows);
+            }
+        });
+    </script>
+    
+}
