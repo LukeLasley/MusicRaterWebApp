@@ -94,11 +94,18 @@
                 }
             });
             $("#spotifyPlayer .js-know").on("click", function () {
+                var knowButton = $(this)
                 $.ajax({
                     url: "/api/useralbumranks/haveheard/?id=" + $(this).attr("data-userRank-id") + "&know=" + $(this).attr("data-know"),
                     method: "PUT",
                     success: function () {
-                        window.location.reload();
+                        if (knowButton.text() === "I Know This Album") {
+                            knowButton.attr('data-know', 'False');
+                            knowButton.text("Don't Know This Album");
+                        } else {
+                            knowButton.attr('data-know', 'True');
+                            knowButton.text("I Know This Album");
+                        };
                     }
                 });
             });

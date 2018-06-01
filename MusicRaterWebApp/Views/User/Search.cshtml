@@ -49,7 +49,7 @@
                     }
                 });
             });
-            $('#albums .js-trust').on('click', function () {
+            $('#albums').on('click', '#trustButton' , function () {
                 console.log('pressed');
             });
 
@@ -60,7 +60,7 @@
                     var row = '<tr>';
                     row += '<td>' + item['userName'] + '</td>';
                     row += '<td>' + item['email'] + '</td>';
-                    row += '<td><button type="button" class="btn btn-primary js-trust">Trust</button></td>';
+                    row += '<td><button type="button" id="trustButton" class="btn btn-primary">Trust</button></td>';
                     rows += row + '<tr>';
                 });
                 $(tableId).html(rows);

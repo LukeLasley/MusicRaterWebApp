@@ -100,5 +100,20 @@ namespace MusicRaterWebApp.Controllers.Api
             return Ok();
         }
 
+        public IHttpActionResult Search(string albumname, string artistname, int year)
+        {
+            var results = new List<Album>();
+            if (year != 0)
+            {
+                results = _context.albums.Where(x => x.albumName.Contains(albumname) && x.bandName.Contains(albumname) && x.year == year).ToList();
+            }
+            else
+            {
+                results = _context.albums.Where(x => x.albumName.Contains(albumname) && x.bandName.Contains(albumname) && x.year == year).ToList();
+            }
+            
+            return Ok(Mapper.Map<List<Album>, List<AlbumDto>>(results));
+        }
+
     }
 }

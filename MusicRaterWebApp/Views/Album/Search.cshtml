@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search</h2>
+
+<h4>Search For An Album</h4>
+<br />
+
+<body>
+    <div id="parameters">
+        <h5>Album Name</h5>
+        <input type="text" style="width:100%;" class="form-control js-albumname">
+        <h5>Artist</h5>
+        <input type="text" style="width:100%;" class="form-control js-artistname">
+        <h5>Year</h5>
+        <input type="text" style="width:100%;" class="form-control js-albumyear">
+        <br />
+        <button type="button" class="btn btn-primary js-search">Search</button>
+    </div>
+    <br />
+    <div id="albumsDiv">
+        <table id="albums" class="table table-bordered table-hover">
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+</body>
+@section scripts
+{
+    <script>
+
+    </script>
+}

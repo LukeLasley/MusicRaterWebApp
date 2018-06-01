@@ -402,6 +402,7 @@
     <Content Include="Views\Album\Index.cshtml" />
     <Content Include="Views\Album\GetAlbumReadOnly.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
+    <Content Include="Views\Album\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

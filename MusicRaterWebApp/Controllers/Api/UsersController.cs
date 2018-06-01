@@ -26,5 +26,11 @@ namespace MusicRaterWebApp.Controllers.Api
             var users = _context.Users.Where(x => x.UserName != "Admin" && ( x.Email.Contains(searchString) || x.UserName.Contains(searchString))).Select(x => new { x.UserName, x.Email }).ToList();
             return Ok(users);
         }
+
+        [HttpPut]
+        public IHttpActionResult TrustUser(string email, string username)
+        {
+            return Ok();
+        }
     }
 }

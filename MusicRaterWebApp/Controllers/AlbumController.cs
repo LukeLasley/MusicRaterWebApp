@@ -38,6 +38,10 @@ namespace MusicRaterWebApp.Controllers
             return View(resultsViewModel);
 
         }
+        public ActionResult Search()
+        {
+            return View();
+        }
         [Authorize(Roles = "Administrator")]
         public ActionResult AlbumForm()
         {
