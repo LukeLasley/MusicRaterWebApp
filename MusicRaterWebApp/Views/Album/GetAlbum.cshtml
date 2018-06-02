@@ -16,6 +16,8 @@
     }
     else
     {
+        <iframe src=@Model.spotifyURI width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" style="display:none;" id="player"></iframe>
+        <br />
         <button data-album-id="@Model.album.albumId" class="btn btn-default js-addSpotify">Add Spotify</button>
     }
     @if (Model.know)
@@ -87,8 +89,10 @@
                         url: "/api/albums" + "?id=" + $(this).attr("data-album-id") + "&uri=" + spotifyUri,
                         method: "PUT",
                         success: function () {
-                            //replace with wasn't working right so we will reload since this will not happen often
-                            window.location.reload();
+                            var toUpdate = "https://open.spotify.com/embed?uri=" + spotifyUri;
+                            $('#player').attr('src', toUpdate);
+                            $('#player').show();
+                            $("#spotifyPlayer .js-addSpotify").text("Edit Spotify");
                         }
                     });
                 }
