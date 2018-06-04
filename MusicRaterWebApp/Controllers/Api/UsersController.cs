@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using MusicRaterWebApp.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,7 +33,22 @@ namespace MusicRaterWebApp.Controllers.Api
         [HttpPut]
         public IHttpActionResult TrustUser(string email, string username)
         {
-            return Ok();
+            var user = _context.Users.SingleOrDefault(x => x.Email == email && x.UserName == username);
+            if(user == null)
+            {
+                return NotFound();
+            }
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(_context));
+            try
+            {
+                UserManager.AddToRole(user.Id, "Trusted");
+                _context.SaveChanges();
+                return Ok();
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 }

@@ -49,8 +49,15 @@
                     }
                 });
             });
-            $('#albums').on('click', '#trustButton' , function () {
-                console.log('pressed');
+            $('#albums').on('click', '#trustButton', function () {
+                buttonPressed = $(this);
+                $.ajax({
+                    url: "/api/users/?email=" + buttonPressed.attr('data-email') + "&username=" + buttonPressed.attr('data-username'),
+                    method: "PUT",
+                    success: function () {
+                        buttonPressed.text("Un-Trust");
+                    }
+                });
             });
 
 
@@ -60,7 +67,7 @@
                     var row = '<tr>';
                     row += '<td>' + item['userName'] + '</td>';
                     row += '<td>' + item['email'] + '</td>';
-                    row += '<td><button type="button" id="trustButton" class="btn btn-primary">Trust</button></td>';
+                    row += '<td><button type="button" id="trustButton" class="btn btn-primary" data-username="' + item['userName'] + '" data-email="' + item['email'] + '">Trust</button></td>';
                     rows += row + '<tr>';
                 });
                 $(tableId).html(rows);

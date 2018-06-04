@@ -42,7 +42,7 @@ namespace MusicRaterWebApp.Controllers
         {
             return View();
         }
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Trusted")]
         public ActionResult AlbumForm()
         {
             var genres = _context.genres.ToList();
@@ -54,7 +54,7 @@ namespace MusicRaterWebApp.Controllers
         }
 
         //Code works however ModelState is returning invalid each time. Want to add that check back in eventually.
-        [Authorize(Roles = "Administrator")]
+        [Authorize(Roles = "Administrator, Trusted")]
         [HttpPost]
         public ActionResult Save(AlbumFormViewModel albumViewModel)
         {
@@ -124,7 +124,7 @@ namespace MusicRaterWebApp.Controllers
                 return HttpNotFound();
             else
             {
-                if (User.IsInRole("Administrator"))
+                if (User.IsInRole("Administrator") || User.IsInRole("Trusted"))
                 {
                     return View(descriptionViewModel);
                 }
@@ -134,7 +134,7 @@ namespace MusicRaterWebApp.Controllers
         }
 
         //need to add genre chosen
-        [Authorize(Roles ="Administrator")]
+        [Authorize(Roles = "Administrator, Trusted")]
         public ActionResult Edit(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
