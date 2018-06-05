@@ -72,8 +72,8 @@ namespace MusicRaterWebApp.Controllers.Api
         }
 
         [HttpPut]
-        public IHttpActionResult UpdateRanks(int winnerId, int loserId, double winnerExpected, double loserExpected) {
-            var databaseAlbumRanks = _context.userAlbumRanks.Where(c => c.id == winnerId || c.id == loserId).ToList();
+        public IHttpActionResult UpdateRanks(int winnerId, int loserId, double winnerExpected, double loserExpected, string userId) {
+            var databaseAlbumRanks = _context.userAlbumRanks.Where(c => c.userId == userId &&(c.id == winnerId || c.id == loserId)).ToList();
             if (databaseAlbumRanks.Count < 2)
             {
                 return NotFound();
@@ -111,9 +111,9 @@ namespace MusicRaterWebApp.Controllers.Api
         
         [HttpPut]
         [Route("api/useralbumranks/haveheard/")]
-        public IHttpActionResult userNotHeard(int id, bool know)
+        public IHttpActionResult userNotHeard(int id, bool know, string userId)
         {
-            var databaseAlbumRank = _context.userAlbumRanks.Where(x => x.id == id).ToList();
+            var databaseAlbumRank = _context.userAlbumRanks.Where(x => x.id == id && x.userId == userId).ToList();
             if(databaseAlbumRank.Count != 1)
             {
                 return BadRequest();

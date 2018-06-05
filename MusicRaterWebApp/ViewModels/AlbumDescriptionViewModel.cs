@@ -13,5 +13,6 @@ namespace MusicRaterWebApp.ViewModels
         public string spotifyURI { get; set; }
         public int albumRankId { get; set; }
         public bool know { get; set; }
+        public string userId { get; set; }
     }
 }

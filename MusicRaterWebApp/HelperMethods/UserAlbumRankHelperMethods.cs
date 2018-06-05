@@ -77,7 +77,8 @@ namespace MusicRaterWebApp.HelperMethods
                 album1Expected = expecteds.Item1,
                 album2Expected = expecteds.Item2,
                 albumRank1 = albumRanks[indexOfAlbum1Rank],
-                albumRank2 = albumRanks[indexOfAlbum2Rank]
+                albumRank2 = albumRanks[indexOfAlbum2Rank],
+                userId = userId
             };
             return albumRankerViewModel;
         }

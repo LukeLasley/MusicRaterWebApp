@@ -117,7 +117,8 @@ namespace MusicRaterWebApp.Controllers
                 genres = album.genres.ToList(),
                 spotifyURI = spotifyLink,
                 albumRankId = rankId,
-                know = showButton
+                know = showButton,
+                userId = curUser
                 
             };
             if (album == null)

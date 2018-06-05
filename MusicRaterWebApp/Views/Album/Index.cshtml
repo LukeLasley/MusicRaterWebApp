@@ -35,7 +35,7 @@
     </div>
     <div>
         <input type="button" class="btn btn-primary" value="Search" onclick="window.location.href='@Url.Action("SearchForm", "Album")'" ) />
-        @if (this.User.IsInRole("Administrator"))
+        @if (this.User.IsInRole("Administrator") || User.IsInRole("Trusted"))
         {
             <input type="button" class="btn btn-primary" value="Add New" onclick="window.location.href='@Url.Action("AlbumForm", "Album")'" ) />
         }

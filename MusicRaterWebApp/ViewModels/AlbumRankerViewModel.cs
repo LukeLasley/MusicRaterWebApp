@@ -14,5 +14,6 @@ namespace MusicRaterWebApp.ViewModels
         public double album2Expected { get; set; }
         public UserAlbumRank albumRank1 { get; set; }
         public UserAlbumRank albumRank2 { get; set; }
+        public String userId { get; set; }
     }
 }

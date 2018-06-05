@@ -16,8 +16,8 @@
             <p id="album1Data">@Model.album1.albumName - @Model.album1.bandName
 
             <p>
-                <button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" class="btn btn-default js-win">Choose Me!</button>
-                <button data-album-id="@Model.albumRank1.id" class="btn btn-default js-dontknow">Dont Know This Album</button>
+                <button data-album-id="@Model.albumRank1.id" data-expected="@Model.album1Expected" class="btn btn-default js-win" data-userId="@Model.userId">Choose Me!</button>
+                <button data-album-id="@Model.albumRank1.id" data-userId="@Model.userId" class="btn btn-default js-dontknow">Dont Know This Album</button>
             </p>
 
         </div>
@@ -26,8 +26,8 @@
             <br />
             <p id="album2Data">@Model.album2.albumName - @Model.album2.bandName</p>
             <p>
-                <button data-album-id="@Model.albumRank2.id" data-expected="@Model.album2Expected" class="btn btn-default js-win">Choose Me!</button>
-                <button data-album-id="@Model.albumRank2.id" class="btn btn-default js-dontknow">Dont Know This Album</button>
+                <button data-album-id="@Model.albumRank2.id" data-expected="@Model.album2Expected" data-userId="@Model.userId" class="btn btn-default js-win">Choose Me!</button>
+                <button data-album-id="@Model.albumRank2.id" data-userId="@Model.userId" class="btn btn-default js-dontknow">Dont Know This Album</button>
             </p>
         </div>
     </div>
@@ -45,7 +45,7 @@
                     var otherButton = $('#album1 .js-win');
                 };
                 $.ajax({
-                    url: "/api/useralbumranks/" + "?winnerId=" + button.attr("data-album-id") + "&loserId=" + otherButton.attr("data-album-id") + "&winnerExpected=" + button.attr("data-expected") + "&loserExpected=" + otherButton.attr("data-expected"),
+                    url: "/api/useralbumranks/" + "?winnerId=" + button.attr("data-album-id") + "&loserId=" + otherButton.attr("data-album-id") + "&winnerExpected=" + button.attr("data-expected") + "&loserExpected=" + otherButton.attr("data-expected") + "&userId=" + button.attr("data-userId"),
                     method: "PUT",
                     success: function () {
                         $.ajax({
@@ -64,7 +64,7 @@
                 var button = $(this);
                 console.log(button.attr("data-user-id"));
                 $.ajax({
-                    url: "/api/useralbumranks/haveheard/?id=" + button.attr("data-album-id") + "&know=false",
+                    url: "/api/useralbumranks/haveheard/?id=" + button.attr("data-album-id") + "&know=false" + "&userId=" + button.attr("data-userId"),
                     method: "PUT",
                     success: function () {
                         $.ajax({
