@@ -6,21 +6,7 @@
 
 <h2>@Model.album.bandName - @Model.album.albumName</h2>
 <hr />
-<div id="albumCover">
-    @if (Model.albumImagePath == "")
-    {
-        <img src="~/Images/noImage.png" id="albumCover"/>
-        <h3>
-            Upload Image:
-        </h3>
-        <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId"/>
-    }
-    else
-    {
-        <img src=@Model.albumImagePath id="albumCover"/>
-    }
-</div>
-
+<img src="~/Images/noImage.png"/>
 <div id="spotifyPlayer">
     @if (Model.spotifyURI != "")
     {
@@ -125,22 +111,6 @@
                             knowButton.text("I Know This Album");
                         };
                     }
-                });
-            });
-            $("#upload").on('change', function () {
-                var data = new FormData();
-                data.append("File", $(this)[0].files[0]);
-                data.append("AlbumId", $(this).attr("data-album-id"));
-                $.ajax({
-                    url: "/api/albums/uploadfile",
-                    method: "POST",
-                    contentType: false,
-                    processData: false,
-                    data: data,
-                    success: function () {
-                        console.log("success");
-                    },
-
                 });
             });
         });

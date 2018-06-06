@@ -118,9 +118,8 @@ namespace MusicRaterWebApp.Controllers
                 spotifyURI = spotifyLink,
                 albumRankId = rankId,
                 know = showButton,
-                userId = curUser,
-                albumImagePath = ""
-
+                userId = curUser
+                
             };
             if (album == null)
                 return HttpNotFound();

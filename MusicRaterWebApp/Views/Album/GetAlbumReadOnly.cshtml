@@ -6,16 +6,7 @@
 
 <h2>@Model.album.bandName - @Model.album.albumName</h2>
 <hr />
-<div id="albumCover">
-    @if (Model.albumImagePath == "")
-    {
-        <img src="~/Images/noImage.png" />
-    }
-    else
-    {
-        <img src=@Model.albumImagePath />
-    }
-</div>
+<img src="~/Images/noImage.png"/>
 <div id="spotifyPlayer">
     @if (Model.spotifyURI != "")
     {
