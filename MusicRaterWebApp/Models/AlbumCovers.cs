@@ -11,6 +11,6 @@ namespace MusicRaterWebApp.Models
         [Key]
         public int id { get; set; }
         public int albumId { get; set; }
-        public byte[] albumImage { get; set; }
+        public string albumCoverId { get; set; }
     }
 }

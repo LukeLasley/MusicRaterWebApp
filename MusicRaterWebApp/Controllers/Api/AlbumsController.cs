@@ -7,6 +7,8 @@ using System.Web.Http;
 using MusicRaterWebApp.Models;
 using MusicRaterWebApp.Dtos;
 using AutoMapper;
+using System.Web;
+using System.IO;
 
 namespace MusicRaterWebApp.Controllers.Api
 {
@@ -114,6 +116,31 @@ namespace MusicRaterWebApp.Controllers.Api
             
             return Ok(Mapper.Map<List<Album>, List<AlbumDto>>(results));
         }
+        [HttpPost]
+        [Route("api/albums/uploadfile")]
+        public IHttpActionResult UploadFile()
+        {
+            if (HttpContext.Current.Request.Files.AllKeys.Any())
+            {
+                var httpPostedFile = HttpContext.Current.Request.Files["File"];
+                var albumIdAsString = HttpContext.Current.Request["AlbumId"];
+                if (httpPostedFile != null && albumIdAsString != null)
+                {
+                    int albumId = Convert.ToInt32(albumIdAsString);
+                    var album = _context.albums.Single(x => x.albumId == albumId);
+                    var fileName = httpPostedFile.FileName;
 
+                    // Validate the uploaded image(optional)
+
+                    // Get the complete file path
+                    var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images/Albums"), httpPostedFile.FileName);
+
+                    // Save the uploaded file to "UploadedFiles" folder
+                    httpPostedFile.SaveAs(fileSavePath);
+                    return Ok();
+                }
+            }
+            return BadRequest();
+        }
     }
 }
