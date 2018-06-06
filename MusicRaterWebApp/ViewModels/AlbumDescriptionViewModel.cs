@@ -14,5 +14,6 @@ namespace MusicRaterWebApp.ViewModels
         public int albumRankId { get; set; }
         public bool know { get; set; }
         public string userId { get; set; }
+        public string albumImagePath { get; set; }
     }
 }

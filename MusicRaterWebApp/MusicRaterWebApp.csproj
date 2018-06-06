@@ -318,6 +318,10 @@
     <Compile Include="Migrations\201806041841045_addingTrustedRole.Designer.cs">
       <DependentUpon>201806041841045_addingTrustedRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806061526058_changingAlbumCoverToUseStrings.cs" />
+    <Compile Include="Migrations\201806061526058_changingAlbumCoverToUseStrings.Designer.cs">
+      <DependentUpon>201806061526058_changingAlbumCoverToUseStrings.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -341,7 +345,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\grimes-visions.jpg" />
     <Content Include="Images\noImage.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -410,6 +413,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Albums\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -508,6 +512,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806041841045_addingTrustedRole.resx">
       <DependentUpon>201806041841045_addingTrustedRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806061526058_changingAlbumCoverToUseStrings.resx">
+      <DependentUpon>201806061526058_changingAlbumCoverToUseStrings.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
