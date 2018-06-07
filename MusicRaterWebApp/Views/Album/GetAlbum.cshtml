@@ -13,7 +13,7 @@
         <h3>
             Change Image:
         </h3>
-        <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId" />
+        <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId" accept="image/*" />
     }
     else
     {
@@ -21,7 +21,7 @@
         <h3>
             Change Image:
         </h3>
-        <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId" />
+        <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId" accept="image/*"/>
     }
 </div>
 
@@ -134,25 +134,30 @@
             $("#upload").on('change', function () {
                 var data = new FormData();
                 var files = $(this)[0].files[0];
-                data.append("File", $(this)[0].files[0]);
-                data.append("AlbumId", $(this).attr("data-album-id"));
-                $.ajax({
-                    url: "/api/albums/uploadfile",
-                    method: "PUT",
-                    contentType: false,
-                    processData: false,
-                    data: data,
-                    success: function () {
-                        var reader = new FileReader();
+                var type = files["type"];
+                var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+                if ($.inArray(type, ValidImageTypes) > 0 && files.size < 40000) {
+                    data.append("File", $(this)[0].files[0]);
+                    data.append("AlbumId", $(this).attr("data-album-id"));
+                    $.ajax({
+                        url: "/api/albums/uploadfile",
+                        method: "PUT",
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function () {
+                            var reader = new FileReader();
 
-                        reader.onload = function (e) {
-                            $('#albumCover').attr('src', e.target.result);
-                        }
+                            reader.onload = function (e) {
+                                $('#albumCover').attr('src', e.target.result);
+                            }
 
-                        reader.readAsDataURL(files);
-                    },
+                            reader.readAsDataURL(files);
+                        },
 
-                });
+                    });
+                }
+
             });
         });
 
