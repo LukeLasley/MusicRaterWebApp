@@ -116,7 +116,7 @@ namespace MusicRaterWebApp.Controllers.Api
             
             return Ok(Mapper.Map<List<Album>, List<AlbumDto>>(results));
         }
-        [HttpPost]
+        [HttpPut]
         [Route("api/albums/uploadfile")]
         public IHttpActionResult UploadFile()
         {
@@ -134,15 +134,24 @@ namespace MusicRaterWebApp.Controllers.Api
                         var guid = Guid.NewGuid().ToString();
                         var newfileName = guid + fileName;
                         var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images/Albums"), newfileName);
-                        var cover = new AlbumCovers
+                        var coverAlbumExists = _context.albumCovers.Any(x => x.albumId == albumId);
+                        if (coverAlbumExists)
                         {
-                            albumId = albumId,
-                            albumCoverId = newfileName
+                            var cover = _context.albumCovers.Single(x => x.albumId == albumId);
+                            cover.albumCoverId = newfileName;
+                        }
+                        else
+                        {
+                            var cover = new AlbumCovers
+                            {
+                                albumId = albumId,
+                                albumCoverId = newfileName
 
-                        };
-                        _context.albumCovers.Add(cover);
+                            };
+                            _context.albumCovers.Add(cover);
+                        }
                         _context.SaveChanges();
-                        // Save the uploaded file to "UploadedFiles" folder
+
                         httpPostedFile.SaveAs(fileSavePath);
                         return Ok();
                     }
