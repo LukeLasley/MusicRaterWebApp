@@ -70,6 +70,7 @@ namespace MusicRaterWebApp.HelperMethods
             var translatedAlbum1Rank = eloMethods.convertRank(albumRanks[indexOfAlbum1Rank].rank);
             var translatedAlbum2Rank = eloMethods.convertRank(albumRanks[indexOfAlbum2Rank].rank);
             var expecteds = eloMethods.getExpectedScores(translatedAlbum1Rank, translatedAlbum2Rank);
+
             var albumRankerViewModel = new AlbumRankerViewModel()
             {
                 album1 = albumsChosen[0],
@@ -78,7 +79,9 @@ namespace MusicRaterWebApp.HelperMethods
                 album2Expected = expecteds.Item2,
                 albumRank1 = albumRanks[indexOfAlbum1Rank],
                 albumRank2 = albumRanks[indexOfAlbum2Rank],
-                userId = userId
+                userId = userId,
+                album1path = getAlbumCoverPath(album1Id),
+                album2path = getAlbumCoverPath(album2Id)
             };
             return albumRankerViewModel;
         }
@@ -94,6 +97,18 @@ namespace MusicRaterWebApp.HelperMethods
                 knowAlbum = true
             };
             return rank;
+        }
+
+        public String getAlbumCoverPath(int albumId)
+        {
+            var albumCoverPath = "";
+            var albumCoverExists = _context.albumCovers.Any(x => x.albumId == albumId && x.active == true);
+            if (albumCoverExists)
+            {
+                var albumCover = _context.albumCovers.Single(x => x.albumId == albumId && x.active == true);
+                albumCoverPath = "/Images/Albums/" + albumCover.albumCoverId;
+            }
+            return albumCoverPath;
         }
     }
 }

@@ -111,11 +111,11 @@ namespace MusicRaterWebApp.Controllers
                 showButton = true;
                 rankId = newUserRank.id;
             }
-            var albumHasCover = _context.albumCovers.Any(x => x.albumId == album.albumId);
+            var albumHasCover = _context.albumCovers.Any(x => x.albumId == album.albumId && x.active == true);
             var albumPath = "";
             if (albumHasCover)
             {
-                var path = _context.albumCovers.Single(x => x.albumId == album.albumId);
+                var path = _context.albumCovers.Single(x => x.albumId == album.albumId && x.active == true);
                 albumPath = "/Images/Albums/" + path.albumCoverId;
             }
             AlbumDescriptionViewModel descriptionViewModel = new AlbumDescriptionViewModel

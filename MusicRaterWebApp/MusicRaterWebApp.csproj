@@ -322,6 +322,10 @@
     <Compile Include="Migrations\201806061526058_changingAlbumCoverToUseStrings.Designer.cs">
       <DependentUpon>201806061526058_changingAlbumCoverToUseStrings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806071816423_addingActiveColumnToAlbumCover.cs" />
+    <Compile Include="Migrations\201806071816423_addingActiveColumnToAlbumCover.Designer.cs">
+      <DependentUpon>201806071816423_addingActiveColumnToAlbumCover.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -515,6 +519,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806061526058_changingAlbumCoverToUseStrings.resx">
       <DependentUpon>201806061526058_changingAlbumCoverToUseStrings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806071816423_addingActiveColumnToAlbumCover.resx">
+      <DependentUpon>201806071816423_addingActiveColumnToAlbumCover.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

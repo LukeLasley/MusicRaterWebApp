@@ -15,5 +15,7 @@ namespace MusicRaterWebApp.ViewModels
         public UserAlbumRank albumRank1 { get; set; }
         public UserAlbumRank albumRank2 { get; set; }
         public String userId { get; set; }
+        public String album1path { get; set; }
+        public String album2path { get; set; }
     }
 }
