@@ -127,17 +127,25 @@ namespace MusicRaterWebApp.Controllers.Api
                 if (httpPostedFile != null && albumIdAsString != null)
                 {
                     int albumId = Convert.ToInt32(albumIdAsString);
-                    var album = _context.albums.Single(x => x.albumId == albumId);
-                    var fileName = httpPostedFile.FileName;
+                    var albumExists = _context.albums.Any(x => x.albumId == albumId);
+                    if (albumExists)
+                    {
+                        var fileName = httpPostedFile.FileName;
+                        var guid = Guid.NewGuid().ToString();
+                        var newfileName = guid + fileName;
+                        var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images/Albums"), newfileName);
+                        var cover = new AlbumCovers
+                        {
+                            albumId = albumId,
+                            albumCoverId = newfileName
 
-                    // Validate the uploaded image(optional)
-
-                    // Get the complete file path
-                    var fileSavePath = Path.Combine(HttpContext.Current.Server.MapPath("~/Images/Albums"), httpPostedFile.FileName);
-
-                    // Save the uploaded file to "UploadedFiles" folder
-                    httpPostedFile.SaveAs(fileSavePath);
-                    return Ok();
+                        };
+                        _context.albumCovers.Add(cover);
+                        _context.SaveChanges();
+                        // Save the uploaded file to "UploadedFiles" folder
+                        httpPostedFile.SaveAs(fileSavePath);
+                        return Ok();
+                    }
                 }
             }
             return BadRequest();

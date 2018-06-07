@@ -1,1 +1,4 @@
 /.vs
+/MusicRaterWebApp/Images/Albums/*
+#To keep the empty folder
+!/MusicRaterWebApp/Images/Albums/.gitkeep 

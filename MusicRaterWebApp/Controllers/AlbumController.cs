@@ -111,6 +111,13 @@ namespace MusicRaterWebApp.Controllers
                 showButton = true;
                 rankId = newUserRank.id;
             }
+            var albumHasCover = _context.albumCovers.Any(x => x.albumId == album.albumId);
+            var albumPath = "";
+            if (albumHasCover)
+            {
+                var path = _context.albumCovers.Single(x => x.albumId == album.albumId);
+                albumPath = "/Images/Albums/" + path.albumCoverId;
+            }
             AlbumDescriptionViewModel descriptionViewModel = new AlbumDescriptionViewModel
             {
                 album = album,
@@ -119,7 +126,7 @@ namespace MusicRaterWebApp.Controllers
                 albumRankId = rankId,
                 know = showButton,
                 userId = curUser,
-                albumImagePath = ""
+                albumImagePath = albumPath
 
             };
             if (album == null)

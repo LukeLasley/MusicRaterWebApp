@@ -9,15 +9,16 @@
 <div id="albumCover">
     @if (Model.albumImagePath == "")
     {
-        <img src="~/Images/noImage.png" id="albumCover"/>
+        <img src="~/Images/noImage.png" id="albumCover" />
         <h3>
             Upload Image:
         </h3>
-        <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId"/>
+        <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId" />
     }
     else
     {
-        <img src=@Model.albumImagePath id="albumCover"/>
+        <img src=@Model.albumImagePath id="albumCover" />
+        
     }
 </div>
 
