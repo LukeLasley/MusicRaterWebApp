@@ -9,11 +9,11 @@
 <div id="albumCover">
     @if (Model.albumImagePath == "")
     {
-        <img src="~/Images/noImage.png" />
+        <img src="~/Images/noImage.png" style="height:300px;width:300px;"/>
     }
     else
     {
-        <img src=@Model.albumImagePath />
+        <img src=@Model.albumImagePath style="height:300px;width:300px;"/>
     }
 </div>
 <div id="spotifyPlayer">

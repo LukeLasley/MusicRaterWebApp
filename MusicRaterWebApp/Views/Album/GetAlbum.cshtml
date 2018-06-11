@@ -9,7 +9,7 @@
 <div id="albumCover" style="width: 500px;">
     @if (Model.albumImagePath == "")
     {
-        <img src="~/Images/noImage.png" id="albumCover" />
+        <img src="~/Images/noImage.png" style="height:300px;width:300px;" id="albumCoverImage" />
         <h3>
             Change Image:
         </h3>
@@ -17,7 +17,7 @@
     }
     else
     {
-        <img src=@Model.albumImagePath id="albumCover" />
+        <img src=@Model.albumImagePath style="height:300px;width:300px;" id="albumCoverImage" />
         <h3>
             Change Image:
         </h3>
@@ -136,7 +136,7 @@
                 var files = $(this)[0].files[0];
                 var type = files["type"];
                 var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
-                if ($.inArray(type, ValidImageTypes) > 0 && files.size < 40000) {
+                if ($.inArray(type, ValidImageTypes) > 0 && files.size < 400000) {
                     data.append("File", $(this)[0].files[0]);
                     data.append("AlbumId", $(this).attr("data-album-id"));
                     $.ajax({
@@ -145,14 +145,8 @@
                         contentType: false,
                         processData: false,
                         data: data,
-                        success: function () {
-                            var reader = new FileReader();
-
-                            reader.onload = function (e) {
-                                $('#albumCover').attr('src', e.target.result);
-                            }
-
-                            reader.readAsDataURL(files);
+                        success: function (response) {
+                            $('#albumCoverImage').attr('src', response);
                         },
 
                     });

@@ -102,6 +102,18 @@ namespace MusicRaterWebApp.Controllers.Api
             return Ok();
         }
 
+        [HttpGet]
+        public IHttpActionResult GetCoverPath(int albumId)
+        {
+            var albumCover = _context.albumCovers.SingleOrDefault(x => x.albumId == albumId);
+            if(albumCover == null)
+            {
+                return NotFound();
+            }
+            var coverPath = "~/Images/Albums/" + albumCover.albumCoverId;
+            return Ok(coverPath);
+        }
+
         public IHttpActionResult Search(string albumname, string artistname, int year)
         {
             var results = new List<Album>();
@@ -150,9 +162,9 @@ namespace MusicRaterWebApp.Controllers.Api
                         };
                         _context.albumCovers.Add(cover);
                         _context.SaveChanges();
-
+                        var response = "/Images/Albums/" + newfileName;
                         httpPostedFile.SaveAs(fileSavePath);
-                        return Ok();
+                        return Ok(response);
                     }
                 }
             }
