@@ -13,11 +13,11 @@
         <div id="album1">
             @if (Model.album1path == "")
             {
-                <img src="~/Images/noImage.png" style="height:300px;width:300px;" />
+                <img src="~/Images/noImage.png" id="album1Cover" style="height:300px;width:300px;" />
             }
             else
             {
-                <img src=@Model.album1path style="height:300px;width:300px;" />
+                <img src=@Model.album1path id="album1Cover" style="height:300px;width:300px;" />
             }
 
             <br />
@@ -32,11 +32,11 @@
         <div id="album2">
             @if (Model.album2path == "")
             {
-            <img src="~/Images/noImage.png" style="height:300px;width:300px;"/>
+            <img src="~/Images/noImage.png" id="album2Cover" style="height:300px;width:300px;"/>
             }
             else
             {
-                <img src=@Model.album2path style="height:300px;width:300px;"/>
+                <img src=@Model.album2path id="album2Cover" style="height:300px;width:300px;"/>
             }
             <br />
             <p id="album2Data">@Model.album2.albumName - @Model.album2.bandName</p>
@@ -98,12 +98,21 @@
                 var mainAlbum = 'album' + albumNumber;
                 var rank = 'albumRank' + albumNumber;
                 var toTarget = '#album' + albumNumber + "Data";
+                var path = mainAlbum + 'path'
                 var toWin = '#album' + albumNumber + " .js-win";
                 var dontKnow = '#album' + albumNumber + " .js-dontknow";
+                var cover = "#album" + albumNumber + "Cover";
                 $(toTarget).text(responseObject[mainAlbum].albumName + " - " + responseObject[mainAlbum].bandName);
                 $(dontKnow).attr("data-album-id", responseObject[rank]['id']);
                 $(toWin).attr("data-album-id", responseObject[rank]['id']);
                 $(toWin).attr("data-expected", responseObject[mainAlbum + 'Expected']);
+                if (responseObject[path] == "") {
+                    $(cover).attr("src", "/Images/noImage.png");
+                } else {
+                    $(cover).attr("src", responseObject[path]);
+                }
+                
+
             }
         });
     </script>

@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using MusicRaterWebApp.Models;
 using MusicRaterWebApp.ViewModels;
 using MusicRaterWebApp.HelperMethods;
+using System.IO;
 
 namespace MusicRaterWebApp.Controllers
 {

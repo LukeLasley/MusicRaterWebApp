@@ -13,5 +13,7 @@ namespace MusicRaterWebApp.Dtos
         public double album2Expected { get; set; }
         public UserAlbumRankDto albumRank1 { get; set; }
         public UserAlbumRankDto albumRank2 { get; set; }
+        public String album1path { get; set; }
+        public String album2path { get; set; }
     }
 }
