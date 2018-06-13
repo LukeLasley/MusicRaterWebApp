@@ -40,11 +40,11 @@
     }
     @if (Model.know)
     {
-        <button data-userRank-id="@Model.albumRankId" data-know="@(!Model.know)" data-userId="@Model.userId" class="btn btn-default js-know">Don't Know This Album</button>
+        <button data-userRank-id="@Model.albumRankId" data-know="@(!Model.know)" class="btn btn-default js-know">Don't Know This Album</button>
     }
     else
     {
-        <button data-userRank-id="@Model.albumRankId" data-know="@(!Model.know)" data-userId="@Model.userId" class="btn btn-default js-know">I Know This Album</button>
+        <button data-userRank-id="@Model.albumRankId" data-know="@(!Model.know)" class="btn btn-default js-know">I Know This Album</button>
     }
 </div>
 <br />
@@ -118,7 +118,7 @@
             $("#spotifyPlayer .js-know").on("click", function () {
                 var knowButton = $(this)
                 $.ajax({
-                    url: "/api/useralbumranks/haveheard/?id=" + $(this).attr("data-userRank-id") + "&know=" + $(this).attr("data-know") + "&userId=" + $(this).attr("data-userId"),
+                    url: "/api/useralbumranks/haveheard/?id=" + $(this).attr("data-userRank-id") + "&know=" + $(this).attr("data-know"),
                     method: "PUT",
                     success: function () {
                         if (knowButton.text() === "I Know This Album") {
