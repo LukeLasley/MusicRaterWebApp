@@ -1,0 +1,48 @@
+﻿@model MusicRaterWebApp.ViewModels.AlbumCleanupViewModel
+@{
+    ViewBag.Title = "Cover Cleanup";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cover Cleanup</h2>
+
+<body>
+    <div>
+        <table id="inactiveCovers" class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <td>
+                        Id
+                    </td>
+                    <td>
+                        Cover
+                    </td>
+                </tr>
+                @foreach (var cover in Model.covers)
+                {
+                    <tr>
+                        <td>
+                            @(cover.albumId)
+                        </td>
+                        <td>
+                            <img src=@("/Images/Albums/" + cover.albumCoverId) style="height:300px;width:300px;" id="albumCoverImage" />
+                        </td>
+                        <td>
+                            <button class="btn btn-default js-delete">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $(".js-delete").on("click", function () {
+                console.log("click");
+            });
+        });
+    </script>
+}

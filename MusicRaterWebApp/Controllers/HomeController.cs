@@ -54,5 +54,17 @@ namespace MusicRaterWebApp.Controllers
             var albumRankerViewModel = helperMethods.PickTwoAlbumRankerViewModels(curUser);
             return View(albumRankerViewModel);
         }
+
+        [Authorize(Roles = "Administrator")]
+        public ActionResult CoverCleanup()
+        {
+            var inactiveCovers = _context.albumCovers.Where(x => x.active == false).Take(10).ToList();
+            
+            AlbumCleanupViewModel coverViewModel = new AlbumCleanupViewModel
+            {
+                covers = inactiveCovers,
+            };
+            return View(coverViewModel);
+        }
     }
 }

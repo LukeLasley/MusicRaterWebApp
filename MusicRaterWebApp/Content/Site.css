@@ -29,10 +29,6 @@ textarea {
     border: 2px solid red;
 }
 
-.footer{
-    position: absolute;
-    bottom: 0;
-}
 hr {
     width: 900%;
 }
