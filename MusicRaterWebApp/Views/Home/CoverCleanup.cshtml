@@ -28,7 +28,7 @@
                             <img src=@("/Images/Albums/" + cover.albumCoverId) style="height:300px;width:300px;" id="albumCoverImage" />
                         </td>
                         <td>
-                            <button class="btn btn-default js-delete">Delete</button>
+                            <button data-albumCoverPath="@("/Images/Albums/" + cover.albumCoverId)" class="btn btn-default js-delete">Delete</button>
                         </td>
                     </tr>
                 }
@@ -41,7 +41,20 @@
     <script>
         $(document).ready(function () {
             $(".js-delete").on("click", function () {
-                console.log("click");
+                var button = $(this);
+                $.ajax({
+                    url: "/api/useralbumranks/" + "?winnerId=" + button.attr("data-album-id") + "&loserId=" + otherButton.attr("data-album-id") + "&winnerExpected=" + button.attr("data-expected") + "&loserExpected=" + otherButton.attr("data-expected"),
+                    method: "DELETE",
+                    success: function () {
+                        $.ajax({
+                            url: "/api/albums/&path=" + button.attr("data-albumCoverPath"),
+                            method: "GET",
+                            success: function () {
+                                console.log("success");
+                            }
+                        });
+                    }
+                });
             });
         });
     </script>

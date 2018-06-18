@@ -101,7 +101,7 @@ namespace MusicRaterWebApp.Controllers.Api
             _context.SaveChanges();
             return Ok();
         }
-
+        //TODO: Migrate to API for albumCovers
         [HttpGet]
         public IHttpActionResult GetCoverPath(int albumId)
         {
@@ -113,7 +113,7 @@ namespace MusicRaterWebApp.Controllers.Api
             var coverPath = "~/Images/Albums/" + albumCover.albumCoverId;
             return Ok(coverPath);
         }
-
+        
         public IHttpActionResult Search(string albumname, string artistname, int year)
         {
             var results = new List<Album>();
@@ -128,7 +128,27 @@ namespace MusicRaterWebApp.Controllers.Api
             
             return Ok(Mapper.Map<List<Album>, List<AlbumDto>>(results));
         }
+        //TODO: Migrate to API for albumCovers
+        [HttpDelete]
+        public IHttpActionResult deleteCover(string path, int id)
+        {
 
+            if (File.Exists(path))
+            {
+                var albumCover = _context.albumCovers.SingleOrDefault(x => x.id == id);
+                if(albumCover != null)
+                _context.albumCovers.Remove(albumCover);
+                _context.SaveChanges();
+                File.Delete(path);
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
+            
+        }
+        //TODO: Migrate to API for albumCovers
         [HttpPut]
         [Route("api/albums/uploadfile")]
         public IHttpActionResult UploadFile()
