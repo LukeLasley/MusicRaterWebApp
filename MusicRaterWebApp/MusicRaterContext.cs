@@ -13,6 +13,7 @@ namespace MusicRaterWebApp
 {
     public class MusicRaterContext : IdentityDbContext<ApplicationUser>
     {
+        public MusicRaterContext() : base("MusicraterDatabase") { }
         public DbSet<Album> albums { get; set;}
         public DbSet<Genre> genres { get; set; }
         public DbSet<UserAlbumRank> userAlbumRanks { get; set; }
