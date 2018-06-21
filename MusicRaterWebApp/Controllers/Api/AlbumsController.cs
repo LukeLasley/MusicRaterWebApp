@@ -130,17 +130,25 @@ namespace MusicRaterWebApp.Controllers.Api
         }
         //TODO: Migrate to API for albumCovers
         [HttpDelete]
+        [Route("api/albums/deleteFile")]
         public IHttpActionResult deleteCover(string path, int id)
         {
-
-            if (File.Exists(path))
+            var pathToCheck = "~/Images/Albums/" + path;
+            if (File.Exists(HttpContext.Current.Server.MapPath(pathToCheck)))
             {
-                var albumCover = _context.albumCovers.SingleOrDefault(x => x.id == id);
+                var albumCover = _context.albumCovers.SingleOrDefault(x => x.albumId == id && x.albumCoverId == path);
                 if(albumCover != null)
-                _context.albumCovers.Remove(albumCover);
-                _context.SaveChanges();
-                File.Delete(path);
-                return Ok();
+                {
+                    _context.albumCovers.Remove(albumCover);
+                    _context.SaveChanges();
+                    File.Delete(path);
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+
             }
             else
             {
