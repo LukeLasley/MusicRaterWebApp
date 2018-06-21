@@ -391,3 +391,4 @@ E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingTrusted
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.changingAlbumCoverToUseStrings.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingActiveColumnToAlbumCover.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingActiveColumnToAlbumCover.resources
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.initialTrustedUser.resources
