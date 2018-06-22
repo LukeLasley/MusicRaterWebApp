@@ -334,6 +334,10 @@
     <Compile Include="Migrations\201806212316419_initialalbumcovers.Designer.cs">
       <DependentUpon>201806212316419_initialalbumcovers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806220207411_initialSpotify.cs" />
+    <Compile Include="Migrations\201806220207411_initialSpotify.Designer.cs">
+      <DependentUpon>201806220207411_initialSpotify.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -538,6 +542,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806212316419_initialalbumcovers.resx">
       <DependentUpon>201806212316419_initialalbumcovers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806220207411_initialSpotify.resx">
+      <DependentUpon>201806220207411_initialSpotify.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -28,7 +28,7 @@
                             <img src=@("/Images/Albums/" + cover.albumCoverId) style="height:300px;width:300px;" id="albumCoverImage" />
                         </td>
                         <td>
-                            <button data-albumCoverPath="@(cover.albumCoverId)" data-albumId="@cover.albumId"class="btn btn-default js-delete">Delete</button>
+                            <button data-albumCoverPath="@(cover.albumCoverId)" data-id="@cover.id"class="btn btn-default js-delete">Delete</button>
                         </td>
                     </tr>
                 }
@@ -43,7 +43,7 @@
             $(".js-delete").on("click", function () {
                 var button = $(this);
                 $.ajax({
-                    url: "/api/albums/deleteFile?path=" + button.attr("data-albumCoverPath") + '&id=' + button.attr("data-albumId"),
+                    url: "/api/albums/deleteFile?path=" + button.attr("data-albumCoverPath") + '&id=' + button.attr("data-id"),
                     method: "DELETE",
                     success: function () {
                         console.log("success");

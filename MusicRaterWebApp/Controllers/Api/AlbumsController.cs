@@ -136,7 +136,7 @@ namespace MusicRaterWebApp.Controllers.Api
             var pathToCheck = "~/Images/Albums/" + path;
             if (File.Exists(HttpContext.Current.Server.MapPath(pathToCheck)))
             {
-                var albumCover = _context.albumCovers.SingleOrDefault(x => x.albumId == id && x.albumCoverId == path);
+                var albumCover = _context.albumCovers.SingleOrDefault(x => x.id == id && x.albumCoverId == path);
                 if(albumCover != null)
                 {
                     _context.albumCovers.Remove(albumCover);

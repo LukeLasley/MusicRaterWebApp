@@ -393,3 +393,4 @@ C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicR
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.addingActiveColumnToAlbumCover.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.initialTrustedUser.resources
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.initialalbumcovers.resources
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.initialSpotify.resources
