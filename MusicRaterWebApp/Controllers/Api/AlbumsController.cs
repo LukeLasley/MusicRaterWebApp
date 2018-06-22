@@ -20,12 +20,11 @@ namespace MusicRaterWebApp.Controllers.Api
         {
             _context = new MusicRaterContext();
         }
-        //GET /api/albums
-        //NEED TO UPDATE TO SEND ACTION RESULT
-        public IEnumerable<AlbumDto> GetAlbums()
+        //GET /api/albums/
+        public IHttpActionResult GetAlbums()
         {
             var albums = _context.albums.ToList().Select(Mapper.Map<Album,AlbumDto>);
-            return albums;
+            return Ok(albums);
         }
 
         //GET /api/albums/1
@@ -41,6 +40,7 @@ namespace MusicRaterWebApp.Controllers.Api
                 return Ok (Mapper.Map<Album,AlbumDto>(album));
             }
         }
+
         //POST /api/albums
         [HttpPost]
         public IHttpActionResult CreateAlbum(AlbumDto albumDto)
@@ -56,7 +56,7 @@ namespace MusicRaterWebApp.Controllers.Api
             return Created(new Uri(Request.RequestUri + "/" + album.albumId), albumDto);
         }
 
-        //Put /api/albums/1
+        //PUT /api/albums/1
         [HttpPut]
         public IHttpActionResult UpdateAlbum(int id, AlbumDto albumDto)
         {

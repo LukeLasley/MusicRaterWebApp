@@ -28,7 +28,7 @@ namespace MusicRaterWebApp.Controllers
             _context.Dispose();
         }
 
-        // GET: Album
+        //Currently grabs the most recently added albums and shows them in a list
         public ActionResult Index()
         {
             var recentAlbums = _context.albums.OrderByDescending(x => x.albumId).Take(10).ToList();
@@ -39,10 +39,14 @@ namespace MusicRaterWebApp.Controllers
             return View(resultsViewModel);
 
         }
+
+        //Allows user to search for album
         public ActionResult Search()
         {
             return View();
         }
+
+        //Allows trusted users and admin accounts to create new albums
         [Authorize(Roles = "Administrator, Trusted")]
         public ActionResult AlbumForm()
         {
@@ -54,12 +58,13 @@ namespace MusicRaterWebApp.Controllers
             return View(albumViewModel);
         }
 
+        //Updates the database based on the album form view above.
         //Code works however ModelState is returning invalid each time. Want to add that check back in eventually.
         [Authorize(Roles = "Administrator, Trusted")]
         [HttpPost]
         public ActionResult Save(AlbumFormViewModel albumViewModel)
         {
-
+            //If it is a new album create it
             if (albumViewModel.album.albumId == 0)
             {
                 var album = albumViewModel.album;
@@ -70,7 +75,7 @@ namespace MusicRaterWebApp.Controllers
             }
             else
             {
-                //Update database
+                //Update database album
                 Album databaseAlbum = _context.albums.Single(c => c.albumId == albumViewModel.album.albumId);
                 Album viewAlbum = albumViewModel.album;
                 databaseAlbum.albumName = viewAlbum.albumName;
@@ -82,20 +87,28 @@ namespace MusicRaterWebApp.Controllers
             }
 
             _context.SaveChanges();
+            //Send user to new album's info page.
             String redirect = "GetAlbum/" + albumViewModel.album.albumId;
 
             return RedirectToAction(redirect, "Album");
         }
+
+        //Gets the albums info page
+        //TODO: COMMENT THIS STUFF
         public ActionResult GetAlbum(int id)
         {
             Album album = _context.albums.SingleOrDefault(c => c.albumId == id);
+            if (album == null)
+                return HttpNotFound();
             String spotifyLink = "";
             var curUser = User.Identity.GetUserId();
             var albumRank = _context.userAlbumRanks.Where(x => x.albumId == id && x.userId == curUser).ToList();
+            //if the album has a spotifyuri in database update it for the viewmodel
             if (album.spotifyURi != null)
             {
                 spotifyLink = "https://open.spotify.com/embed?uri=" + album.spotifyURi;
             }
+            //This determines if a button says "I know this album" or "I don't know this album"
             bool showButton = true;
             int rankId = -1;
             if (albumRank.Count == 1)
@@ -104,6 +117,7 @@ namespace MusicRaterWebApp.Controllers
                 showButton = albumRank[0].knowAlbum;
                 rankId = albumRank[0].id;
             }
+            //User has never seen album in ranker game so add to their useralbumranks
             if(albumRank.Count == 0)
             {
                 var newUserRank = HelperMethods.createNewRank(album, curUser);
@@ -112,13 +126,18 @@ namespace MusicRaterWebApp.Controllers
                 showButton = true;
                 rankId = newUserRank.id;
             }
+
+            //If there is an active albumcover attached.
             var albumHasCover = _context.albumCovers.Any(x => x.albumId == album.albumId && x.active == true);
+
             var albumPath = "";
+            //If there is an album cover update the path to show the cover
             if (albumHasCover)
             {
                 var path = _context.albumCovers.Single(x => x.albumId == album.albumId && x.active == true);
                 albumPath = "/Images/Albums/" + path.albumCoverId;
             }
+
             AlbumDescriptionViewModel descriptionViewModel = new AlbumDescriptionViewModel
             {
                 album = album,
@@ -130,17 +149,13 @@ namespace MusicRaterWebApp.Controllers
                 albumImagePath = albumPath
 
             };
-            if (album == null)
-                return HttpNotFound();
-            else
+            //If user is admin or trusted allow them to edit the album
+            if (User.IsInRole("Administrator") || User.IsInRole("Trusted"))
             {
-                if (User.IsInRole("Administrator") || User.IsInRole("Trusted"))
-                {
                     return View(descriptionViewModel);
-                }
-                return View("GetAlbumReadOnly", descriptionViewModel);
-
             }
+            //otherwise give them a view-only view.
+            return View("GetAlbumReadOnly", descriptionViewModel);
         }
 
         //need to add genre chosen
@@ -166,7 +181,7 @@ namespace MusicRaterWebApp.Controllers
             };
             return View("AlbumForm", viewModel);
         }
-
+        //Allows users to search for an album
         public ActionResult SearchForm()
         {
             var genres = _context.genres.ToList();
@@ -176,7 +191,8 @@ namespace MusicRaterWebApp.Controllers
             };
             return View(albumViewModel);
         }
-
+        //Shows the page with results, may want to combine with the search form.
+        //TODO: Make this obsolete by allowing the search form to update by api calls
         public ActionResult SearchResults(AlbumFormViewModel albumViewModel)
         {
             var albums = _context.albums.Where(c => c.albumName.Equals(albumViewModel.album.albumName) || c.bandName.Equals(albumViewModel.album.bandName) || c.year == albumViewModel.album.year).ToList() ;
@@ -186,8 +202,8 @@ namespace MusicRaterWebApp.Controllers
             };
             return View(resultsViewModel);
         }
-        //Gets all albums
 
+        //Gets every album in database. Not sure if this is useful, at all.
         public ActionResult GetAll()
         {
             var albums = _context.albums.ToList();

@@ -23,31 +23,36 @@ namespace MusicRaterWebApp.Controllers
             _context.Dispose();
         }
 
-        // GET: User
+        //No current index page, redirecting to search
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("User","Search");
         }
+        //Allows only the Admin to search and trust users
         [Authorize(Roles = "Administrator")]
         public ActionResult Search()
         {
             return View();
         }
 
-        //TODO: Need to update UserAlbumRanks to include Album model.
+        //This view will grab the users favorite albums based on rankings
+        //TODO: Only show albums that have been ranked before.
         [Authorize]
         public ActionResult Favorites()
         {
             var curUser = User.Identity.GetUserId();
+            //Grabs top ten albumIds, might do well to update the model to already have album object in them so I don't have to make second call
             var favoriteAlbumIds = _context.userAlbumRanks.Where(x => x.userId.Equals(curUser) && x.knowAlbum == true).OrderByDescending(x => x.rank).Select(x => x.albumId).Take(10).ToList();
             var favoriteAlbumsUnsorted = _context.albums.Where(x => favoriteAlbumIds.Contains(x.albumId)).ToList();
             var favoriteAlbumsArray = new Album[10];
+            //This takes the unsorted array of favorite albums and sorts them based on the initial albumId query
             foreach(var album in favoriteAlbumsUnsorted){
                 int indexOfAlbum = favoriteAlbumIds.IndexOf(album.albumId);
                 favoriteAlbumsArray[indexOfAlbum] = album;
             }
             var favoriteAlbums = favoriteAlbumsArray.ToList();
+            //In case the user doesn't have 10 albums, remove the empty albums.
             favoriteAlbums.RemoveAll(x => x == null);
             var viewModel = new UserFavoriteAlbumsViewModel
             {
