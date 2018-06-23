@@ -24,7 +24,6 @@
         <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId" accept="image/*"/>
     }
 </div>
-
 <div id="spotifyPlayer">
     @if (Model.spotifyURI != "")
     {
@@ -136,7 +135,7 @@
                 var files = $(this)[0].files[0];
                 var type = files["type"];
                 var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
-                if ($.inArray(type, ValidImageTypes) > 0 && files.size < 400000) {
+                if ($.inArray(type, ValidImageTypes) > 0 && files.size < 100000) {
                     data.append("File", $(this)[0].files[0]);
                     data.append("AlbumId", $(this).attr("data-album-id"));
                     $.ajax({
@@ -150,6 +149,10 @@
                         },
 
                     });
+                }
+                else
+                {
+                    alert("The image is too large. Please make sure the image is smaller than 100KB");
                 }
 
             });

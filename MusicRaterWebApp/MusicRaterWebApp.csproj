@@ -193,6 +193,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\Api\AlbumsController.cs" />
     <Compile Include="Controllers\Api\UserAlbumRanksController.cs" />
@@ -427,7 +428,8 @@
     <Content Include="Views\Album\GetAlbumReadOnly.cshtml" />
     <Content Include="Views\User\Search.cshtml" />
     <Content Include="Views\Album\Search.cshtml" />
-    <Content Include="Views\Home\CoverCleanup.cshtml" />
+    <Content Include="Views\Admin\CoverCleanup.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

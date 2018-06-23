@@ -56,19 +56,5 @@ namespace MusicRaterWebApp.Controllers
             var albumRankerViewModel = helperMethods.PickTwoAlbumRankerViewModels(curUser);
             return View(albumRankerViewModel);
         }
-
-        //Allows administrator to cleanup album covers that are no longer used.
-        [Authorize(Roles = "Administrator")]
-        public ActionResult CoverCleanup()
-        {
-            //grabs 10 inactive covers
-            var inactiveCovers = _context.albumCovers.Where(x => x.active == false).Take(10).ToList();
-            
-            AlbumCleanupViewModel coverViewModel = new AlbumCleanupViewModel
-            {
-                covers = inactiveCovers,
-            };
-            return View(coverViewModel);
-        }
     }
 }
