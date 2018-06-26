@@ -36,8 +36,10 @@
     <div>
         <input type="button" class="btn btn-primary" value="Search" onclick="window.location.href='@Url.Action("SearchForm", "Album")'" ) />
         @if (this.User.IsInRole("Administrator") || User.IsInRole("Trusted"))
-        {
-            <input type="button" class="btn btn-primary" value="Add New" onclick="window.location.href='@Url.Action("AlbumForm", "Album")'" ) />
-        }
+    {
+        <input type="button" class="btn btn-primary" value="Add New" onclick="window.location.href='@Url.Action("AlbumForm", "Album")'" ) />
+        <input type="button" class="btn btn-primary" value="Cover Cleanup" onclick="window.location.href='@Url.Action("CoverCleanup", "Admin")'" ) />
+        <input type="button" class="btn btn-primary" value="Search For User" onclick="window.location.href='@Url.Action("Search", "Admin")'") />
+}
     </div>
 </body>

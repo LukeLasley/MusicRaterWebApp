@@ -25,7 +25,7 @@ namespace MusicRaterWebApp.Controllers
         // GET: Admin
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Album");
         }
 
         //Allows administrator to cleanup album covers that are no longer used.
@@ -39,6 +39,11 @@ namespace MusicRaterWebApp.Controllers
                 covers = inactiveCovers,
             };
             return View(coverViewModel);
+        }
+        //Allows only the Admin to search and trust users
+        public ActionResult Search()
+        {
+            return View();
         }
 
     }

@@ -29,12 +29,6 @@ namespace MusicRaterWebApp.Controllers
         {
             return RedirectToAction("User","Search");
         }
-        //Allows only the Admin to search and trust users
-        [Authorize(Roles = "Administrator")]
-        public ActionResult Search()
-        {
-            return View();
-        }
 
         //This view will grab the users favorite albums based on rankings
         [Authorize]
