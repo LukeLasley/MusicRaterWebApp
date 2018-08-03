@@ -51,10 +51,13 @@ namespace MusicRaterWebApp.Controllers
             var favoriteAlbums = favoriteAlbumsArray.ToList();
             //In case the user doesn't have 10 albums, remove the empty albums.
             favoriteAlbums.RemoveAll(x => x == null);
+            Dictionary<Album, String> reviews = new Dictionary<Album, string>();
+            reviews.Add(favoriteAlbums[0], "Its pretty cool");
             var viewModel = new UserProfileViewModel
             {
                 username = curUserName,
-                favoriteAlbum = favoriteAlbums
+                favoriteAlbum = favoriteAlbums,
+                userReviews = reviews
 
             };
             return View(viewModel);

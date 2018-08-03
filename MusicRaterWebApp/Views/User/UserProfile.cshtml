@@ -40,4 +40,17 @@
             </tbody>
         </table>
     </div>
+
+    <div id="userReviews">
+        <h4>Reviews</h4>
+        @foreach (var review in Model.userReviews)
+        {
+        <div id="albumReview">
+            <h5>@review.Key.albumName</h5>
+            <p>
+                @review.Value
+            </p>
+        </div>
+        }
+    </div>
 </body>
