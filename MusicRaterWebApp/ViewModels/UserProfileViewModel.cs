@@ -9,7 +9,6 @@ namespace MusicRaterWebApp.ViewModels
     public class UserProfileViewModel
     {
         public String username { get; set; }
-        public String userId { get; set; }
         public List<Album> favoriteAlbum { get; set; }
 
     }
