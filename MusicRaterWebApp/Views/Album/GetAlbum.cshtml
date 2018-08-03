@@ -6,49 +6,46 @@
 
 <h2>@Model.album.bandName - @Model.album.albumName</h2>
 <hr />
-<div id="albumCover" style="width: 500px;">
-    @if (Model.albumImagePath == "")
-    {
-        <img src="~/Images/noImage.png" style="height:300px;width:300px;" id="albumCoverImage" />
-        <h3>
-            Change Image:
-        </h3>
-        <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId" accept="image/*" />
-    }
-    else
-    {
-        <img src=@Model.albumImagePath style="height:300px;width:300px;" id="albumCoverImage" />
-        <h3>
-            Change Image:
-        </h3>
-        <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId" accept="image/*"/>
-    }
-</div>
-<div id="spotifyPlayer">
-    @if (Model.spotifyURI != "")
-    {
-        <iframe src=@Model.spotifyURI width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        <br />
-        <button data-album-id="@Model.album.albumId" class="btn btn-default js-addSpotify">Edit Spotify</button>
-    }
-    else
-    {
-        <iframe src=@Model.spotifyURI width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" style="display:none;" id="player"></iframe>
-        <br />
-        <button data-album-id="@Model.album.albumId" class="btn btn-default js-addSpotify">Add Spotify</button>
-    }
-    @if (Model.know)
-    {
-        <button data-userRank-id="@Model.albumRankId" data-know="@(!Model.know)" class="btn btn-default js-know">Don't Know This Album</button>
-    }
-    else
-    {
-        <button data-userRank-id="@Model.albumRankId" data-know="@(!Model.know)" class="btn btn-default js-know">I Know This Album</button>
-    }
-</div>
-<br />
 <body>
+    <div id="spotifyPlayer">
+        @if (Model.spotifyURI != "")
+        {
+            <iframe src=@Model.spotifyURI width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            <br />
+            <button data-album-id="@Model.album.albumId" class="btn btn-default js-addSpotify">Edit Spotify</button>
+        }
+        else
+        {
+            <iframe src=@Model.spotifyURI width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media" style="display:none;" id="player"></iframe>
+            <br />
+            <button data-album-id="@Model.album.albumId" class="btn btn-default js-addSpotify">Add Spotify</button>
+        }
+        @if (Model.know)
+        {
+            <button data-userRank-id="@Model.albumRankId" data-know="@(!Model.know)" class="btn btn-default js-know">Don't Know This Album</button>
+        }
+        else
+        {
+            <button data-userRank-id="@Model.albumRankId" data-know="@(!Model.know)" class="btn btn-default js-know">I Know This Album</button>
+        }
+    </div>
     <div id="album-info">
+        @if (Model.albumImagePath == "")
+        {
+            <img src="~/Images/noImage.png" style="height:300px;width:300px;" id="albumCoverImage" />
+            <h3>
+                Change Image:
+            </h3>
+            <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId" accept="image/*" />
+        }
+        else
+        {
+            <img src=@Model.albumImagePath style="height:300px;width:300px;" id="albumCoverImage" />
+            <h3>
+                Change Image:
+            </h3>
+            <input type="file" class="form-control-file" id="upload" data-album-id="@Model.album.albumId" accept="image/*" />
+        }
         <table id="albums" class="table table-bordered table-hover">
             <tbody>
                 <tr>
@@ -150,8 +147,7 @@
 
                     });
                 }
-                else
-                {
+                else {
                     alert("The image is too large. Please make sure the image is smaller than 100KB");
                 }
 

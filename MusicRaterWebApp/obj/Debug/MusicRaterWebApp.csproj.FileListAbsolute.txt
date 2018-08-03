@@ -277,7 +277,6 @@ E:\projects\MusicRaterWebApp\bin\Microsoft.AI.DependencyCollector.xml
 E:\projects\MusicRaterWebApp\bin\Microsoft.AI.ServerTelemetryChannel.xml
 E:\projects\MusicRaterWebApp\bin\Microsoft.AI.WindowsServer.xml
 E:\projects\MusicRaterWebApp\bin\Microsoft.AI.Web.xml
-E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.csprojResolveAssemblyReference.cache
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.csproj.CoreCompileInputs.cache
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.dll
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.pdb
@@ -397,3 +396,5 @@ E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.initialSpotif
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.initialTrustedUser.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.initialalbumcovers.resources
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.initialSpotify.resources
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.csprojAssemblyReference.cache
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.csproj.CopyComplete
