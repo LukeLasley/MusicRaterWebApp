@@ -355,6 +355,7 @@
     <Compile Include="ViewModels\AlbumRankerViewModel.cs" />
     <Compile Include="ViewModels\SearchResultsViewModel.cs" />
     <Compile Include="ViewModels\UserFavoriteAlbumsViewModel.cs" />
+    <Compile Include="ViewModels\UserProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -429,6 +430,7 @@
     <Content Include="Views\Admin\Search.cshtml" />
     <Content Include="Views\Album\Search.cshtml" />
     <Content Include="Views\Admin\CoverCleanup.cshtml" />
+    <Content Include="Views\User\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
