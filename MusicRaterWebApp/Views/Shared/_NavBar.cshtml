@@ -14,7 +14,7 @@
             @if (Request.IsAuthenticated)
             {
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("My Favorites", "Favorites", "User")</li>
+                    <li>@Html.ActionLink("My Profile", "UserProfile", "User")</li>
                     <li>@Html.ActionLink("Rank", "AlbumRanker", "Home")</li>
                     <li>@Html.ActionLink("Albums", "Index", "Album")</li>
                 </ul>

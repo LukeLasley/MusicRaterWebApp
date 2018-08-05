@@ -53,6 +53,7 @@ namespace MusicRaterWebApp.Controllers
             favoriteAlbums.RemoveAll(x => x == null);
             Dictionary<Album, String> reviews = new Dictionary<Album, string>();
             reviews.Add(favoriteAlbums[0], "Its pretty cool");
+            reviews.Add(favoriteAlbums[1], "Its pretty raaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
             var viewModel = new UserProfileViewModel
             {
                 username = curUserName,

@@ -42,15 +42,16 @@
     </div>
 
     <div id="userReviews">
-        <h4>Reviews</h4>
+        <h2>Reviews</h2>
         @foreach (var review in Model.userReviews)
         {
         <div id="albumReview">
-            <h5>@review.Key.albumName</h5>
+            <b>@Html.ActionLink(review.Key.albumName, "GetAlbum/" + review.Key.albumId, "Album") : <b>@review.Key.bandName</b></b>
             <p>
                 @review.Value
             </p>
         </div>
+        <br />
         }
     </div>
 </body>

@@ -57,11 +57,19 @@ hr {
     float: right;
 }
 
-#userProfileInfo{
-    float:left
+#userProfileInfo {
+    float: left;
 }
 
-#albumReview{
+#albumReview {
     border: 1px solid #eee;
     box-shadow: 0 5px 5px #ccc;
+    width: 1150px;
+    height: auto;
+    word-break:break-all;
+}
+#userReviews {
+    position: fixed;
+    bottom: 50px;
+    
 }
