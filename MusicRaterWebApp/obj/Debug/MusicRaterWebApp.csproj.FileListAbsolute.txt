@@ -398,3 +398,4 @@ C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicR
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.csprojAssemblyReference.cache
 E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.csproj.CopyComplete
 C:\Users\llasley\source\repos\MusicRaterWebApp\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.csprojAssemblyReference.cache
+E:\projects\MusicRaterWebApp\obj\Debug\MusicRaterWebApp.Migrations.initial_review_table.resources

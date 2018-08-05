@@ -339,6 +339,10 @@
     <Compile Include="Migrations\201806220207411_initialSpotify.Designer.cs">
       <DependentUpon>201806220207411_initialSpotify.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808052046019_initial_review_table.cs" />
+    <Compile Include="Migrations\201808052046019_initial_review_table.Designer.cs">
+      <DependentUpon>201808052046019_initial_review_table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Album.cs" />
@@ -347,6 +351,7 @@
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\ManageViewModel.cs" />
     <Compile Include="Models\UserAlbumRank.cs" />
+    <Compile Include="Models\UserReviews.cs" />
     <Compile Include="MusicRaterContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AlbumCleanupViewModel.cs" />
@@ -548,6 +553,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806220207411_initialSpotify.resx">
       <DependentUpon>201806220207411_initialSpotify.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808052046019_initial_review_table.resx">
+      <DependentUpon>201808052046019_initial_review_table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

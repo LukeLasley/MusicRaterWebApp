@@ -50,5 +50,30 @@ namespace MusicRaterWebApp.Controllers.Api
                 return BadRequest();
             }
         }
+        [HttpPut]
+        public IHttpActionResult WriteReview(string review, int albumId)
+        {
+            var userId = User.Identity.GetUserId();
+            var userReview = _context.userReviews.SingleOrDefault(x => x.albumId == albumId && x.userId == userId);
+            if(userReview == null)
+            {
+                userReview = new UserReviews()
+                {
+                    userId = userId,
+                    albumId = albumId,
+                    review = review
+                };
+                _context.userReviews.Add(userReview);
+                _context.SaveChanges();
+                return Ok();
+            }
+            else
+            {
+                userReview.review = review;
+                userReview.dateUpdated = DateTime.Now;
+                _context.SaveChanges();
+                return Ok();
+            }
+        }
     }
 }
