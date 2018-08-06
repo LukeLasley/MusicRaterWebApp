@@ -73,3 +73,7 @@ hr {
     bottom: 50px;
     
 }
+#writeReview {
+    position: fixed;
+    bottom:0px;
+}

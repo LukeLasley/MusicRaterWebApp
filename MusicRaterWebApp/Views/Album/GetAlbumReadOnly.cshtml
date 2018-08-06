@@ -71,8 +71,15 @@
                 </tr>
             </tbody>
         </table>
+        <button class="btn btn-default js-writeReview" js>Write a review</button>
     </div>
-
+    <div id="writeReview" hidden>
+        <h3>Write a review</h3>
+        <textarea style="width:250px;height:150px;resize:none;" maxlength="500"></textarea>
+        <br />
+        <button class="btn btn-default">Save</button>
+        <button class="btn btn-default js-cancelReview">Cancel</button>
+    </div>
 
 </body>
 
@@ -95,6 +102,12 @@
                         };
                     }
                 });
+            });
+            $('#album-info .js-writeReview').on("click", function () {
+                $('#writeReview').show();
+            });
+            $('#writeReview .js-cancelReview').on("click", function () {
+                $('#writeReview').hide();
             });
         });
 
