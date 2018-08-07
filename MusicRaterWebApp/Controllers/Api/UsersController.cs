@@ -51,6 +51,7 @@ namespace MusicRaterWebApp.Controllers.Api
             }
         }
         [HttpPut]
+        [Route("api/users/writereview/")]
         public IHttpActionResult WriteReview(string review, int albumId)
         {
             var userId = User.Identity.GetUserId();
@@ -61,7 +62,8 @@ namespace MusicRaterWebApp.Controllers.Api
                 {
                     userId = userId,
                     albumId = albumId,
-                    review = review
+                    review = review,
+                    dateUpdated = DateTime.Now
                 };
                 _context.userReviews.Add(userReview);
                 _context.SaveChanges();
