@@ -55,13 +55,14 @@ namespace MusicRaterWebApp.Controllers.Api
         public IHttpActionResult WriteReview(string review, int albumId)
         {
             var userId = User.Identity.GetUserId();
-            var userReview = _context.userReviews.SingleOrDefault(x => x.albumId == albumId && x.userId == userId);
+            var albumInDb = _context.albums.SingleOrDefault(x => x.albumId == albumId);
+            var userReview = _context.userReviews.SingleOrDefault(x => x.album.albumId == albumInDb.albumId && x.userId == userId);
             if(userReview == null)
             {
                 userReview = new UserReviews()
                 {
                     userId = userId,
-                    albumId = albumId,
+                    album = albumInDb,
                     review = review,
                     dateUpdated = DateTime.Now
                 };

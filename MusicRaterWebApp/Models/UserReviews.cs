@@ -10,7 +10,7 @@ namespace MusicRaterWebApp.Models
     {
         [Key]
         public int reviewId { get; set; }
-        public int albumId { get; set; } 
+        public Album album { get; set; } 
         public string userId { get; set; }
         public DateTime dateUpdated { get; set; }
         public String review { get; set; }

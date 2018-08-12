@@ -52,8 +52,11 @@ namespace MusicRaterWebApp.Controllers
             //In case the user doesn't have 10 albums, remove the empty albums.
             favoriteAlbums.RemoveAll(x => x == null);
             Dictionary<Album, String> reviews = new Dictionary<Album, string>();
-            reviews.Add(favoriteAlbums[0], "Its pretty cool");
-            reviews.Add(favoriteAlbums[1], "Its pretty raaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+            var reviewsInDB = _context.userReviews.Where(x => x.userId.Equals(curUser)).Take(5).ToList();
+            foreach (var review in reviewsInDB)
+            {
+                reviews.Add(review.album, review.review);
+            }
             var viewModel = new UserProfileViewModel
             {
                 username = curUserName,
