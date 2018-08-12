@@ -87,7 +87,13 @@
         </table>
         <p><a class="btn btn-default" href="/Album/Edit/@Model.album.albumId">Edit</a></p>
     </div>
-
+    <div id="writeReview" hidden>
+        <h3>Write a review</h3>
+        <textarea id="reviewTextArea" style="width:250px;height:150px;resize:none;" maxlength="500"></textarea>
+        <br />
+        <button class="btn btn-default  js-saveReview" data-albumId=@Model.album.albumId>Save</button>
+        <button class="btn btn-default js-cancelReview">Cancel</button>
+    </div>
 
 </body>
 
@@ -150,6 +156,26 @@
                 else {
                     alert("The image is too large. Please make sure the image is smaller than 100KB");
                 }
+
+            });
+            $('#album-info .js-writeReview').on("click", function () {
+                $('#writeReview').show();
+            });
+            $('#writeReview .js-cancelReview').on("click", function () {
+                $('#writeReview').hide();
+            });
+            $('#writeReview .js-saveReview').on("click", function () {
+                var saveButton = $(this);
+                var review = $('#reviewTextArea').val();
+                var url = "/api/users/writereview/?albumId=" + $(this).attr("data-albumId") + "&review=" + review
+                console.log(url);
+                $.ajax({
+                    url: "/api/users/writereview/?albumId=" + $(this).attr("data-albumId") + "&review=" + review,
+                    method: "PUT",
+                    success: function () {
+                        console.log("succ");
+                    }
+                });
 
             });
         });
