@@ -86,6 +86,7 @@
             </tbody>
         </table>
         <p><a class="btn btn-default" href="/Album/Edit/@Model.album.albumId">Edit</a></p>
+        <button class="btn btn-default js-writeReview" js>Write a review</button>
     </div>
     <div id="writeReview" hidden>
         <h3>Write a review</h3>
@@ -173,7 +174,7 @@
                     url: "/api/users/writereview/?albumId=" + $(this).attr("data-albumId") + "&review=" + review,
                     method: "PUT",
                     success: function () {
-                        console.log("succ");
+                        $('#writeReview').hide();
                     }
                 });
 

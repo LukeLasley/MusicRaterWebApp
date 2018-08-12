@@ -118,7 +118,7 @@
                     url: "/api/users/writereview/?albumId=" + $(this).attr("data-albumId") + "&review=" + review,
                     method: "PUT",
                     success: function () {
-                        console.log("succ");
+                        $('#reviewTextArea').val('');
                     }
                 });
 
