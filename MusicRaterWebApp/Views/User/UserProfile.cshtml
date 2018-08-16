@@ -37,7 +37,15 @@
                                 @Html.ActionLink(@album.albumName, "GetAlbum/" + @album.albumId, "Album")
                             </td>
                             <td>
-                                <img src="~/Images/noImage.png" style="height:50px;width:50px;" />
+                                @if (Model.covers.ContainsKey(album.albumId))
+                                {
+                                    <img src="@Model.covers[album.albumId]" style="height:50px;width:50px;" />
+                                }
+                                else
+                                {
+                                    <img src="~/Images/noImage.png" style="height:50px;width:50px;" />
+                                }
+
                             </td>
                         </tr>
                     }

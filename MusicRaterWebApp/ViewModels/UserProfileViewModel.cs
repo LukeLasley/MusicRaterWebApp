@@ -11,5 +11,6 @@ namespace MusicRaterWebApp.ViewModels
         public String username { get; set; }
         public List<Album> favoriteAlbum { get; set; }
         public Dictionary<Album,String> userReviews { get; set; }
+        public Dictionary<int,string> covers { get; set; }
     }
 }

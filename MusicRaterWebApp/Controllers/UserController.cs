@@ -41,12 +41,19 @@ namespace MusicRaterWebApp.Controllers
             //Albums must have played the rank game at least once to show.
             var favoriteAlbumIds = _context.userAlbumRanks.Where(x => x.userId.Equals(curUser) && x.knowAlbum == true && x.timesSeen > 0).OrderByDescending(x => x.rank).Select(x => x.albumId).Take(10).ToList();
             var favoriteAlbumsUnsorted = _context.albums.Where(x => favoriteAlbumIds.Contains(x.albumId)).ToList();
+            var favoriteAlbumCovers = _context.albumCovers.Where(x => favoriteAlbumIds.Contains(x.albumId) && x.active==true).ToList();
             var favoriteAlbumsArray = new Album[10];
             //This takes the unsorted array of favorite albums and sorts them based on the initial albumId query
+            
             foreach (var album in favoriteAlbumsUnsorted)
             {
                 int indexOfAlbum = favoriteAlbumIds.IndexOf(album.albumId);
                 favoriteAlbumsArray[indexOfAlbum] = album;
+            }
+            Dictionary<int, string> indexToCover = new Dictionary<int, string>();
+            foreach ( var cover in favoriteAlbumCovers)
+            {
+                indexToCover.Add(cover.albumId, "/Images/Albums/" + cover.albumCoverId);
             }
             var favoriteAlbums = favoriteAlbumsArray.ToList();
             //In case the user doesn't have 10 albums, remove the empty albums.
@@ -61,7 +68,8 @@ namespace MusicRaterWebApp.Controllers
             {
                 username = curUserName,
                 favoriteAlbum = favoriteAlbums,
-                userReviews = reviews
+                userReviews = reviews,
+                covers = indexToCover
 
             };
             return View(viewModel);
