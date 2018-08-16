@@ -69,11 +69,8 @@ hr {
     word-break:break-all;
 }
 #userReviews {
-    position: fixed;
-    bottom: 50px;
-    
+    clear: both;
 }
 #writeReview {
-    position: fixed;
-    bottom:0px;
+    clear: both;
 }

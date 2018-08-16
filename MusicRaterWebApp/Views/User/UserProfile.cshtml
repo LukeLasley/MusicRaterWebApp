@@ -7,51 +7,53 @@
 <h3>@(Model.username + "'s Profile")<br /></h3>
 
 <body>
-    <div id="userProfileInfo">
-        <img src="~/Images/noImage.png"/>
-    </div>
+    <div>
+        <div id="userProfileInfo">
+            <img src="~/Images/noImage.png" />
+        </div>
 
-    <div id="profileAlbumList">
-        <h4>My Favorite Albums</h4>
-        <table id="albums" class="table table-bordered table-hover">
-            <tbody>
-                <tr>
-                    <td>
-                        Rank
-                    </td>
-                    <td>
-                        Album
-                    </td>
-                </tr>
-                @foreach (var album in Model.favoriteAlbum)
-                {
+        <div id="profileAlbumList">
+            <h4>My Favorite Albums</h4>
+            <table id="albums" class="table table-bordered table-hover">
+                <tbody>
                     <tr>
                         <td>
-                            @(Model.favoriteAlbum.IndexOf(album) + 1)
+                            Rank
                         </td>
                         <td>
-                            @Html.ActionLink(@album.albumName, "GetAlbum/" + @album.albumId, "Album")
-                        </td>
-                        <td>
-                            <img src="~/Images/noImage.png" style="height:50px;width:50px;"/>
+                            Album
                         </td>
                     </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-
-    <div id="userReviews">
-        <h2>Reviews</h2>
-        @foreach (var review in Model.userReviews)
-        {
-        <div id="albumReview">
-            <b>@Html.ActionLink(review.Key.albumName, "GetAlbum/" + review.Key.albumId, "Album") : <b>@review.Key.bandName</b></b>
-            <p>
-                @review.Value
-            </p>
+                    @foreach (var album in Model.favoriteAlbum)
+                    {
+                        <tr>
+                            <td>
+                                @(Model.favoriteAlbum.IndexOf(album) + 1)
+                            </td>
+                            <td>
+                                @Html.ActionLink(@album.albumName, "GetAlbum/" + @album.albumId, "Album")
+                            </td>
+                            <td>
+                                <img src="~/Images/noImage.png" style="height:50px;width:50px;" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
         <br />
-        }
+        <div id="userReviews" style="clear:both">
+            <h2>Reviews</h2>
+            @foreach (var review in Model.userReviews)
+            {
+                <div id="albumReview">
+                    <b>@Html.ActionLink(review.Key.albumName, "GetAlbum/" + review.Key.albumId, "Album") : <b>@review.Key.bandName</b></b>
+                    <p>
+                        @review.Value
+                    </p>
+                </div>
+                <br />
+            }
+        </div>
     </div>
 </body>

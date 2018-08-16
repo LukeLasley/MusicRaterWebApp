@@ -7,7 +7,7 @@
 <h2>@Model.album.bandName - @Model.album.albumName</h2>
 <hr />
 <body>
-    <div id="spotifyPlayer">
+    <div id="spotifyPlayer" >
         @if (Model.spotifyURI != "")
         {
             <iframe src=@Model.spotifyURI width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
